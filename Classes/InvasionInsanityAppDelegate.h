@@ -2,7 +2,7 @@
 #import "GameViewController.h"
 #import "GameOverViewController.h"
 
-@interface TheArenaAppDelegate : NSObject <UIApplicationDelegate, MenuViewControllerDelegate, GameViewControllerDelegate, GameOverViewControllerDelegate> {
+@interface InvasionInsanityAppDelegate : NSObject <UIApplicationDelegate, MenuViewControllerDelegate, GameViewControllerDelegate, GameOverViewControllerDelegate> {
     UIWindow *window;
 	MenuViewController *menuViewController;
 	GameViewController *gameViewController;

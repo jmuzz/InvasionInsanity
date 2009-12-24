@@ -1,12 +1,26 @@
-#import "TheArenaAppDelegate.h"
+#import "InvasionInsanityAppDelegate.h"
 #import "MenuViewController.h"
 #import "GameViewController.h"
 
-@implementation TheArenaAppDelegate
+void MyUncaughtExceptionHandler(NSException *exception) {
+	NSArray *callStackArray = [exception callStackReturnAddresses];
+	int frameCount = [callStackArray count];
+	void *backtraceFrames[frameCount];
+	
+	for (int i=0; i<frameCount; i++) {
+		backtraceFrames[i] = (void *)[[callStackArray objectAtIndex:i] unsignedIntegerValue];
+	}
+	
+	// report the exception
+}
+
+@implementation InvasionInsanityAppDelegate
 
 @synthesize window, gameViewController, menuViewController, gameOverViewController;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+	NSSetUncaughtExceptionHandler(&MyUncaughtExceptionHandler);
+	
 	// Set up menu view controller
 	MenuViewController *mViewController = [[MenuViewController alloc] init];
 	mViewController.delegate = self;
