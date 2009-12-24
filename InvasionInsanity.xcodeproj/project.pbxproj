@@ -16,6 +16,7 @@
 		5D2B45EF1094804F002838BC /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2B45EE1094804F002838BC /* MenuViewController.m */; };
 		5D2B464110957290002838BC /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2B464010957290002838BC /* MenuView.xib */; };
 		5D658E9410E3026800CCFDF9 /* Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D658E9310E3026800CCFDF9 /* Hex.m */; };
+		5D658ED110E315E600CCFDF9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D658ED010E315E600CCFDF9 /* QuartzCore.framework */; };
 		5D9499CC10982D6E002FED92 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9499CA10982D6E002FED92 /* GameOverViewController.m */; };
 		5D9499CD10982D6E002FED92 /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D9499CB10982D6E002FED92 /* GameOverView.xib */; };
 		5DF17F691096CA3E001F48D7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF17F681096CA3E001F48D7 /* GameViewController.m */; };
@@ -38,6 +39,7 @@
 		5D2B464010957290002838BC /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		5D658E9210E3026800CCFDF9 /* Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hex.h; sourceTree = "<group>"; };
 		5D658E9310E3026800CCFDF9 /* Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hex.m; sourceTree = "<group>"; };
+		5D658ED010E315E600CCFDF9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5D9499C910982D6E002FED92 /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
 		5D9499CA10982D6E002FED92 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 		5D9499CB10982D6E002FED92 /* GameOverView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GameOverView.xib; path = Classes/GameOverView.xib; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				5D658ED110E315E600CCFDF9 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +132,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				5D658ED010E315E600CCFDF9 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

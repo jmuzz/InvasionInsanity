@@ -2,7 +2,7 @@
 
 @interface GameView : UIView {
 	GameViewController *gameViewController;
-	UIImageView *player;
+	UIView *map;
 }
 
 @property (nonatomic, retain) IBOutlet GameViewController *gameViewController;

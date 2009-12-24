@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -269,12 +267,13 @@
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
+									<integer>9</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -299,7 +298,7 @@
 							<real>234</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>42 59 1313 819 0 0 1440 878 </string>
+						<string>118 59 1313 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -310,12 +309,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GameView.h</string>
+								<string>GameView.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,29 +324,29 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GameView.h</string>
+										<string>GameView.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5D658E8D10E3020A00CCFDF9</string>
+										<string>5D658F6E10E3213F00CCFDF9</string>
 										<key>history</key>
 										<array>
 											<string>5D658E5B10E3004B00CCFDF9</string>
 											<string>5D658E7E10E3020A00CCFDF9</string>
-											<string>5D658E7F10E3020A00CCFDF9</string>
-											<string>5D658E8010E3020A00CCFDF9</string>
 											<string>5D658E8110E3020A00CCFDF9</string>
-											<string>5D658E8210E3020A00CCFDF9</string>
 											<string>5D658E8310E3020A00CCFDF9</string>
-											<string>5D658E8410E3020A00CCFDF9</string>
-											<string>5D658E8510E3020A00CCFDF9</string>
-											<string>5D658E8610E3020A00CCFDF9</string>
 											<string>5D658E8710E3020A00CCFDF9</string>
-											<string>5D658E8810E3020A00CCFDF9</string>
 											<string>5D658E8910E3020A00CCFDF9</string>
 											<string>5D658E8A10E3020A00CCFDF9</string>
 											<string>5D658E8B10E3020A00CCFDF9</string>
-											<string>5D658E8C10E3020A00CCFDF9</string>
+											<string>5D658EB110E311EF00CCFDF9</string>
+											<string>5D658EB210E311EF00CCFDF9</string>
+											<string>5D658EFC10E3175E00CCFDF9</string>
+											<string>5D658F0310E3178C00CCFDF9</string>
+											<string>5D658F0410E3178C00CCFDF9</string>
+											<string>5D658F1210E317DF00CCFDF9</string>
+											<string>5D658F1310E317DF00CCFDF9</string>
+											<string>5D658F3910E3199500CCFDF9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -359,7 +360,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1057, 528}}</string>
 								<key>RubberWindowFrame</key>
-								<string>42 59 1313 819 0 0 1440 878 </string>
+								<string>118 59 1313 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -379,7 +380,7 @@
 								<key>Frame</key>
 								<string>{{0, 533}, {1057, 245}}</string>
 								<key>RubberWindowFrame</key>
-								<string>42 59 1313 819 0 0 1440 878 </string>
+								<string>118 59 1313 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -543,7 +544,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5D658E8E10E3020A00CCFDF9</string>
 		<string>5D658E6D10E3006000CCFDF9</string>
 		<string>5D658E6910E3004B00CCFDF9</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -552,7 +552,7 @@
 		<string>/Users/joel/devel/iphone/InvasionInsanity/InvasionInsanity.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>42 59 1313 819 0 0 1440 878 </string>
+	<string>118 59 1313 819 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -573,7 +573,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>GameView.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -590,6 +590,8 @@
 							<string>289pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -725,10 +727,10 @@
 									<key>Frame</key>
 									<string>{{316, 0}, {378, 203}}</string>
 									<key>RubberWindowFrame</key>
-									<string>13 243 694 422 0 0 1440 878 </string>
+									<string>674 440 694 422 0 0 1440 878 </string>
 								</dict>
 								<key>RubberWindowFrame</key>
-								<string>13 243 694 422 0 0 1440 878 </string>
+								<string>674 440 694 422 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -762,7 +764,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
 			<key>WindowString</key>
-			<string>13 243 694 422 0 0 1440 878 </string>
+			<string>674 440 694 422 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
@@ -884,6 +886,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
