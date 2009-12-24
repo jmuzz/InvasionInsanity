@@ -15,7 +15,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		5D2B45EF1094804F002838BC /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2B45EE1094804F002838BC /* MenuViewController.m */; };
 		5D2B464110957290002838BC /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2B464010957290002838BC /* MenuView.xib */; };
-		5D658E7710E301A300CCFDF9 /* Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D658E7610E301A300CCFDF9 /* Hex.m */; };
+		5D658E9410E3026800CCFDF9 /* Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D658E9310E3026800CCFDF9 /* Hex.m */; };
 		5D9499CC10982D6E002FED92 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9499CA10982D6E002FED92 /* GameOverViewController.m */; };
 		5D9499CD10982D6E002FED92 /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D9499CB10982D6E002FED92 /* GameOverView.xib */; };
 		5DF17F691096CA3E001F48D7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF17F681096CA3E001F48D7 /* GameViewController.m */; };
@@ -36,8 +36,8 @@
 		5D2B45ED1094804F002838BC /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D2B45EE1094804F002838BC /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D2B464010957290002838BC /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
-		5D658E7510E301A300CCFDF9 /* Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hex.h; path = ../Hex.h; sourceTree = "<group>"; };
-		5D658E7610E301A300CCFDF9 /* Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hex.m; path = ../Hex.m; sourceTree = "<group>"; };
+		5D658E9210E3026800CCFDF9 /* Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hex.h; sourceTree = "<group>"; };
+		5D658E9310E3026800CCFDF9 /* Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hex.m; sourceTree = "<group>"; };
 		5D9499C910982D6E002FED92 /* GameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverViewController.h; sourceTree = "<group>"; };
 		5D9499CA10982D6E002FED92 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 		5D9499CB10982D6E002FED92 /* GameOverView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GameOverView.xib; path = Classes/GameOverView.xib; sourceTree = "<group>"; };
@@ -66,8 +66,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5D658E7510E301A300CCFDF9 /* Hex.h */,
-				5D658E7610E301A300CCFDF9 /* Hex.m */,
 				1D3623240D0F684500981E51 /* InvasionInsanityAppDelegate.h */,
 				1D3623250D0F684500981E51 /* InvasionInsanityAppDelegate.m */,
 				5D2B45ED1094804F002838BC /* MenuViewController.h */,
@@ -78,6 +76,8 @@
 				5DF17F761096CA97001F48D7 /* GameView.m */,
 				5D9499C910982D6E002FED92 /* GameOverViewController.h */,
 				5D9499CA10982D6E002FED92 /* GameOverViewController.m */,
+				5D658E9210E3026800CCFDF9 /* Hex.h */,
+				5D658E9310E3026800CCFDF9 /* Hex.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 				5DF17F691096CA3E001F48D7 /* GameViewController.m in Sources */,
 				5DF17F771096CA97001F48D7 /* GameView.m in Sources */,
 				5D9499CC10982D6E002FED92 /* GameOverViewController.m in Sources */,
-				5D658E7710E301A300CCFDF9 /* Hex.m in Sources */,
+				5D658E9410E3026800CCFDF9 /* Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

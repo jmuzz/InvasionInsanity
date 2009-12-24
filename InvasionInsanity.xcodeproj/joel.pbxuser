@@ -301,6 +301,12 @@
 		vrLoc = 0;
 	};
 	5D658E7510E301A300CCFDF9 /* Hex.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = Hex.h;
+		path = /Users/joel/devel/iphone/InvasionInsanity/Hex.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {996, 496}}";
 			sepNavSelRange = "{73, 0}";
@@ -308,6 +314,12 @@
 		};
 	};
 	5D658E7610E301A300CCFDF9 /* Hex.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = Hex.m;
+		path = /Users/joel/devel/iphone/InvasionInsanity/Hex.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {996, 496}}";
 			sepNavSelRange = "{0, 0}";
@@ -649,7 +661,7 @@
 	};
 	5DF17F751096CA97001F48D7 /* GameView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {996, 473}}";
+			sepNavIntBoundsRect = "{{0, 0}, {996, 496}}";
 			sepNavSelRange = "{209, 0}";
 			sepNavVisRange = "{0, 209}";
 			sepNavWindowFrame = "{{84, 252}, {750, 558}}";
