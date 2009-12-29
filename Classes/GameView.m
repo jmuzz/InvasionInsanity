@@ -3,7 +3,7 @@
 
 @implementation GameView
 
-@synthesize gameViewController, map, hex_width, hex_height;
+@synthesize gameViewController, map, hexes_wide, hexes_high;
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
@@ -20,8 +20,8 @@
 			{2, 2, 2, 2, 1, 2, 2, 2, 0, 2}
 		};
 		
-		hex_width = MAP_WIDTH;
-		hex_height = MAP_HEIGHT;
+		hexes_wide = MAP_WIDTH;
+		hexes_high = MAP_HEIGHT;
 		
 		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
@@ -55,11 +55,10 @@
 				[[map layer] addSublayer:tileArray[i][j]];
 			}
 		}
-		
+
 		[self addSubview:terrainInfoBar];
 		[self addSubview:map];
 	}
-	
 	return self;
 }
 

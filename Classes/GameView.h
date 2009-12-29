@@ -5,7 +5,7 @@
 #define MAP_WIDTH 10
 
 @interface GameView : UIView {
-	int hex_width, hex_height;
+	int hexes_wide, hexes_high;
 	int gameTerrain[MAP_WIDTH][MAP_HEIGHT];
 	GameViewController *gameViewController;
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
@@ -18,8 +18,7 @@
 - (void)updateTerrainInfoWithX:(int)x Y:(int)y;
 
 @property (nonatomic, retain) IBOutlet GameViewController *gameViewController;
-@property (nonatomic, retain) UIView *map;
-@property int hex_width;
-@property int hex_height;
+@property (readonly, nonatomic, retain) UIView *map;
+@property (readonly, nonatomic) int hexes_wide, hexes_high;
 
 @end
