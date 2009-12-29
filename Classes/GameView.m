@@ -7,9 +7,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		const int NUM_TILES = 3;
-		
-		const int testMap[10][10] = {
+		int testMap[10][10] = {
 			{2, 2, 2, 1, 2, 2, 0, 0, 0, 0},
 			{2, 2, 2, 1, 2, 2, 0, 0, 0, 0},
 			{2, 2, 1, 2, 2, 2, 2, 0, 0, 0},
@@ -22,32 +20,47 @@
 			{2, 2, 2, 2, 1, 2, 2, 2, 0, 2}
 		};
 		
-		CGRect map_frame = [self frame];
-		map_frame.size.height -= 20;
-		map = [[UIView alloc] initWithFrame:map_frame];
+		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
-		CGImageRef tileImageRefs[NUM_TILES];
-		for (int i = 0; i < NUM_TILES; i++) {
+		for (int i = 0; i < NUM_TILE_TYPES; i++) {
 			CGImageRef ir = CGImageCreateCopy([tileImages CGImage]);
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
+		
+		// Create map
+		CGRect mapFrame = [self frame];
+		mapFrame.size.height -= 64;
+		map = [[UIView alloc] initWithFrame:mapFrame];
+		
+		// Create terrain info bar
+		terrainInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, mapFrame.size.height + 32, mapFrame.size.width, 32)];
+		selectedTerrainPicture = [CALayer layer];
+		selectedTerrainPicture.position = CGPointMake(40.0f, 0.0f);
+		selectedTerrainPicture.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+		[[terrainInfoBar layer] addSublayer:selectedTerrainPicture];
 
-		CALayer *tile_array[10][10];
+		// Load terrain data and create tile layers and add them to map
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				tile_array[i][j] = [CALayer layer];
-				tile_array[i][j].position = CGPointMake(27.0f * i + 18, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
-				tile_array[i][j].bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
-				tile_array[i][j].contents = tileImageRefs[testMap[j][i]];
+				gameTerrain[i][j] = testMap[j][i];
+				tileArray[i][j] = [CALayer layer];
+				tileArray[i][j].position = CGPointMake(27.0f * i + 18, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
+				tileArray[i][j].bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+				tileArray[i][j].contents = tileImageRefs[gameTerrain[i][j]];
 
-				[[map layer] addSublayer:tile_array[i][j]];
+				[[map layer] addSublayer:tileArray[i][j]];
 			}
 		}
 		
+		[self addSubview:terrainInfoBar];
 		[self addSubview:map];
 	}
 	
 	return self;
+}
+
+-(void)updateTerrainInfoWithX:(int)x Y:(int)y {
+	selectedTerrainPicture.contents = tileImageRefs[gameTerrain[x][y]];
 }
 
 - (void)dealloc {
