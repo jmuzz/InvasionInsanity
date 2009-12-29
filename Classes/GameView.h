@@ -6,7 +6,6 @@
 
 @interface GameView : UIView {
 	int hexes_wide, hexes_high;
-	int gameTerrain[MAP_WIDTH][MAP_HEIGHT];
 	GameViewController *gameViewController;
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
 	CALayer *selectedTerrainPicture;
