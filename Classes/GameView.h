@@ -1,11 +1,14 @@
 @class GameViewController;
 
 #define NUM_TILE_TYPES 3
+#define MAP_HEIGHT 10
+#define MAP_WIDTH 10
 
 @interface GameView : UIView {
-	int gameTerrain[10][10];
+	int hex_width, hex_height;
+	int gameTerrain[MAP_WIDTH][MAP_HEIGHT];
 	GameViewController *gameViewController;
-	CALayer *tileArray[10][10];
+	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
 	CALayer *selectedTerrainPicture;
 	UIView *map;
 	UIView *terrainInfoBar;
@@ -15,5 +18,8 @@
 - (void)updateTerrainInfoWithX:(int)x Y:(int)y;
 
 @property (nonatomic, retain) IBOutlet GameViewController *gameViewController;
+@property (nonatomic, retain) UIView *map;
+@property int hex_width;
+@property int hex_height;
 
 @end

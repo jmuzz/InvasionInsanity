@@ -3,7 +3,7 @@
 
 @implementation GameView
 
-@synthesize gameViewController;
+@synthesize gameViewController, map, hex_width, hex_height;
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
@@ -19,6 +19,9 @@
 			{2, 2, 2, 1, 2, 2, 2, 2, 0, 2},
 			{2, 2, 2, 2, 1, 2, 2, 2, 0, 2}
 		};
+		
+		hex_width = MAP_WIDTH;
+		hex_height = MAP_HEIGHT;
 		
 		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
@@ -40,11 +43,12 @@
 		[[terrainInfoBar layer] addSublayer:selectedTerrainPicture];
 
 		// Load terrain data and create tile layers and add them to map
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
+		for (int i = 0; i < MAP_WIDTH; i++) {
+			for (int j = 0; j < MAP_HEIGHT; j++) {
 				gameTerrain[i][j] = testMap[j][i];
 				tileArray[i][j] = [CALayer layer];
-				tileArray[i][j].position = CGPointMake(27.0f * i + 18, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
+				tileArray[i][j].anchorPoint = CGPointMake(0.0f, 0.0f);
+				tileArray[i][j].position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
 				tileArray[i][j].bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 				tileArray[i][j].contents = tileImageRefs[gameTerrain[i][j]];
 
