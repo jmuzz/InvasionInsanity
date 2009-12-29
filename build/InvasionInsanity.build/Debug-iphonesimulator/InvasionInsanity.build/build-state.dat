@@ -1,556 +1,0 @@
-TInvasionInsanity
-v7
-r0
-t283749458.169408
-cCheck dependencies
-cProcessInfoPlistFile /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/Info.plist InvasionInsanity-Info.plist
-cCompileXIB /Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib
-cCompileXIB /Users/joel/devel/iphone/InvasionInsanity/MenuView.xib
-cCpResource build/Debug-iphonesimulator/InvasionInsanity.app/player.png Images/player.png
-cCompileXIB /Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverView.xib
-cCpResource build/Debug-iphonesimulator/InvasionInsanity.app/hexes.png Images/hexes.png
-cProcessPCH /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch.gch InvasionInsanity_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/main.o /Users/joel/devel/iphone/InvasionInsanity/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/InvasionInsanityAppDelegate.o /Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/MenuViewController.o /Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameViewController.o /Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameView.o /Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameOverViewController.o /Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cLd /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity normal i386
-cGenerateDSYMFile /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app.dSYM /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity
-cTouch /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk
-c000000004AE01E5B00000000000000EE
-t1256201819
-s238
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
-c000000004ABDC853000000000026EE30
-t1253951571
-s2551344
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c000000004ABDC952000000000027E880
-t1253951826
-s2615424
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
-c000000004ABDC93F0000000000001355
-t1253951807
-s4949
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/CALayer.h
-c000000004ABDCAC90000000000006B07
-t1253952201
-s27399
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
-c000000004ABDCAC8000000000000007D
-t1253952200
-s125
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
-c000000004ABDCB2000000000000E5890
-t1253952288
-s940176
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
-c000000004ABDEE1D0000000000000788
-t1253961245
-s1928
-
-N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
-c000000004ABDEEE200000000016721E0
-t1253961442
-s23536096
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/../Hex.m
-c000000004B32CA8A000000000000002C
-t1261619850
-s44
-i"Hex.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverView.xib
-c000000004AE814200000000000005047
-t1256723488
-s20551
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.h
-c000000004AE813FD0000000000000160
-t1256723453
-s352
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.m
-c000000004AE813FD0000000000000163
-t1256723453
-s355
-i"GameOverViewController.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.h
-c000000004B33343200000000000001B1
-t1261646898
-s433
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m
-c000000004B3335DA000000000000085C
-t1261647322
-s2140
-i"GameView.h"
-i"GameViewController.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.h
-c000000004AE810E30000000000000183
-t1256722659
-s387
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.m
-c000000004B34AF640000000000000378
-t1261743972
-s888
-i"GameViewController.h"
-i"GameView.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/Hex.h
-c000000004B32CAFE0000000000000049
-t1261619966
-s73
-i<Foundation/Foundation.h>
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/Hex.m
-c000000004B32CAFE000000000000002B
-t1261619966
-s43
-i"Hex.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.h
-c000000004B32C8CA00000000000002BA
-t1261619402
-s698
-i"MenuViewController.h"
-i"GameViewController.h"
-i"GameOverViewController.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.m
-c000000004B32CA8A00000000000006E8
-t1261619850
-s1768
-i"InvasionInsanityAppDelegate.h"
-i"MenuViewController.h"
-i"GameViewController.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.h
-c000000004AE813FD000000000000019C
-t1256723453
-s412
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.m
-c000000004AE811E30000000000000210
-t1256722915
-s528
-i"MenuViewController.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/TheArenaAppDelegate.h
-c000000004AE810F800000000000002B2
-t1256722680
-s690
-i"MenuViewController.h"
-i"GameViewController.h"
-i"GameOverViewController.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Classes/TheArenaAppDelegate.m
-c000000004AE811B300000000000006DC
-t1256722867
-s1756
-i"TheArenaAppDelegate.h"
-i"MenuViewController.h"
-i"GameViewController.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Hex.h
-c000000004B32CA8A0000000000000049
-t1261619850
-s73
-i<Foundation/Foundation.h>
-
-N/Users/joel/devel/iphone/InvasionInsanity/Hex.m
-c000000004B32CA2300000000000000B1
-t1261619747
-s177
-i"Hex.h"
-
-N/Users/joel/devel/iphone/InvasionInsanity/Images/hex.png
-c000000004B3313BF0000000000000341
-t1261638591
-s833
-
-N/Users/joel/devel/iphone/InvasionInsanity/Images/hexes.png
-c000000004B3315F100000000000006C3
-t1261639153
-s1731
-
-N/Users/joel/devel/iphone/InvasionInsanity/Images/player.png
-c000000004AE6960C0000000000000649
-t1256625676
-s1609
-
-N/Users/joel/devel/iphone/InvasionInsanity/InvasionInsanity_Prefix.pch
-c000000004B32E03800000000000000DC
-t1261625400
-s220
-i<Foundation/Foundation.h>
-i<UIKit/UIKit.h>
-i<QuartzCore/QuartzCore.h>
-
-N/Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib
-c000000004B32C4DE0000000000003875
-t1261618398
-s14453
-
-N/Users/joel/devel/iphone/InvasionInsanity/MenuView.xib
-c000000004B32C98A0000000000005B14
-t1261619594
-s23316
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app
-t1262056658
-s374
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app.dSYM
-t1262056658
-s102
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/GameOverView.nib
-t1261617941
-s2988
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/Info.plist
-t1261617940
-s591
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity
-t1262056658
-s33640
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/MainWindow.nib
-t1261618402
-s1354
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/MenuView.nib
-t1261619595
-s3324
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/PkgInfo
-t1261617940
-s8
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/hex.png
-t1261638656
-s833
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/hexes.png
-t1261640111
-s1731
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/player.png
-t1261617941
-s1609
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameOverViewController.o
-t1261628655
-s31972
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameView.o
-t1261647322
-s37676
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameViewController.o
-t1262056657
-s39044
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o
-t1261628655
-s4872
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/InvasionInsanity.LinkFileList
-c000000004B32F19000000000000003A3
-t1261629840
-s931
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/InvasionInsanityAppDelegate.o
-t1261628655
-s45268
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/MenuViewController.o
-t1261628655
-s37928
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/TheArenaAppDelegate.o
-t1261617943
-s44264
-
-N/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/main.o
-t1261628655
-s5960
-
-N/Users/joel/devel/iphone/InvasionInsanity/main.m
-c000000004B32CA8A00000000000000E5
-t1261619850
-s229
-i<UIKit/UIKit.h>
-
-N/var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch.gch
-t1261628655
-s13441104
-
-N/var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-gbjxlmuihlkbnvhfndchijaserxc/InvasionInsanity_Prefix.pch.gch
-t1261625401
-s13441104
-
-NInvasionInsanity-Info.plist
-c000000004B0F0C34000000000000036D
-t1259277364
-s877
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies283749456#283749456#0(0"0(0#1#0"31243859861766260#0"0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameOverViewController.o /Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283321455.483109
-e283321455.558344
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameOverViewController.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@82"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.m283321455#283321455#0(0"0(0#0#74"/Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.m4300885448#2116"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverViewController.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameOverViewController.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameView.o /Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283340122.353969
-e283340122.596055
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameView.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-o/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m: In function '-[GameView initWithFrame:]':
-o/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m:49: warning: passing argument 1 of 'setContents:' from incompatible pointer type
-o/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m: In function '-[GameView updateTerrainInfoWithX:Y:]':
-o/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m:63: warning: passing argument 1 of 'setContents:' from incompatible pointer type
-lSLF07#2@68"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m283340122#283340122#0(503"/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m: In function '-[GameView initWithFrame:]':/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m:49: warning: passing argument 1 of 'setContents:' from incompatible pointer type/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m: In function '-[GameView updateTerrainInfoWithX:Y:]':/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m:63: warning: passing argument 1 of 'setContents:' from incompatible pointer type2(22@67"Passing argument 1 of 'setContents:' from incompatible pointer type283340122#104#142#0(6@60"/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m283340122#49#0#49#0#56"passing argument * of '*' from incompatible pointer type0(22@67"Passing argument 1 of 'setContents:' from incompatible pointer type283340122#361#142#0(6@60"/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m283340122#63#0#63#0#56"passing argument * of '*' from incompatible pointer type0(0#0#60"/Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m4300885448#2088"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/GameView.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameView.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameViewController.o /Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283749456.891745
-e283749457.678046
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameViewController.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@78"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.m283749456#283749457#0(0"0(0#0#70"/Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.m8533838812045865984#2108"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/GameViewController.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/GameViewController.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o /Users/joel/devel/iphone/InvasionInsanity/Classes/../Hex.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283312650.350513
-e283312650.412397
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/../Hex.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@66"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/../Hex.m283312650#283312650#0(0"0(0#0#58"/Users/joel/devel/iphone/InvasionInsanity/Classes/../Hex.m4300885448#2081"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-gbjxlmuihlkbnvhfndchijaserxc/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/../Hex.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o /Users/joel/devel/iphone/InvasionInsanity/Classes/Hex.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283321455.516030
-e283321455.589850
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/Hex.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@63"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/Hex.m283321455#283321455#0(0"0(0#0#55"/Users/joel/devel/iphone/InvasionInsanity/Classes/Hex.m4300885448#2078"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/Hex.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/Hex.o /Users/joel/devel/iphone/InvasionInsanity/Hex.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/InvasionInsanityAppDelegate.o /Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283321455.254682
-e283321455.401054
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/InvasionInsanityAppDelegate.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@87"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.m283321455#283321455#0(0"0(0#0#79"/Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.m4300885448#2126"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/InvasionInsanityAppDelegate.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/InvasionInsanityAppDelegate.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/MenuViewController.o /Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283321455.327857
-e283321455.424192
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/MenuViewController.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@78"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.m283321455#283321455#0(0"0(0#0#70"/Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.m4300885448#2108"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/MenuViewController.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/MenuViewController.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/TheArenaAppDelegate.o /Users/joel/devel/iphone/InvasionInsanity/Classes/TheArenaAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283310742.920261
-e283310743.034101
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/TheArenaAppDelegate.o
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/TheArenaAppDelegate.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@79"Compile /Users/joel/devel/iphone/InvasionInsanity/Classes/TheArenaAppDelegate.m283310742#283310743#0(0"0(0#0#71"/Users/joel/devel/iphone/InvasionInsanity/Classes/TheArenaAppDelegate.m4300885448#2110"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-gbjxlmuihlkbnvhfndchijaserxc/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/Classes/TheArenaAppDelegate.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/TheArenaAppDelegate.o0#
-
-CCompileC build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/main.o /Users/joel/devel/iphone/InvasionInsanity/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s283321455.253087
-e283321455.327739
-r1
-xCompileC
-xbuild/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/main.o
-x/Users/joel/devel/iphone/InvasionInsanity/main.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@56"Compile /Users/joel/devel/iphone/InvasionInsanity/main.m283321455#283321455#0(0"0(0#0#48"/Users/joel/devel/iphone/InvasionInsanity/main.m4300885448#2072"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -include /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch -c /Users/joel/devel/iphone/InvasionInsanity/main.m -o /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/main.o0#
-
-CCompileXIB /Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverView.xib
-s283310741.576163
-e283310741.936324
-r1
-xCompileXIB
-x/Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverView.xib
-lSLF07#2@35"CompileXIB Classes/GameOverView.xib283310741#283310741#0(0"0(0#0#66"/Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverView.xib4300885448#512"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/GameOverView.nib /Users/joel/devel/iphone/InvasionInsanity/Classes/GameOverView.xib0#
-
-CCompileXIB /Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib
-s283311202.360776
-e283311202.640155
-r1
-xCompileXIB
-x/Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib
-o/* com.apple.ibtool.document.warnings */
-o/Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib:3: warning: The 'window' outlet of 'Invasion Insanity App Delegate' is connected to 'Window' but 'window' is no longer defined on InvasionInsanityAppDelegate.
-lSLF07#2@25"CompileXIB MainWindow.xib283311202#283311202#0(257"/* com.apple.ibtool.document.warnings *//Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib:3: warning: The 'window' outlet of 'Invasion Insanity App Delegate' is connected to 'Window' but 'window' is no longer defined on InvasionInsanityAppDelegate.1(22@146"The 'window' outlet of 'Invasion Insanity App Delegate' is connected to 'Window' but 'window' is no longer defined on InvasionInsanityAppDelegate.283311202#18446744073709551615#0#0(6@56"/Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib283311198#3#0#3#0#0"0(0#0#56"/Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib4300885448#500"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/MainWindow.nib /Users/joel/devel/iphone/InvasionInsanity/MainWindow.xib0#
-
-CCompileXIB /Users/joel/devel/iphone/InvasionInsanity/MenuView.xib
-s283312395.674844
-e283312396.030071
-r1
-xCompileXIB
-x/Users/joel/devel/iphone/InvasionInsanity/MenuView.xib
-lSLF07#2@23"CompileXIB MenuView.xib283312395#283312396#0(0"0(0#0#54"/Users/joel/devel/iphone/InvasionInsanity/MenuView.xib28429479460536420#496"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/MenuView.nib /Users/joel/devel/iphone/InvasionInsanity/MenuView.xib0#
-
-CCpResource build/Debug-iphonesimulator/InvasionInsanity.app/hex.png Images/hex.png
-s283331455.985958
-e283331456.061568
-r1
-xCpResource
-xbuild/Debug-iphonesimulator/InvasionInsanity.app/hex.png
-xImages/hex.png
-lSLF07#2@19"Copy Images/hex.png283331455#283331456#0(0"0(0#0#56"/Users/joel/devel/iphone/InvasionInsanity/Images/hex.png4300885448#476"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/joel/devel/iphone/InvasionInsanity/Images/hex.png /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app0#
-
-CCpResource build/Debug-iphonesimulator/InvasionInsanity.app/hexes.png Images/hexes.png
-s283332911.394182
-e283332911.411829
-r1
-xCpResource
-xbuild/Debug-iphonesimulator/InvasionInsanity.app/hexes.png
-xImages/hexes.png
-lSLF07#2@21"Copy Images/hexes.png283332911#283332911#0(0"0(0#0#58"/Users/joel/devel/iphone/InvasionInsanity/Images/hexes.png4300885448#478"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/joel/devel/iphone/InvasionInsanity/Images/hexes.png /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app0#
-
-CCpResource build/Debug-iphonesimulator/InvasionInsanity.app/player.png Images/player.png
-s283310741.574895
-e283310741.620251
-r1
-xCpResource
-xbuild/Debug-iphonesimulator/InvasionInsanity.app/player.png
-xImages/player.png
-lSLF07#2@22"Copy Images/player.png283310741#283310741#0(0"0(0#0#59"/Users/joel/devel/iphone/InvasionInsanity/Images/player.png4300885448#479"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/joel/devel/iphone/InvasionInsanity/Images/player.png /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app0#
-
-CGenerateDSYMFile /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app.dSYM /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity
-s283749458.045676
-e283749458.149001
-r1
-xGenerateDSYMFile
-x/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app.dSYM
-x/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity
-lSLF07#2@136"GenerateDSYMFile build/Debug-iphonesimulator/InvasionInsanity.app.dSYM build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity283749458#283749458#0(0"0(0#0#107"/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity4300885448#419"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity -o /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app.dSYM0#
-
-CLd /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity normal i386
-s283749457.678373
-e283749458.045547
-r1
-xLd
-x/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity
-xnormal
-xi386
-lSLF07#2@112"Link /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity283749457#283749458#0(0"0(0#0#0"4300885448#946"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -L/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -filelist /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/Objects-normal/i386/InvasionInsanity.LinkFileList -mmacosx-version-min=10.5 -framework Foundation -framework UIKit -framework CoreGraphics -framework QuartzCore -o /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/InvasionInsanity0#
-
-CProcessInfoPlistFile /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/Info.plist InvasionInsanity-Info.plist
-s283310740.789571
-e283310740.808618
-r1
-xProcessInfoPlistFile
-x/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/Info.plist
-xInvasionInsanity-Info.plist
-lSLF07#2@35"Process InvasionInsanity-Info.plist283310740#283310740#0(0"0(0#0#69"/Users/joel/devel/iphone/InvasionInsanity/InvasionInsanity-Info.plist4300885448#515"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility InvasionInsanity-Info.plist -genpkginfo /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app/Info.plist0#
-
-CProcessPCH /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch.gch InvasionInsanity_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-s283321454.324618
-e283321455.252936
-r1
-xProcessPCH
-x/var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch.gch
-xInvasionInsanity_Prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@38"Precompile InvasionInsanity_Prefix.pch283321454#283321455#0(0"0(0#0#69"/Users/joel/devel/iphone/InvasionInsanity/InvasionInsanity_Prefix.pch4300885448#1952"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -c /Users/joel/devel/iphone/InvasionInsanity/InvasionInsanity_Prefix.pch -o /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-dwpxsukuidzmoocxswhhpbqhedcy/InvasionInsanity_Prefix.pch.gch0#
-
-CProcessPCH /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-gbjxlmuihlkbnvhfndchijaserxc/InvasionInsanity_Prefix.pch.gch InvasionInsanity_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-s283318200.454369
-e283318201.341652
-r1
-xProcessPCH
-x/var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-gbjxlmuihlkbnvhfndchijaserxc/InvasionInsanity_Prefix.pch.gch
-xInvasionInsanity_Prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@38"Precompile InvasionInsanity_Prefix.pch283318200#283318201#0(0"0(0#0#69"/Users/joel/devel/iphone/InvasionInsanity/InvasionInsanity_Prefix.pch4300885448#1952"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-generated-files.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-own-target-headers.hmap -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-all-target-headers.hmap -iquote /Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/InvasionInsanity-project-headers.hmap -F/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator -I/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/include -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources/i386 -I/Users/joel/devel/iphone/InvasionInsanity/build/InvasionInsanity.build/Debug-iphonesimulator/InvasionInsanity.build/DerivedSources -c /Users/joel/devel/iphone/InvasionInsanity/InvasionInsanity_Prefix.pch -o /var/folders/q-/q-n2T8DQErWlae8SmwxriE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/InvasionInsanity_Prefix-gbjxlmuihlkbnvhfndchijaserxc/InvasionInsanity_Prefix.pch.gch0#
-
-CTouch /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app
-s283749458.149097
-e283749458.169319
-r1
-xTouch
-x/Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app
-lSLF07#2@96"Touch /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app283749458#283749458#0(0"0(0#0#0"4300885448#293"    cd /Users/joel/devel/iphone/InvasionInsanity    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/joel/devel/iphone/InvasionInsanity/build/Debug-iphonesimulator/InvasionInsanity.app0#
-
