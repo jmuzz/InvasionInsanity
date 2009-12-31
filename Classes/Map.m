@@ -1,4 +1,5 @@
 #import "Map.h"
+#import "GamePiece.h"
 
 @implementation Map
 

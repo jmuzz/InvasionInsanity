@@ -1,16 +1,7 @@
-//
-//  GamePiece.h
-//  InvasionInsanity
-//
-//  Created by Joel on 12/30/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+@class Map;
 
-#import <Foundation/Foundation.h>
-
-
-@interface GamePiece : NSObject {
-
+@interface GamePiece : CALayer {
+	Map *map;
 }
 
 @end

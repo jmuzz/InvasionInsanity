@@ -74,20 +74,20 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5D007A4E10EC3E0E0056A16F /* Map.h */,
-				5D007B0110EC50F90056A16F /* GamePiece.h */,
-				5D007B0210EC50F90056A16F /* GamePiece.m */,
-				5D007A4F10EC3E0E0056A16F /* Map.m */,
-				1D3623240D0F684500981E51 /* InvasionInsanityAppDelegate.h */,
-				1D3623250D0F684500981E51 /* InvasionInsanityAppDelegate.m */,
-				5D2B45ED1094804F002838BC /* MenuViewController.h */,
-				5D2B45EE1094804F002838BC /* MenuViewController.m */,
-				5DF17F671096CA3E001F48D7 /* GameViewController.h */,
-				5DF17F681096CA3E001F48D7 /* GameViewController.m */,
 				5DF17F751096CA97001F48D7 /* GameView.h */,
 				5DF17F761096CA97001F48D7 /* GameView.m */,
+				5DF17F671096CA3E001F48D7 /* GameViewController.h */,
+				5DF17F681096CA3E001F48D7 /* GameViewController.m */,
+				5D007A4E10EC3E0E0056A16F /* Map.h */,
+				5D007A4F10EC3E0E0056A16F /* Map.m */,
+				5D007B0110EC50F90056A16F /* GamePiece.h */,
+				5D007B0210EC50F90056A16F /* GamePiece.m */,
+				5D2B45ED1094804F002838BC /* MenuViewController.h */,
+				5D2B45EE1094804F002838BC /* MenuViewController.m */,
 				5D9499C910982D6E002FED92 /* GameOverViewController.h */,
 				5D9499CA10982D6E002FED92 /* GameOverViewController.m */,
+				1D3623240D0F684500981E51 /* InvasionInsanityAppDelegate.h */,
+				1D3623250D0F684500981E51 /* InvasionInsanityAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
