@@ -15,6 +15,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		5D007A5010EC3E0E0056A16F /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D007A4F10EC3E0E0056A16F /* Map.m */; };
 		5D007B0310EC50F90056A16F /* GamePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D007B0210EC50F90056A16F /* GamePiece.m */; };
+		5D007B4610EC64CC0056A16F /* pieces.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D007B4510EC64CC0056A16F /* pieces.png */; };
 		5D2B45EF1094804F002838BC /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2B45EE1094804F002838BC /* MenuViewController.m */; };
 		5D2B464110957290002838BC /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2B464010957290002838BC /* MenuView.xib */; };
 		5D658ED110E315E600CCFDF9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D658ED010E315E600CCFDF9 /* QuartzCore.framework */; };
@@ -40,6 +41,7 @@
 		5D007A4F10EC3E0E0056A16F /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		5D007B0110EC50F90056A16F /* GamePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePiece.h; sourceTree = "<group>"; };
 		5D007B0210EC50F90056A16F /* GamePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePiece.m; sourceTree = "<group>"; };
+		5D007B4510EC64CC0056A16F /* pieces.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pieces.png; path = Images/pieces.png; sourceTree = "<group>"; };
 		5D2B45ED1094804F002838BC /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D2B45EE1094804F002838BC /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D2B464010957290002838BC /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5D007B4510EC64CC0056A16F /* pieces.png */,
 				5D65904010E34DF300CCFDF9 /* hexes.png */,
 				5D9499CB10982D6E002FED92 /* GameOverView.xib */,
 				5DF17F7A1096CDE0001F48D7 /* player.png */,
@@ -192,6 +195,7 @@
 				5DF17F7B1096CDE0001F48D7 /* player.png in Resources */,
 				5D9499CD10982D6E002FED92 /* GameOverView.xib in Resources */,
 				5D65904110E34DF300CCFDF9 /* hexes.png in Resources */,
+				5D007B4610EC64CC0056A16F /* pieces.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

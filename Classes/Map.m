@@ -19,17 +19,17 @@
 			{2, 2, 2, 1, 2, 2, 2, 2, 0, 2},
 			{2, 2, 2, 2, 1, 2, 2, 2, 0, 2}
 		};
-		
+
 		hexes_wide = MAP_WIDTH;
 		hexes_high = MAP_HEIGHT;
-		
+
 		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
 		for (int i = 0; i < NUM_TILE_TYPES; i++) {
 			CGImageRef ir = CGImageCreateCopy([tileImages CGImage]);
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
-		
+
 		// Load terrain data and create tile layers and add them to map
 		for (int i = 0; i < MAP_WIDTH; i++) {
 			for (int j = 0; j < MAP_HEIGHT; j++) {
@@ -40,12 +40,24 @@
 				int terrainType = testMap[j][i];
 				[tileArray[i][j] setValue:[NSNumber numberWithInteger:terrainType] forKey:@"terrainType"];
 				tileArray[i][j].contents = tileImageRefs[terrainType];
-				
+
 				[[self layer] addSublayer:tileArray[i][j]];
 			}
 		}
     }
     return self;
+}
+
+- (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y {
+	CGPoint location = [self locationOfHexAtX:x y:y];
+	piece.anchorPoint = CGPointMake(0.0f, 0.0f);
+	piece.position = location;
+	piece.map = self;
+	return true;
+}
+
+- (CGPoint)locationOfHexAtX:(int)x y:(int)y {
+	return tileArray[x][y].position;
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {
