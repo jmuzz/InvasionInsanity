@@ -13,6 +13,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		5D007A5010EC3E0E0056A16F /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D007A4F10EC3E0E0056A16F /* Map.m */; };
+		5D007B0310EC50F90056A16F /* GamePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D007B0210EC50F90056A16F /* GamePiece.m */; };
 		5D2B45EF1094804F002838BC /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2B45EE1094804F002838BC /* MenuViewController.m */; };
 		5D2B464110957290002838BC /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2B464010957290002838BC /* MenuView.xib */; };
 		5D658ED110E315E600CCFDF9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D658ED010E315E600CCFDF9 /* QuartzCore.framework */; };
@@ -34,6 +36,10 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* InvasionInsanity_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvasionInsanity_Prefix.pch; sourceTree = "<group>"; };
+		5D007A4E10EC3E0E0056A16F /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		5D007A4F10EC3E0E0056A16F /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
+		5D007B0110EC50F90056A16F /* GamePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePiece.h; sourceTree = "<group>"; };
+		5D007B0210EC50F90056A16F /* GamePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePiece.m; sourceTree = "<group>"; };
 		5D2B45ED1094804F002838BC /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5D2B45EE1094804F002838BC /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5D2B464010957290002838BC /* MenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
@@ -68,6 +74,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5D007A4E10EC3E0E0056A16F /* Map.h */,
+				5D007B0110EC50F90056A16F /* GamePiece.h */,
+				5D007B0210EC50F90056A16F /* GamePiece.m */,
+				5D007A4F10EC3E0E0056A16F /* Map.m */,
 				1D3623240D0F684500981E51 /* InvasionInsanityAppDelegate.h */,
 				1D3623250D0F684500981E51 /* InvasionInsanityAppDelegate.m */,
 				5D2B45ED1094804F002838BC /* MenuViewController.h */,
@@ -198,6 +208,8 @@
 				5DF17F691096CA3E001F48D7 /* GameViewController.m in Sources */,
 				5DF17F771096CA97001F48D7 /* GameView.m in Sources */,
 				5D9499CC10982D6E002FED92 /* GameOverViewController.m in Sources */,
+				5D007A5010EC3E0E0056A16F /* Map.m in Sources */,
+				5D007B0310EC50F90056A16F /* GamePiece.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
