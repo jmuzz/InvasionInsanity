@@ -3,11 +3,26 @@
 
 @implementation GamePiece
 
+static CGImageRef pieceImageRefs[2][NUM_PIECE_TYPES];
+static bool initialized = false;
+
 @synthesize map;
 
-- (id)initWithPieceType:(int)type {
+- (id)initWithPieceType:(int)type player:(int)player {
 	if (self = [super init]) {
-		UIImage *pieceImages = [UIImage imageNamed:@"pieces.png"];
+		if (false == initialized) {
+			UIImage *pieceImages = [UIImage imageNamed:@"pieces.png"];
+			CGImageRef ir = CGImageCreateCopy([pieceImages CGImage]);
+			for (int i = 0; i < 2; i++) {
+				for (int j = 0; j < NUM_PIECE_TYPES; j++) {
+					pieceImageRefs[i][j] = CGImageCreateWithImageInRect(ir, CGRectMake(j*36, i*32, 36, 32));
+				}
+			}
+			initialized = true;
+		}
+		
+		self.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+		self.contents = pieceImageRefs[player][type];
 	}
 	return self;
 }

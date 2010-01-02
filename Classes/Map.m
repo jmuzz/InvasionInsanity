@@ -47,7 +47,7 @@
     }
     return self;
 }
-/*
+
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y {
 	CGPoint location = [self locationOfHexAtX:x y:y];
 	piece.anchorPoint = CGPointMake(0.0f, 0.0f);
@@ -55,7 +55,7 @@
 	piece.map = self;
 	return true;
 }
-*/
+
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y {
 	return tileArray[x][y].position;
 }
