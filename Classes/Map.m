@@ -19,9 +19,26 @@
 			{0, 0, 0, 2, 2, 2, 1, 1, 2, 2},
 			{0, 0, 0, 2, 2, 2, 2, 1, 2, 2}
 		};
+		
+		// {type, player, x, y}
+		int test_pieces[12][4] = {
+			{2, 0, 0, 0},
+			{1, 0, 1, 0},
+			{1, 0, 0, 1},
+			{0, 0, 2, 0},
+			{0, 0, 0, 2},
+			{0, 0, 2, 2},
+			{2, 1, 9, 9},
+			{1, 1, 8, 9},
+			{1, 1, 9, 8},
+			{0, 1, 7, 9},
+			{0, 1, 9, 7},
+			{0, 1, 7, 7}
+		};
 
 		hexes_wide = MAP_WIDTH;
 		hexes_high = MAP_HEIGHT;
+		gamePieces = [NSMutableArray arrayWithCapacity:12];
 
 		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
@@ -47,22 +64,6 @@
 		}
 
 		// Add some game pieces to the map
-		// {type, player, x, y}
-		int test_pieces[12][4] = {
-			{2, 0, 0, 0},
-			{1, 0, 1, 0},
-			{1, 0, 0, 1},
-			{0, 0, 2, 0},
-			{0, 0, 0, 2},
-			{0, 0, 2, 2},
-			{2, 1, 9, 9},
-			{1, 1, 8, 9},
-			{1, 1, 9, 8},
-			{0, 1, 7, 9},
-			{0, 1, 9, 7},
-			{0, 1, 7, 7}
-		};
-		
 		for (int i = 0; i < 12; i++) {
 			GamePiece *newPiece = [[GamePiece alloc] initWithPieceType:test_pieces[i][0] player:test_pieces[i][1]];
 			[self addGamePiece:newPiece atX:test_pieces[i][2] y:test_pieces[i][3]];
@@ -72,11 +73,11 @@
 }
 
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y {
-	CGPoint location = [self locationOfHexAtX:x y:y];
 	piece.anchorPoint = CGPointMake(0.0f, 0.0f);
-	piece.position = location;
 	piece.zPosition = 20.0f;
 	piece.map = self;
+	[piece setCoordsToX:x y:y];
+	[gamePieces insertObject:piece atIndex:0];
 	[[self layer] addSublayer:piece];
 	return true;
 }
@@ -86,13 +87,24 @@
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {
-	// Approximate which hex was tapped by using a bounding box
-	int tile_x = point.x / 27;
-	if (tile_x >= hexes_wide) tile_x = hexes_wide - 1;
-	int tile_y = (point.y - ((tile_x % 2 == 1) ? 16 : 0)) / 32;
-	if (tile_y >= hexes_high) tile_y = hexes_high - 1;
-	
-	return tileArray[tile_x][tile_y];
+	return tileArray[[self hexXFromPoint:point]][[self hexYFromPoint:point]];
+}
+
+- (int)hexXFromPoint:(CGPoint)point {
+	int ret = point.x / 27;
+	return (ret >= hexes_wide) ? hexes_wide - 1 : ret;
+}
+
+- (int)hexYFromPoint:(CGPoint)point {
+	int x = [self hexXFromPoint:point];
+	int ret = (point.y - ((x % 2 == 1) ? 16 : 0)) / 32;
+	return (ret >= hexes_high) ? hexes_high - 1 : ret;
+}	
+
+- (GamePiece *)pieceFromPoint:(CGPoint)point {
+	//int x = [self hexXFromPoint:point];
+	//int y = [self hexYFromPoint:point];
+	return [gamePieces objectAtIndex:0];
 }
 
 - (CGImageRef)getTerrainImageAtX:(int)x Y:(int)y {

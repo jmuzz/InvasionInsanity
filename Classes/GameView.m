@@ -36,7 +36,11 @@
 	return self;
 }
 
--(void)updateTerrainInfoWithHex:(CALayer *)hex {
+- (void)updatePieceInfoWithPiece:(GamePiece *)piece {
+	selectedPiecePicture.contents = [piece contents];
+}
+
+- (void)updateTerrainInfoWithHex:(CALayer *)hex {
 	selectedTerrainPicture.contents = [hex contents];
 }
 

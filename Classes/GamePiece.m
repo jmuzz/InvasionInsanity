@@ -6,7 +6,7 @@
 static CGImageRef pieceImageRefs[2][NUM_PIECE_TYPES];
 static bool initialized = false;
 
-@synthesize map;
+@synthesize map, x, y;
 
 - (id)initWithPieceType:(int)type player:(int)player {
 	if (self = [super init]) {
@@ -25,6 +25,13 @@ static bool initialized = false;
 		self.contents = pieceImageRefs[player][type];
 	}
 	return self;
+}
+
+- (void)setCoordsToX:(int)new_x y:(int)new_y {
+	CGPoint location = [map locationOfHexAtX:new_x y:new_y];
+	self.position = location;
+	x = new_x;
+	y = new_y;
 }
 
 - (void)dealloc {

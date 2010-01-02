@@ -1,6 +1,7 @@
 #import "GameViewController.h"
 #import "GameView.h"
 #import "Map.h"
+#import "GamePiece.h"
 
 @implementation GameViewController
 
@@ -22,8 +23,10 @@
 		
 		CGPoint tloc = [touch locationInView:map];
 		CALayer *hex = [map hexFromPoint:tloc];
+		//GamePiece *piece = [map pieceFromPoint:tloc];
 
 		[gameView updateTerrainInfoWithHex:hex];
+		//[gameView updatePieceInfoWithPiece:piece];
     }
 };
 

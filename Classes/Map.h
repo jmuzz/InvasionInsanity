@@ -1,5 +1,4 @@
 #define NUM_TILE_TYPES 3
-#define MAX_GAME_PIECES 20
 #define MAP_HEIGHT 10
 #define MAP_WIDTH 10
 
@@ -9,7 +8,7 @@
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
 	int hexes_wide, hexes_high;
 	CGImageRef tileImageRefs[NUM_TILE_TYPES];
-	GamePiece *gamePieces[MAX_GAME_PIECES];
+	NSMutableArray *gamePieces;
 }
 
 @property (readonly, nonatomic) int hexes_wide, hexes_high;
@@ -19,6 +18,9 @@
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y;
 - (CGImageRef)getTerrainImageAtX:(int)x y:(int)y;
 - (CALayer *)hexFromPoint:(CGPoint)point;
+- (GamePiece *)pieceFromPoint:(CGPoint)point;
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y;
+- (int)hexXFromPoint:(CGPoint)point;
+- (int)hexYFromPoint:(CGPoint)point;
 
 @end
