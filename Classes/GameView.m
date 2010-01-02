@@ -1,6 +1,7 @@
 #import "GameView.h"
 #import "GameViewController.h"
 #import "Map.h"
+#import "GamePiece.h"
 
 @implementation GameView
 
@@ -19,8 +20,17 @@
 		selectedTerrainPicture.position = CGPointMake(20.0f, 0.0f);
 		selectedTerrainPicture.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 		[[terrainInfoBar layer] addSublayer:selectedTerrainPicture];
+		
+		// Create game piece info par
+		pieceInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(mapFrame), CGRectGetWidth(mapFrame), 32)];
+		selectedPiecePicture = [CALayer layer];
+		selectedPiecePicture.anchorPoint = CGPointMake(0.0f, 0.0f);
+		selectedPiecePicture.position = CGPointMake(20.0f, 0.0f);
+		selectedPiecePicture.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+		[[pieceInfoBar layer] addSublayer:selectedPiecePicture];
 
 		[self addSubview:terrainInfoBar];
+		[self addSubview:pieceInfoBar];
 		[self addSubview:map];
 	}
 	return self;
