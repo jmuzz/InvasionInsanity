@@ -11,13 +11,13 @@
 			{2, 2, 2, 1, 2, 2, 0, 0, 0, 0},
 			{2, 2, 2, 1, 2, 2, 0, 0, 0, 0},
 			{2, 2, 1, 2, 2, 2, 2, 0, 0, 0},
-			{1, 1, 1, 2, 2, 2, 2, 2, 0, 0},
-			{2, 1, 2, 2, 2, 2, 2, 2, 0, 2},
-			{2, 1, 2, 2, 2, 2, 2, 0, 0, 2},
-			{2, 2, 1, 2, 2, 2, 2, 0, 2, 2},
-			{2, 2, 1, 1, 2, 2, 2, 2, 0, 2},
-			{2, 2, 2, 1, 2, 2, 2, 2, 0, 2},
-			{2, 2, 2, 2, 1, 2, 2, 2, 0, 2}
+			{1, 1, 1, 1, 2, 2, 2, 2, 0, 0},
+			{2, 2, 2, 2, 1, 2, 2, 2, 2, 2},
+			{2, 2, 2, 2, 1, 1, 2, 2, 2, 1},
+			{0, 2, 2, 2, 2, 1, 2, 1, 1, 2},
+			{0, 0, 2, 2, 2, 2, 1, 2, 2, 2},
+			{0, 0, 0, 2, 2, 2, 1, 1, 2, 2},
+			{0, 0, 0, 2, 2, 2, 2, 1, 2, 2}
 		};
 
 		hexes_wide = MAP_WIDTH;
@@ -40,9 +40,32 @@
 				int terrainType = testMap[j][i];
 				[tileArray[i][j] setValue:[NSNumber numberWithInteger:terrainType] forKey:@"terrainType"];
 				tileArray[i][j].contents = tileImageRefs[terrainType];
+				tileArray[i][j].zPosition = 10.0f;
 
 				[[self layer] addSublayer:tileArray[i][j]];
 			}
+		}
+
+		// Add some game pieces to the map
+		// {type, player, x, y}
+		int test_pieces[12][4] = {
+			{2, 0, 0, 0},
+			{1, 0, 1, 0},
+			{1, 0, 0, 1},
+			{0, 0, 2, 0},
+			{0, 0, 0, 2},
+			{0, 0, 2, 2},
+			{2, 1, 9, 9},
+			{1, 1, 8, 9},
+			{1, 1, 9, 8},
+			{0, 1, 7, 9},
+			{0, 1, 9, 7},
+			{0, 1, 7, 7}
+		};
+		
+		for (int i = 0; i < 12; i++) {
+			GamePiece *newPiece = [[GamePiece alloc] initWithPieceType:test_pieces[i][0] player:test_pieces[i][1]];
+			[self addGamePiece:newPiece atX:test_pieces[i][2] y:test_pieces[i][3]];
 		}
     }
     return self;
@@ -52,7 +75,9 @@
 	CGPoint location = [self locationOfHexAtX:x y:y];
 	piece.anchorPoint = CGPointMake(0.0f, 0.0f);
 	piece.position = location;
+	piece.zPosition = 20.0f;
 	piece.map = self;
+	[[self layer] addSublayer:piece];
 	return true;
 }
 
