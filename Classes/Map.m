@@ -25,8 +25,8 @@
 
 		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
+		CGImageRef ir = CGImageCreateCopy([tileImages CGImage]);
 		for (int i = 0; i < NUM_TILE_TYPES; i++) {
-			CGImageRef ir = CGImageCreateCopy([tileImages CGImage]);
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
 
@@ -47,7 +47,7 @@
     }
     return self;
 }
-
+/*
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y {
 	CGPoint location = [self locationOfHexAtX:x y:y];
 	piece.anchorPoint = CGPointMake(0.0f, 0.0f);
@@ -55,7 +55,7 @@
 	piece.map = self;
 	return true;
 }
-
+*/
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y {
 	return tileArray[x][y].position;
 }
