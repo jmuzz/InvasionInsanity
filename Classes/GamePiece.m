@@ -35,7 +35,6 @@ static bool initialized = false;
 }
 
 - (void)dealloc {
-	[map release];
     [super dealloc];
 }
 	
