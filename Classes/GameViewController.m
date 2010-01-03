@@ -20,13 +20,13 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	for (UITouch *touch in touches) {
 		Map *map = gameView.map;
-		
+
 		CGPoint tloc = [touch locationInView:map];
 		CALayer *hex = [map hexFromPoint:tloc];
-		//GamePiece *piece = [map pieceFromPoint:tloc];
+		GamePiece *piece = [map pieceFromPoint:tloc];
 
 		[gameView updateTerrainInfoWithHex:hex];
-		//[gameView updatePieceInfoWithPiece:piece];
+		[gameView updatePieceInfoWithPiece:piece];
     }
 };
 

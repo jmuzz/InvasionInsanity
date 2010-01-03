@@ -20,7 +20,7 @@ static bool initialized = false;
 			}
 			initialized = true;
 		}
-		
+
 		self.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 		self.contents = pieceImageRefs[player][type];
 	}

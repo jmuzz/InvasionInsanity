@@ -39,6 +39,7 @@
 		hexes_wide = MAP_WIDTH;
 		hexes_high = MAP_HEIGHT;
 		gamePieces = [NSMutableArray arrayWithCapacity:12];
+		[gamePieces retain];
 
 		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
@@ -102,22 +103,31 @@
 }	
 
 - (GamePiece *)pieceFromPoint:(CGPoint)point {
-	//int x = [self hexXFromPoint:point];
-	//int y = [self hexYFromPoint:point];
-	return [gamePieces objectAtIndex:0];
+	int x = [self hexXFromPoint:point];
+	int y = [self hexYFromPoint:point];
+	
+	GamePiece *piece;
+	for (piece in gamePieces) {
+		if (x == piece.x && y == piece.y) {
+			return piece;
+		}
+	}
+
+	return nil;
 }
 
-- (CGImageRef)getTerrainImageAtX:(int)x Y:(int)y {
+- (CGImageRef)getTerrainImageAtX:(int)x y:(int)y {
 	int terrainType = [[tileArray[x][y] valueForKey:@"terrainType"] intValue];
 	return tileImageRefs[terrainType];
 }
 
-- (void)drawRect:(CGRect)rect {
+/*- (void)drawRect:(CGRect)rect {
     // Drawing code
-}
+}*/
 
 - (void)dealloc {
     [super dealloc];
+	[gamePieces release];
 }
 
 @end
