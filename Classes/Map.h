@@ -6,12 +6,12 @@
 
 @interface Map : UIView {
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
-	int hexes_wide, hexes_high;
+	int hexesWide, hexesHigh;
 	CGImageRef tileImageRefs[NUM_TILE_TYPES];
 	NSMutableArray *gamePieces;
 }
 
-@property (readonly, nonatomic) int hexes_wide, hexes_high;
+@property (readonly, nonatomic) int hexesWide, hexesHigh;
 
 // x and y refer to coordinates in the array of hexagons
 // A CGPoint refers to a pixel coordinate in the map view

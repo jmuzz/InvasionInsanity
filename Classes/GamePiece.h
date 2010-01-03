@@ -11,6 +11,6 @@
 @property (nonatomic, readonly) int x, y;
 
 - (id)initWithPieceType:(int)type player:(int)player;
-- (void)setCoordsToX:(int)new_x y:(int)new_y;
+- (void)setCoordsToX:(int)newX y:(int)newY;
 
 @end

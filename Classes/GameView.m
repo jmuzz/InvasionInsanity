@@ -10,11 +10,11 @@
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
 		// Create map
-		CGRect mapFrame = CGRectMake(0, 0, CGRectGetWidth([self frame]), CGRectGetHeight([self frame]) - 64);
+		CGRect mapFrame = CGRectMake(0, 0, CGRectGetWidth([self frame]), CGRectGetHeight([self frame]) - 88);
 		map = [[Map alloc] initWithFrame:mapFrame];
 
 		// Create terrain info bar
-		terrainInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(mapFrame) + 32, CGRectGetWidth(mapFrame), 32)];
+		terrainInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(mapFrame) + 48, CGRectGetWidth(mapFrame), 32)];
 		selectedTerrainPicture = [CALayer layer];
 		selectedTerrainPicture.anchorPoint = CGPointMake(0.0f, 0.0f);
 		selectedTerrainPicture.position = CGPointMake(20.0f, 0.0f);
@@ -22,7 +22,7 @@
 		[[terrainInfoBar layer] addSublayer:selectedTerrainPicture];
 		
 		// Create game piece info par
-		pieceInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(mapFrame), CGRectGetWidth(mapFrame), 32)];
+		pieceInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(mapFrame) + 8, CGRectGetWidth(mapFrame), 32)];
 		selectedPiecePicture = [CALayer layer];
 		selectedPiecePicture.anchorPoint = CGPointMake(0.0f, 0.0f);
 		selectedPiecePicture.position = CGPointMake(20.0f, 0.0f);

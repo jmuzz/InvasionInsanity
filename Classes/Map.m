@@ -3,7 +3,7 @@
 
 @implementation Map
 
-@synthesize hexes_wide, hexes_high;
+@synthesize hexesWide, hexesHigh;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -21,7 +21,7 @@
 		};
 		
 		// {type, player, x, y}
-		int test_pieces[12][4] = {
+		int testPieces[12][4] = {
 			{2, 0, 0, 0},
 			{1, 0, 1, 0},
 			{1, 0, 0, 1},
@@ -36,8 +36,8 @@
 			{0, 1, 7, 7}
 		};
 
-		hexes_wide = MAP_WIDTH;
-		hexes_high = MAP_HEIGHT;
+		hexesWide = MAP_WIDTH;
+		hexesHigh = MAP_HEIGHT;
 		gamePieces = [NSMutableArray arrayWithCapacity:12];
 		[gamePieces retain];
 
@@ -66,8 +66,8 @@
 
 		// Add some game pieces to the map
 		for (int i = 0; i < 12; i++) {
-			GamePiece *newPiece = [[GamePiece alloc] initWithPieceType:test_pieces[i][0] player:test_pieces[i][1]];
-			[self addGamePiece:newPiece atX:test_pieces[i][2] y:test_pieces[i][3]];
+			GamePiece *newPiece = [[GamePiece alloc] initWithPieceType:testPieces[i][0] player:testPieces[i][1]];
+			[self addGamePiece:newPiece atX:testPieces[i][2] y:testPieces[i][3]];
 		}
     }
     return self;
@@ -93,13 +93,13 @@
 
 - (int)hexXFromPoint:(CGPoint)point {
 	int ret = point.x / 27;
-	return (ret >= hexes_wide) ? hexes_wide - 1 : ret;
+	return (ret >= hexesWide) ? hexesWide - 1 : ret;
 }
 
 - (int)hexYFromPoint:(CGPoint)point {
 	int x = [self hexXFromPoint:point];
 	int ret = (point.y - ((x % 2 == 1) ? 16 : 0)) / 32;
-	return (ret >= hexes_high) ? hexes_high - 1 : ret;
+	return (ret >= hexesHigh) ? hexesHigh - 1 : ret;
 }	
 
 - (GamePiece *)pieceFromPoint:(CGPoint)point {

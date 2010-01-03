@@ -27,11 +27,11 @@ static bool initialized = false;
 	return self;
 }
 
-- (void)setCoordsToX:(int)new_x y:(int)new_y {
-	CGPoint location = [map locationOfHexAtX:new_x y:new_y];
+- (void)setCoordsToX:(int)newX y:(int)newY {
+	CGPoint location = [map locationOfHexAtX:newX y:newY];
 	self.position = location;
-	x = new_x;
-	y = new_y;
+	x = newX;
+	y = newY;
 }
 
 - (void)dealloc {
