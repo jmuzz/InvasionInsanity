@@ -4,11 +4,10 @@
 
 @interface GameView : UIView {
 	GameViewController *gameViewController;
-	CALayer *selectedTerrainPicture;
-	CALayer *selectedPiecePicture;
 	Map *map;
-	UIView *terrainInfoBar;
-	UIView *pieceInfoBar;
+	CALayer *selectedTerrainPicture, *selectedPiecePicture;
+	UIView *terrainInfoBar, *pieceInfoBar;
+	UILabel *terrainInfoText, *pieceInfoText;
 }
 
 - (void)updateTerrainInfoWithHex:(CALayer *)hex;

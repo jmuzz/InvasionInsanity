@@ -6,7 +6,18 @@
 static CGImageRef pieceImageRefs[2][NUM_PIECE_TYPES];
 static bool initialized = false;
 
-@synthesize map, x, y;
+typedef struct {
+	int hp, attack, movement;
+	NSString *name;
+} unitType;
+
+static const unitType unitTypes[3] = {
+	{8, 10, 5, @"Pawn"},
+	{6, 8, 3, @"Archer"},
+	{14, 10, 4, @"Hero"}
+};
+
+@synthesize map, x, y, hp, attack, movement, name;
 
 - (id)initWithPieceType:(int)type player:(int)player {
 	if (self = [super init]) {
@@ -20,6 +31,11 @@ static bool initialized = false;
 			}
 			initialized = true;
 		}
+		
+		hp       = unitTypes[type].hp;
+		attack   = unitTypes[type].attack;
+		movement = unitTypes[type].movement;
+		name     = unitTypes[type].name;
 
 		self.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 		self.contents = pieceImageRefs[player][type];
