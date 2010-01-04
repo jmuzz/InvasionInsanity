@@ -18,6 +18,18 @@
 	[view release];
 }
 
+- (void)cancelMove {
+	gameState = unitSelectedState;
+	[selectedPiece setCoordsToX:oldPieceX y:oldPieceY];
+	[gameView updateActionButtonBoxWithState:gameState];
+}
+
+- (void)finishMove {
+	gameState = waitingState;
+	selectedPiece.moved = true;
+	[gameView updateActionButtonBoxWithState:gameState];
+}
+
 - (void)deselectPiece {
 	selectedPiece = nil;
 	gameState = waitingState;
@@ -32,14 +44,14 @@
 		CGPoint tloc = [touch locationInView:map];
 		CALayer *hex = [map hexFromPoint:tloc];
 		if (hex) {
-			GamePiece *piece;
+			GamePiece *piece = [map pieceFromPoint:tloc];
 			switch (gameState) {
 				case waitingState:
-					piece = [map pieceFromPoint:tloc];
-					if (piece) {
+					if (piece && piece.moved == false) {
 						gameState = unitSelectedState;
 						selectedPiece = piece;
-						[gameView updateActionButtonBoxWithState:unitSelectedState];
+						oldPieceX = piece.x;
+						oldPieceY = piece.y;
 					}
 
 					[gameView updateTerrainInfoWithHex:hex];
@@ -47,9 +59,22 @@
 					break;
 				
 				case unitSelectedState:
+					if (!piece) {
+						[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
+						gameState = verifyMoveState;
+					}
+					break;
 					
+				case verifyMoveState:
+					if (!piece) {
+						[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
+						if (selectedPiece.x == oldPieceX && selectedPiece.y == oldPieceY) {
+							gameState = unitSelectedState;
+						}
+					}
 					break;
 			}
+			[gameView updateActionButtonBoxWithState:gameState];
 		}
     }
 }

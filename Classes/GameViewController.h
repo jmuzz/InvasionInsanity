@@ -4,7 +4,8 @@
 
 typedef enum {
 	waitingState,
-	unitSelectedState
+	unitSelectedState,
+	verifyMoveState
 } GameState;
 
 @interface GameViewController : UIViewController {
@@ -12,9 +13,12 @@ typedef enum {
 	id <GameViewControllerDelegate> delegate;
 	GameState gameState;
 	GamePiece *selectedPiece;
+	int oldPieceX, oldPieceY;
 }
 
 - (void)deselectPiece;
+- (void)cancelMove;
+- (void)finishMove;
 
 @property (nonatomic, retain) IBOutlet GameView *gameView;
 @property (nonatomic, assign) id <GameViewControllerDelegate> delegate;

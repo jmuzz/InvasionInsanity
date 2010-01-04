@@ -42,6 +42,8 @@
 			actionButtons[i] = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
 			actionButtons[i].frame = CGRectMake(0, i*24, 102, 16);
 		}
+		
+		[self updateActionButtonBoxWithState:waitingState];
 
 		[self addSubview:actionButtonBox];
 		[self addSubview:terrainInfoBar];
@@ -66,15 +68,15 @@
 		case 0:
 			terrainInfoText.text = @"Water";
 			break;
-			
+
 		case 1:
 			terrainInfoText.text = @"Road";
 			break;
-			
+
 		case 2:
 			terrainInfoText.text = @"Grass";
 			break;
-			
+
 		default:
 			terrainInfoText.text = @"";
 			break;
@@ -90,11 +92,29 @@
 	switch (state) {
 		case (unitSelectedState):
 			[actionButtons[0] setTitle:@"Stay Put" forState:UIControlStateNormal];
-			actionButtons[0].enabled = false;
+			[actionButtons[0] addTarget:gameViewController action:@selector(finishMove) forControlEvents:UIControlEventTouchUpInside];
 			[actionButtonBox addSubview:actionButtons[0]];
-			
+
 			[actionButtons[1] setTitle:@"Deselect" forState:UIControlStateNormal];
 			[actionButtons[1] addTarget:gameViewController action:@selector(deselectPiece) forControlEvents:UIControlEventTouchUpInside];
+			[actionButtonBox addSubview:actionButtons[1]];
+			break;
+
+		case (waitingState):
+			[actionButtons[0] setTitle:@"Next Unit" forState:UIControlStateNormal];
+			[actionButtonBox addSubview:actionButtons[0]];
+
+			[actionButtons[1] setTitle:@"End Turn" forState:UIControlStateNormal];
+			[actionButtonBox addSubview:actionButtons[1]];
+			break;
+
+		case (verifyMoveState):
+			[actionButtons[0] setTitle:@"Move Here" forState:UIControlStateNormal];
+			[actionButtons[0] addTarget:gameViewController action:@selector(finishMove) forControlEvents:UIControlEventTouchUpInside];
+			[actionButtonBox addSubview:actionButtons[0]];
+			
+			[actionButtons[1] setTitle:@"Cancel" forState:UIControlStateNormal];
+			[actionButtons[1] addTarget:gameViewController action:@selector(cancelMove) forControlEvents:UIControlEventTouchUpInside];
 			[actionButtonBox addSubview:actionButtons[1]];
 			break;
 	}

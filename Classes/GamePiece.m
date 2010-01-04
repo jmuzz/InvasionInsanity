@@ -17,7 +17,7 @@ static const unitType unitTypes[3] = {
 	{14, 10, 4, @"Hero"}
 };
 
-@synthesize map, x, y, hp, attack, movement, name;
+@synthesize map, x, y, hp, attack, movement, name, moved;
 
 - (id)initWithPieceType:(int)type player:(int)player {
 	if (self = [super init]) {
@@ -31,7 +31,8 @@ static const unitType unitTypes[3] = {
 			}
 			initialized = true;
 		}
-		
+
+		moved    = false;
 		hp       = unitTypes[type].hp;
 		attack   = unitTypes[type].attack;
 		movement = unitTypes[type].movement;
