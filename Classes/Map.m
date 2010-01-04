@@ -88,18 +88,20 @@
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {
+	int x = [self hexXFromPoint:point];
+	if (x < 0 || x >= hexesWide) return nil;
+	int y = [self hexYFromPoint:point];
+	if (y < 0 || y >= hexesHigh) return nil;
 	return tileArray[[self hexXFromPoint:point]][[self hexYFromPoint:point]];
 }
 
 - (int)hexXFromPoint:(CGPoint)point {
-	int ret = point.x / 27;
-	return (ret >= hexesWide) ? hexesWide - 1 : ret;
+	return point.x / 27;
 }
 
 - (int)hexYFromPoint:(CGPoint)point {
 	int x = [self hexXFromPoint:point];
-	int ret = (point.y - ((x % 2 == 1) ? 16 : 0)) / 32;
-	return (ret >= hexesHigh) ? hexesHigh - 1 : ret;
+	return (point.y - ((x % 2 == 1) ? 16 : 0)) / 32;
 }	
 
 - (GamePiece *)pieceFromPoint:(CGPoint)point {

@@ -9,7 +9,7 @@
 
 - (void) loadView {
 	self.wantsFullScreenLayout = YES;
-	
+
 	GameView *view = [[GameView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
 	view.gameViewController = self;
 	self.view = view;
@@ -24,10 +24,12 @@
 
 		CGPoint tloc = [touch locationInView:map];
 		CALayer *hex = [map hexFromPoint:tloc];
-		GamePiece *piece = [map pieceFromPoint:tloc];
+		if (hex) {
+			GamePiece *piece = [map pieceFromPoint:tloc];
 
-		[gameView updateTerrainInfoWithHex:hex];
-		[gameView updatePieceInfoWithPiece:piece];
+			[gameView updateTerrainInfoWithHex:hex];
+			[gameView updatePieceInfoWithPiece:piece];
+		}
     }
 };
 

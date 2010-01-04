@@ -40,6 +40,7 @@
 		actionButtonBox = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(mapFrame) - 112, CGRectGetHeight(mapFrame) + 8, 112, 60)];
 		endTurnButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
 		endTurnButton.frame = CGRectMake(0, 0, 102, 32);
+		endTurnButton.enabled = false;
 		[endTurnButton setTitle:@"End turn" forState:UIControlStateNormal];
 		[actionButtonBox addSubview:endTurnButton];
 
