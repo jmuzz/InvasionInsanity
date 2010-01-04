@@ -6,8 +6,9 @@
 	GameViewController *gameViewController;
 	Map *map;
 	CALayer *selectedTerrainPicture, *selectedPiecePicture;
-	UIView *terrainInfoBar, *pieceInfoBar;
+	UIView *terrainInfoBar, *pieceInfoBar, *actionButtonBox;
 	UILabel *terrainInfoText, *pieceInfoText;
+	UIButton *endTurnButton;
 }
 
 - (void)updateTerrainInfoWithHex:(CALayer *)hex;
