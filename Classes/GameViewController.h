@@ -1,4 +1,4 @@
-@class GameView;
+@class GameView, GamePiece;
 
 @protocol GameViewControllerDelegate;
 
@@ -11,7 +11,10 @@ typedef enum {
 	GameView *gameView;
 	id <GameViewControllerDelegate> delegate;
 	GameState gameState;
+	GamePiece *selectedPiece;
 }
+
+- (void)deselectPiece;
 
 @property (nonatomic, retain) IBOutlet GameView *gameView;
 @property (nonatomic, assign) id <GameViewControllerDelegate> delegate;

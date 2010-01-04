@@ -18,6 +18,13 @@
 	[view release];
 }
 
+- (void)deselectPiece {
+	selectedPiece = nil;
+	gameState = waitingState;
+	[gameView updateActionButtonBoxWithState:gameState];
+	[gameView updatePieceInfoWithPiece:nil];
+}
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	for (UITouch *touch in touches) {
 		Map *map = gameView.map;
@@ -25,12 +32,26 @@
 		CGPoint tloc = [touch locationInView:map];
 		CALayer *hex = [map hexFromPoint:tloc];
 		if (hex) {
-			GamePiece *piece = [map pieceFromPoint:tloc];
+			GamePiece *piece;
+			switch (gameState) {
+				case waitingState:
+					piece = [map pieceFromPoint:tloc];
+					if (piece) {
+						gameState = unitSelectedState;
+						selectedPiece = piece;
+						[gameView updateActionButtonBoxWithState:unitSelectedState];
+					}
 
-			[gameView updateTerrainInfoWithHex:hex];
-			[gameView updatePieceInfoWithPiece:piece];
+					[gameView updateTerrainInfoWithHex:hex];
+					[gameView updatePieceInfoWithPiece:piece];
+					break;
+				
+				case unitSelectedState:
+					
+					break;
+			}
 		}
     }
-};
+}
 
 @end

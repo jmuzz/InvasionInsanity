@@ -38,11 +38,10 @@
 
 		// Create action button box
 		actionButtonBox = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(mapFrame) - 112, CGRectGetHeight(mapFrame) + 8, 112, 60)];
-		endTurnButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-		endTurnButton.frame = CGRectMake(0, 0, 102, 32);
-		endTurnButton.enabled = false;
-		[endTurnButton setTitle:@"End turn" forState:UIControlStateNormal];
-		[actionButtonBox addSubview:endTurnButton];
+		for (int i = 0; i < NUM_ACTION_BUTTONS; i++) {
+			actionButtons[i] = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+			actionButtons[i].frame = CGRectMake(0, i*24, 102, 16);
+		}
 
 		[self addSubview:actionButtonBox];
 		[self addSubview:terrainInfoBar];
@@ -78,6 +77,25 @@
 			
 		default:
 			terrainInfoText.text = @"";
+			break;
+	}
+}
+
+- (void)updateActionButtonBoxWithState:(int)state {
+	for (int i = 0; i < NUM_ACTION_BUTTONS; i++) {
+		[actionButtons[i] removeFromSuperview];
+		[actionButtons[i] removeTarget:gameViewController action:NULL forControlEvents:UIControlEventTouchUpInside];
+	}
+
+	switch (state) {
+		case (unitSelectedState):
+			[actionButtons[0] setTitle:@"Stay Put" forState:UIControlStateNormal];
+			actionButtons[0].enabled = false;
+			[actionButtonBox addSubview:actionButtons[0]];
+			
+			[actionButtons[1] setTitle:@"Deselect" forState:UIControlStateNormal];
+			[actionButtons[1] addTarget:gameViewController action:@selector(deselectPiece) forControlEvents:UIControlEventTouchUpInside];
+			[actionButtonBox addSubview:actionButtons[1]];
 			break;
 	}
 }
