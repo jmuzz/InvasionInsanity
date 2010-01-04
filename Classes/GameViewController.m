@@ -14,6 +14,7 @@
 	view.gameViewController = self;
 	self.view = view;
 	self.gameView = view;
+	gameState = waitingState;
 	[view release];
 }
 

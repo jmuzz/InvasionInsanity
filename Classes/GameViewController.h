@@ -2,9 +2,15 @@
 
 @protocol GameViewControllerDelegate;
 
+typedef enum {
+	waitingState,
+	unitSelectedState
+} GameState;
+
 @interface GameViewController : UIViewController {
 	GameView *gameView;
 	id <GameViewControllerDelegate> delegate;
+	GameState gameState;
 }
 
 @property (nonatomic, retain) IBOutlet GameView *gameView;
