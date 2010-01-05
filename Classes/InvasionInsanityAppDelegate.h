@@ -3,6 +3,7 @@
 #import "GameOverViewController.h"
 
 @interface InvasionInsanityAppDelegate : NSObject <UIApplicationDelegate, MenuViewControllerDelegate, GameViewControllerDelegate, GameOverViewControllerDelegate> {
+  @private
     UIWindow *window;
 	MenuViewController *menuViewController;
 	GameViewController *gameViewController;

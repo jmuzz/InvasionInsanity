@@ -9,6 +9,7 @@ typedef enum {
 } GameState;
 
 @interface GameViewController : UIViewController {
+  @private
 	GameView *gameView;
 	id <GameViewControllerDelegate> delegate;
 	GameState gameState;

@@ -45,16 +45,13 @@
 		// Load tile images
 		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
 		CGImageRef ir = CGImageCreateCopy([tileImages CGImage]);
+		[tileImages release];
 		for (int i = 0; i < NUM_TILE_TYPES; i++) {
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
+		CGImageRelease(ir);
 
 		// Load terrain data and create tile layers and add them to map
-		CALayer *shadeMask = [CALayer layer];
-		shadeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
-		shadeMask.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
-		shadeMask.contents = tileImageRefs[0];
-		
 		for (int i = 0; i < MAP_WIDTH; i++) {
 			for (int j = 0; j < MAP_HEIGHT; j++) {
 				tileArray[i][j] = [CALayer layer];
@@ -72,7 +69,6 @@
 				tileShade[i][j].position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
 				tileShade[i][j].bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 				tileShade[i][j].zPosition = 30.0f;
-				//tileShade[i][j].opacity = 0.5f;
 
 				CALayer *shadeMask = [CALayer layer];
 				shadeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
@@ -80,7 +76,7 @@
 				shadeMask.contents = tileImageRefs[0];
 
 				tileShade[i][j].mask = shadeMask;
-				//tileShade[i][j].backgroundColor = [UIColor blackColor].CGColor;
+
 				[[self layer] addSublayer:tileShade[i][j]];
 			}
 		}

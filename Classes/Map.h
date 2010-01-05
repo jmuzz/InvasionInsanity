@@ -6,6 +6,7 @@
 @class GameViewController;
 
 @interface Map : UIView {
+  @private
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
 	CALayer *tileShade[MAP_WIDTH][MAP_HEIGHT];
 	int hexesWide, hexesHigh;

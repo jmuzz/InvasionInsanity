@@ -3,6 +3,7 @@
 @class Map;
 
 @interface GamePiece : CALayer {
+  @private
 	Map *map;
 	int x, y, hp, attack, movement, player;
 	NSString *name;

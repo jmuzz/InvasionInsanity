@@ -29,6 +29,8 @@ static const unitType unitTypes[3] = {
 					pieceImageRefs[i][j] = CGImageCreateWithImageInRect(ir, CGRectMake(j*36, i*32, 36, 32));
 				}
 			}
+			CGImageRelease(ir);
+			[pieceImages release];
 			initialized = true;
 		}
 
@@ -53,6 +55,7 @@ static const unitType unitTypes[3] = {
 }
 
 - (void)dealloc {
+	[name dealloc];
     [super dealloc];
 }
 	

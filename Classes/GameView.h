@@ -5,6 +5,7 @@
 @class GamePiece;
 
 @interface GameView : UIView {
+  @private
 	GameViewController *gameViewController;
 	Map *map;
 	CALayer *selectedTerrainPicture, *selectedPiecePicture;

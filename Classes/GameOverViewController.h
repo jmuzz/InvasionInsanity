@@ -1,10 +1,11 @@
 @protocol GameOverViewControllerDelegate;
 
 @interface GameOverViewController : UIViewController {
+  @private
 	id <GameOverViewControllerDelegate> delegate;
 }
 
-@property (nonatomic, retain) id <GameOverViewControllerDelegate> delegate;
+@property (nonatomic, assign) id <GameOverViewControllerDelegate> delegate;
 
 - (IBAction) mainMenu: (id) sender;
 
