@@ -1,4 +1,4 @@
-#define NUM_ACTION_BUTTONS 3
+#define NUM_ACTION_BUTTONS 10
 
 @class GameViewController;
 @class Map;

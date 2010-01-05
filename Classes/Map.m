@@ -1,9 +1,10 @@
 #import "Map.h"
 #import "GamePiece.h"
+#import "GameViewController.h"
 
 @implementation Map
 
-@synthesize hexesWide, hexesHigh;
+@synthesize hexesWide, hexesHigh, gameViewController;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -49,6 +50,11 @@
 		}
 
 		// Load terrain data and create tile layers and add them to map
+		CALayer *shadeMask = [CALayer layer];
+		shadeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
+		shadeMask.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+		shadeMask.contents = tileImageRefs[0];
+		
 		for (int i = 0; i < MAP_WIDTH; i++) {
 			for (int j = 0; j < MAP_HEIGHT; j++) {
 				tileArray[i][j] = [CALayer layer];
@@ -59,8 +65,23 @@
 				[tileArray[i][j] setValue:[NSNumber numberWithInteger:terrainType] forKey:@"terrainType"];
 				tileArray[i][j].contents = tileImageRefs[terrainType];
 				tileArray[i][j].zPosition = 10.0f;
-
 				[[self layer] addSublayer:tileArray[i][j]];
+
+				tileShade[i][j] = [CALayer layer];
+				tileShade[i][j].anchorPoint = CGPointMake(0.0f, 0.0f);
+				tileShade[i][j].position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
+				tileShade[i][j].bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+				tileShade[i][j].zPosition = 30.0f;
+				//tileShade[i][j].opacity = 0.5f;
+
+				CALayer *shadeMask = [CALayer layer];
+				shadeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
+				shadeMask.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+				shadeMask.contents = tileImageRefs[0];
+
+				tileShade[i][j].mask = shadeMask;
+				//tileShade[i][j].backgroundColor = [UIColor blackColor].CGColor;
+				[[self layer] addSublayer:tileShade[i][j]];
 			}
 		}
 
@@ -71,6 +92,36 @@
 		}
     }
     return self;
+}
+
+- (void)updateShades {
+	[self clearShades];
+	GamePiece *piece;
+	switch (gameViewController.gameState) {
+		case (unitSelectedState):
+		case (verifyMoveState):
+			piece = [gameViewController selectedPiece];
+			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
+			tileShade[piece.x][piece.y].opacity = 0.5f;
+			break;
+			
+		case (waitingState):
+			for (piece in gamePieces) {
+				if (piece.moved == false && piece.player == gameViewController.currentPlayerTurn) {
+					tileShade[piece.x][piece.y].backgroundColor = [UIColor whiteColor].CGColor;
+					tileShade[piece.x][piece.y].opacity = 0.5f;
+				}
+			}
+			break;
+	}
+}
+
+- (void)clearShades {
+	for (int i = 0; i < MAP_WIDTH; i++) {
+		for (int j = 0; j < MAP_HEIGHT; j++) {
+			tileShade[i][j].opacity = 0.0f;
+		}
+	}
 }
 
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y {
@@ -116,6 +167,13 @@
 	}
 
 	return nil;
+}
+
+- (void)startNewTurn {
+	GamePiece *piece;
+	for (piece in gamePieces) {
+		piece.moved = false;
+	}
 }
 
 - (CGImageRef)getTerrainImageAtX:(int)x y:(int)y {

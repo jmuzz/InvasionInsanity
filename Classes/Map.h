@@ -3,15 +3,19 @@
 #define MAP_WIDTH 10
 
 @class GamePiece;
+@class GameViewController;
 
 @interface Map : UIView {
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
+	CALayer *tileShade[MAP_WIDTH][MAP_HEIGHT];
 	int hexesWide, hexesHigh;
 	CGImageRef tileImageRefs[NUM_TILE_TYPES];
 	NSMutableArray *gamePieces;
+	GameViewController *gameViewController;
 }
 
 @property (readonly, nonatomic) int hexesWide, hexesHigh;
+@property (nonatomic, assign) GameViewController *gameViewController;
 
 // x and y refer to coordinates in the array of hexagons
 // A CGPoint refers to a pixel coordinate in the map view
@@ -22,5 +26,8 @@
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y;
 - (int)hexXFromPoint:(CGPoint)point;
 - (int)hexYFromPoint:(CGPoint)point;
+- (void)startNewTurn;
+- (void)clearShades;
+- (void)updateShades;
 
 @end

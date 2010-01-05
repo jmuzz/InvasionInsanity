@@ -40,8 +40,30 @@
 		actionButtonBox = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetWidth(mapFrame) - 112, CGRectGetHeight(mapFrame) + 8, 112, 60)];
 		for (int i = 0; i < NUM_ACTION_BUTTONS; i++) {
 			actionButtons[i] = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-			actionButtons[i].frame = CGRectMake(0, i*24, 102, 16);
 		}
+		
+		[actionButtons[0] setTitle:@"Stay Put" forState:UIControlStateNormal];
+		[actionButtons[0] addTarget:gameViewController action:@selector(finishMove) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[0].frame = CGRectMake(0, 0, 102, 16);
+		
+		[actionButtons[1] setTitle:@"Deselect" forState:UIControlStateNormal];
+		[actionButtons[1] addTarget:gameViewController action:@selector(deselectPiece) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[1].frame = CGRectMake(0, 24, 102, 16);
+		
+		[actionButtons[2] setTitle:@"Next Unit" forState:UIControlStateNormal];
+		actionButtons[2].frame = CGRectMake(0, 0, 102, 16);
+		
+		[actionButtons[3] setTitle:@"End Turn" forState:UIControlStateNormal];
+		[actionButtons[3] addTarget:gameViewController action:@selector(endTurn) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[3].frame = CGRectMake(0, 24, 102, 16);
+		
+		[actionButtons[4] setTitle:@"Move Here" forState:UIControlStateNormal];
+		[actionButtons[4] addTarget:gameViewController action:@selector(finishMove) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[4].frame = CGRectMake(0, 0, 102, 16);
+		
+		[actionButtons[5] setTitle:@"Cancel" forState:UIControlStateNormal];
+		[actionButtons[5] addTarget:gameViewController action:@selector(cancelMove) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[5].frame = CGRectMake(0, 24, 102, 16);
 		
 		[self updateActionButtonBoxWithState:waitingState];
 
@@ -86,36 +108,22 @@
 - (void)updateActionButtonBoxWithState:(int)state {
 	for (int i = 0; i < NUM_ACTION_BUTTONS; i++) {
 		[actionButtons[i] removeFromSuperview];
-		[actionButtons[i] removeTarget:gameViewController action:NULL forControlEvents:UIControlEventTouchUpInside];
 	}
 
 	switch (state) {
 		case (unitSelectedState):
-			[actionButtons[0] setTitle:@"Stay Put" forState:UIControlStateNormal];
-			[actionButtons[0] addTarget:gameViewController action:@selector(finishMove) forControlEvents:UIControlEventTouchUpInside];
 			[actionButtonBox addSubview:actionButtons[0]];
-
-			[actionButtons[1] setTitle:@"Deselect" forState:UIControlStateNormal];
-			[actionButtons[1] addTarget:gameViewController action:@selector(deselectPiece) forControlEvents:UIControlEventTouchUpInside];
 			[actionButtonBox addSubview:actionButtons[1]];
 			break;
 
 		case (waitingState):
-			[actionButtons[0] setTitle:@"Next Unit" forState:UIControlStateNormal];
-			[actionButtonBox addSubview:actionButtons[0]];
-
-			[actionButtons[1] setTitle:@"End Turn" forState:UIControlStateNormal];
-			[actionButtonBox addSubview:actionButtons[1]];
+			[actionButtonBox addSubview:actionButtons[2]];
+			[actionButtonBox addSubview:actionButtons[3]];
 			break;
 
 		case (verifyMoveState):
-			[actionButtons[0] setTitle:@"Move Here" forState:UIControlStateNormal];
-			[actionButtons[0] addTarget:gameViewController action:@selector(finishMove) forControlEvents:UIControlEventTouchUpInside];
-			[actionButtonBox addSubview:actionButtons[0]];
-			
-			[actionButtons[1] setTitle:@"Cancel" forState:UIControlStateNormal];
-			[actionButtons[1] addTarget:gameViewController action:@selector(cancelMove) forControlEvents:UIControlEventTouchUpInside];
-			[actionButtonBox addSubview:actionButtons[1]];
+			[actionButtonBox addSubview:actionButtons[4]];
+			[actionButtonBox addSubview:actionButtons[5]];
 			break;
 	}
 }
