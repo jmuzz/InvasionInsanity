@@ -13,7 +13,7 @@ typedef enum {
 	id <GameViewControllerDelegate> delegate;
 	GameState gameState;
 	GamePiece *selectedPiece;
-	int oldPieceX, oldPieceY;
+	int oldPieceX, oldPieceY, currentPlayerTurn;
 }
 
 - (void)deselectPiece;

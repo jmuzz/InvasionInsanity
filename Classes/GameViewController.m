@@ -15,6 +15,7 @@
 	self.view = view;
 	self.gameView = view;
 	gameState = waitingState;
+	currentPlayerTurn = 0;
 	[view release];
 }
 
@@ -47,7 +48,7 @@
 			GamePiece *piece = [map pieceFromPoint:tloc];
 			switch (gameState) {
 				case waitingState:
-					if (piece && piece.moved == false) {
+					if (piece && piece.moved == false && piece.player == currentPlayerTurn) {
 						gameState = unitSelectedState;
 						selectedPiece = piece;
 						oldPieceX = piece.x;

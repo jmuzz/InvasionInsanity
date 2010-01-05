@@ -17,9 +17,9 @@ static const unitType unitTypes[3] = {
 	{14, 10, 4, @"Hero"}
 };
 
-@synthesize map, x, y, hp, attack, movement, name, moved;
+@synthesize map, x, y, hp, attack, movement, name, moved, player;
 
-- (id)initWithPieceType:(int)type player:(int)player {
+- (id)initWithPieceType:(int)type player:(int)ownedByPlayer {
 	if (self = [super init]) {
 		if (false == initialized) {
 			UIImage *pieceImages = [UIImage imageNamed:@"pieces.png"];
@@ -33,6 +33,7 @@ static const unitType unitTypes[3] = {
 		}
 
 		moved    = false;
+		player   = ownedByPlayer;
 		hp       = unitTypes[type].hp;
 		attack   = unitTypes[type].attack;
 		movement = unitTypes[type].movement;
