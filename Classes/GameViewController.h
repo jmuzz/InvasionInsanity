@@ -29,6 +29,7 @@ typedef enum {
 @property (nonatomic, readonly) int currentPlayerTurn;
 @property (nonatomic, readonly) GameState gameState;
 @property (nonatomic, readonly) GamePiece *selectedPiece;
+@property (nonatomic, readonly) CALayer *selectedHex;
 
 @end
 

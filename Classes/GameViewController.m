@@ -5,7 +5,7 @@
 
 @implementation GameViewController
 
-@synthesize gameView, delegate, currentPlayerTurn, gameState, selectedPiece;
+@synthesize gameView, delegate, currentPlayerTurn, gameState, selectedPiece, selectedHex;
 
 - (void) loadView {
 	self.wantsFullScreenLayout = YES;
@@ -75,16 +75,13 @@
 				case waitingState:
 					if (piece && piece.moved == false && piece.player == currentPlayerTurn) {
 						gameState = unitSelectedState;
-						selectedPiece = piece;
 						oldPieceX = piece.x;
 						oldPieceY = piece.y;
 					}
 					
-					if (piece.player != currentPlayerTurn) {
+					if (piece) {
 						selectedPiece = piece;
-					}
-					
-					if (!piece) {
+					} else {
 						selectedPiece = nil;
 					}
 					

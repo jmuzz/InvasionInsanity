@@ -30,5 +30,7 @@
 - (void)startNewTurn;
 - (void)clearShades;
 - (void)updateShades;
+- (NSArray *)hexesBesideHex:(CALayer *)hex;
+- (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece;
 
 @end

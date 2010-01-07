@@ -6,13 +6,13 @@
   @private
 	Map *map;
 	int x, y, hp, attack, movement, player;
-	NSString *name;
+	NSString *title;
 	bool moved;
 }
 
 @property (nonatomic, assign) Map *map;
 @property (nonatomic, readonly) int x, y, hp, attack, movement, player;
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *title;
 @property (nonatomic) bool moved;
 
 - (id)initWithPieceType:(int)type player:(int)player;

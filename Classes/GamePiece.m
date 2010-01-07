@@ -8,16 +8,16 @@ static bool initialized = false;
 
 typedef struct {
 	int hp, attack, movement;
-	NSString *name;
+	NSString *title;
 } unitType;
 
 static const unitType unitTypes[3] = {
-	{8, 10, 5, @"Pawn"},
-	{6, 8, 3, @"Archer"},
-	{14, 10, 4, @"Hero"}
+	{8, 10, 1, @"Pawn"},
+	{6, 8, 2, @"Archer"},
+	{14, 10, 3, @"Hero"}
 };
 
-@synthesize map, x, y, hp, attack, movement, name, player, moved;
+@synthesize map, x, y, hp, attack, movement, title, player, moved;
 
 - (id)initWithPieceType:(int)type player:(int)ownedByPlayer {
 	if (self = [super init]) {
@@ -39,7 +39,7 @@ static const unitType unitTypes[3] = {
 		hp       = unitTypes[type].hp;
 		attack   = unitTypes[type].attack;
 		movement = unitTypes[type].movement;
-		name     = unitTypes[type].name;
+		title    = unitTypes[type].title;
 
 		self.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 		self.contents = pieceImageRefs[player][type];
@@ -55,7 +55,7 @@ static const unitType unitTypes[3] = {
 }
 
 - (void)dealloc {
-	[name dealloc];
+	[title dealloc];
     [super dealloc];
 }
 	

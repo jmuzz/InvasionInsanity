@@ -60,6 +60,8 @@
 				tileArray[i][j].bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 				int terrainType = testMap[j][i];
 				[tileArray[i][j] setValue:[NSNumber numberWithInteger:terrainType] forKey:@"terrainType"];
+				[tileArray[i][j] setValue:[NSNumber numberWithInteger:i] forKey:@"hexX"];
+				[tileArray[i][j] setValue:[NSNumber numberWithInteger:j] forKey:@"hexY"];
 				tileArray[i][j].contents = tileImageRefs[terrainType];
 				tileArray[i][j].zPosition = 10.0f;
 				[[self layer] addSublayer:tileArray[i][j]];
@@ -90,11 +92,95 @@
     return self;
 }
 
+- (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece {
+	for (int i = 0; i < MAP_WIDTH; i++) {
+		for (int j = 0; j < MAP_WIDTH; j++) {
+			[tileArray[i][j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
+		}
+	}
+	
+	CALayer *hex = tileArray[movingPiece.x][movingPiece.y];
+	[hex setValue:[NSNumber numberWithInteger:(movingPiece.movement)] forKey:@"movementLeft"];
+	
+	NSMutableArray *hexQueue = [NSMutableArray arrayWithCapacity:60];
+	[hexQueue insertObject:hex atIndex:0];
+	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:60];
+	[ret addObject:hex];
+	
+	while (hex = [hexQueue lastObject]) {
+		[hexQueue removeLastObject];
+		int movementLeft = [[hex valueForKey:@"movementLeft"] intValue];
+		if (movementLeft != 0) {
+			NSArray *closeHexes = [self hexesBesideHex:hex];
+			CALayer *closeHex;
+			for (closeHex in closeHexes) {
+				int movementEstablished = [[closeHex valueForKey:@"movementLeft"] intValue];
+				if (movementEstablished == -1) {
+					[closeHex setValue:[NSNumber numberWithInteger:(movementLeft - 1)] forKey:@"movementLeft"];
+					[ret addObject:closeHex];
+					[hexQueue insertObject:closeHex atIndex:0];
+				}
+			}
+		}
+	}
+	
+	GamePiece *piece;
+	for (piece in gamePieces) {
+		[ret removeObject:tileArray[piece.x][piece.y]];
+	}
+	
+	return ret;
+}
+
+- (NSArray *)hexesBesideHex:(CALayer *)hex {
+	int x = [[hex valueForKey:@"hexX"] intValue];
+	int y = [[hex valueForKey:@"hexY"] intValue];
+	int otherY;
+	if (x % 2 == 1) {
+		otherY = y + 1;
+	} else {
+		otherY = y - 1;
+	}
+
+	int coordinates[6][2] = {
+		{x, y + 1},
+		{x, y - 1},
+		{x + 1, y},
+		{x - 1, y},
+		{x + 1, otherY},
+		{x - 1, otherY}
+	};
+
+	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
+	for (int i = 0; i < 6; i ++) {
+		if (coordinates[i][0] >= 0 && coordinates[i][0] < MAP_WIDTH && coordinates[i][1] >= 0 && coordinates[i][1] < MAP_WIDTH) {
+			[ret addObject:tileArray[coordinates[i][0]][coordinates[i][1]]];
+		}
+	}
+
+	return ret;
+}
+
 - (void)updateShades {
 	[self clearShades];
 	GamePiece *piece;
+	NSArray *hexes;
+	CALayer *hex;
+	int x, y;
 	switch (gameViewController.gameState) {
 		case (unitSelectedState):
+			piece = [gameViewController selectedPiece];
+			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
+			tileShade[piece.x][piece.y].opacity = 0.5f;
+			hexes = [self hexesInMovementRangeOfPiece:piece];
+			for (hex in hexes) {
+				x = [[hex valueForKey:@"hexX"] intValue];
+				y = [[hex valueForKey:@"hexY"] intValue];
+				tileShade[x][y].backgroundColor = [UIColor whiteColor].CGColor;
+				tileShade[x][y].opacity = 0.5f;
+			}
+			break;
+			
 		case (verifyMoveState):
 			piece = [gameViewController selectedPiece];
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
@@ -116,6 +202,7 @@
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_HEIGHT; j++) {
 			tileShade[i][j].opacity = 0.0f;
+			tileShade[i][j].backgroundColor = nil;
 		}
 	}
 }
