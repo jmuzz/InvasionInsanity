@@ -166,9 +166,16 @@
 	GamePiece *piece;
 	NSArray *hexes;
 	CALayer *hex;
-	int x, y;
+	int x, y, i, j;
 	switch (gameViewController.gameState) {
 		case (unitSelectedState):
+			for (i = 0; i < MAP_WIDTH; i++) {
+				for (j = 0; j < MAP_HEIGHT; j++) {
+					tileShade[i][j].backgroundColor = [UIColor blackColor].CGColor;
+					tileShade[i][j].opacity = 0.5f;
+				}
+			}
+			
 			piece = [gameViewController selectedPiece];
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
@@ -176,8 +183,8 @@
 			for (hex in hexes) {
 				x = [[hex valueForKey:@"hexX"] intValue];
 				y = [[hex valueForKey:@"hexY"] intValue];
-				tileShade[x][y].backgroundColor = [UIColor whiteColor].CGColor;
-				tileShade[x][y].opacity = 0.5f;
+				tileShade[x][y].backgroundColor = nil;
+				tileShade[x][y].opacity = 0.0f;
 			}
 			break;
 			
