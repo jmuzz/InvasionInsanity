@@ -5,13 +5,13 @@
 @interface GamePiece : CALayer {
   @private
 	Map *map;
-	int x, y, hp, attack, movement, player;
+	int x, y, hp, attack, movement, player, minRange, maxRange;
 	NSString *title;
 	bool moved;
 }
 
 @property (nonatomic, assign) Map *map;
-@property (nonatomic, readonly) int x, y, hp, attack, movement, player;
+@property (nonatomic, readonly) int x, y, hp, attack, movement, player, minRange, maxRange;
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic) bool moved;
 

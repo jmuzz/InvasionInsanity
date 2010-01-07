@@ -32,7 +32,9 @@
 - (void)updateShades;
 - (NSArray *)hexesBesideHex:(CALayer *)hex;
 - (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece;
+- (NSArray *)hexesInAttackRangeOfPiece:(GamePiece *)attackingPiece;
 - (bool)pieceCanMoveToHex:(CALayer *)dest piece:(GamePiece *)piece;
 - (bool)hexesAreEqual:(CALayer *)hex otherHex:(CALayer *)otherHex;
+- (int)distanceBetweenHex:(CALayer *)hex1 andHex:(CALayer *)hex2;
 
 @end

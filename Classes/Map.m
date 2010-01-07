@@ -52,7 +52,6 @@
 		 {0, 1, 8, 6},
 		 {0, 1, 5, 5}
 		 };
-		
 
 		hexesWide = MAP_WIDTH;
 		hexesHigh = MAP_HEIGHT;
@@ -109,21 +108,73 @@
     return self;
 }
 
+- (NSArray *)hexesInAttackRangeOfPiece:(GamePiece *)attackingPiece {
+	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
+	for (int i = 0; i < MAP_WIDTH; i++) {
+		for (int j = 0; j < MAP_HEIGHT; j++) {
+			int distance = [self distanceBetweenHex:tileArray[attackingPiece.x][attackingPiece.y] andHex:tileArray[i][j]];
+			int min = attackingPiece.minRange;
+			int max = attackingPiece.maxRange;
+			if (distance >= attackingPiece.minRange && distance <= attackingPiece.maxRange) {
+				[ret addObject:tileArray[i][j]];
+			}
+		}
+	}
+	return ret;
+}
+
+- (int)distanceBetweenHex:(CALayer *)hex1 andHex:(CALayer *)hex2 {
+	int srcX     = [[hex1 valueForKey:@"hexX"] intValue];
+	int srcY     = [[hex1 valueForKey:@"hexY"] intValue];
+	int destX    = [[hex2 valueForKey:@"hexX"] intValue];
+	int destY    = [[hex2 valueForKey:@"hexY"] intValue];
+	int distance = 0;
+	
+	// Each iteration of this loop brings the source coordinates 1 hex closer to the destination
+	while (srcX != destX || srcY != destY) {
+		distance++;
+		if (srcX == destX) {
+			if (srcY < destY) {
+				srcY++;
+			} else {
+				srcY--;
+			}
+		} else {
+			if (srcX % 2 == 0) {
+				if (srcY > destY) {
+					srcY--;
+				}
+			} else {
+				if (srcY < destY) {
+					srcY++;
+				}
+			}
+			if (srcX > destX) {
+				srcX--;
+			} else {
+				srcX++;
+			}
+		}
+	}
+	
+	return distance;
+}
+
 - (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece {
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_WIDTH; j++) {
 			[tileArray[i][j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
 		}
 	}
-	
+
 	CALayer *hex = tileArray[movingPiece.x][movingPiece.y];
 	[hex setValue:[NSNumber numberWithInteger:(movingPiece.movement)] forKey:@"movementLeft"];
-	
+
 	NSMutableArray *hexQueue = [NSMutableArray arrayWithCapacity:60];
 	[hexQueue insertObject:hex atIndex:0];
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:60];
 	[ret addObject:hex];
-	
+
 	while (hex = [hexQueue lastObject]) {
 		[hexQueue removeLastObject];
 		int movementLeft = [[hex valueForKey:@"movementLeft"] intValue];
@@ -140,12 +191,12 @@
 			}
 		}
 	}
-	
+
 	GamePiece *piece;
 	for (piece in gamePieces) {
 		[ret removeObject:tileArray[piece.x][piece.y]];
 	}
-	
+
 	return ret;
 }
 
@@ -186,7 +237,7 @@
 	GamePiece *piece;
 	NSArray *hexes;
 	CALayer *hex;
-	int x, y, i, j;
+	int x, y;
 	
 	switch (gameViewController.gameState) {
 		case (unitSelectedState):
@@ -204,6 +255,19 @@
 			break;
 			
 		case (verifyMoveState):
+			piece = [gameViewController selectedPiece];
+			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
+			tileShade[piece.x][piece.y].opacity = 0.5f;
+			
+			hexes = [self hexesInAttackRangeOfPiece:piece];
+			for (hex in hexes) {
+				x = [[hex valueForKey:@"hexX"] intValue];
+				y = [[hex valueForKey:@"hexY"] intValue];
+				tileShade[x][y].backgroundColor = [UIColor redColor].CGColor;
+				tileShade[x][y].opacity = 0.5f;
+			}
+			break;
+			
 		case (chooseTargetState):
 			piece = [gameViewController selectedPiece];
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;

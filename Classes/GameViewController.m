@@ -105,11 +105,13 @@
 
 				case verifyMoveState:
 					if (!piece) {
-						[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
-						if (selectedPiece.x == oldPieceX && selectedPiece.y == oldPieceY) {
-							gameState = unitSelectedState;
+						if ([map pieceCanMoveToHex:hex piece:selectedPiece]) {
+							[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
+							if (selectedPiece.x == oldPieceX && selectedPiece.y == oldPieceY) {
+								gameState = unitSelectedState;
+							}
+							selectedHex = hex;
 						}
-						selectedHex = hex;
 					}
 					break;
 			}
