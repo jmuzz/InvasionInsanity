@@ -12,9 +12,9 @@ typedef struct {
 } unitType;
 
 static const unitType unitTypes[3] = {
-	{8, 10, 1, @"Pawn"},
-	{6, 8, 2, @"Archer"},
-	{14, 10, 3, @"Hero"}
+	{8, 10, 5, @"Pawn"},
+	{6, 8, 3, @"Archer"},
+	{14, 10, 4, @"Hero"}
 };
 
 @synthesize map, x, y, hp, attack, movement, title, player, moved;

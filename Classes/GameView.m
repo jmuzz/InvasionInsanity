@@ -65,6 +65,14 @@
 		[actionButtons[5] addTarget:gameViewController action:@selector(cancelMove) forControlEvents:UIControlEventTouchUpInside];
 		actionButtons[5].frame = CGRectMake(0, 24, 102, 16);
 		
+		[actionButtons[6] setTitle:@"Hold Fire" forState:UIControlStateNormal];
+		[actionButtons[6] addTarget:gameViewController action:@selector(finishAttack) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[6].frame = CGRectMake(0, 24, 102, 16);
+		
+		[actionButtons[7] setTitle:@"Back" forState:UIControlStateNormal];
+		[actionButtons[7] addTarget:gameViewController action:@selector(cancelMove) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[7].frame = CGRectMake(0, 48, 102, 16);
+		
 		[self updateActionButtonBoxWithState:waitingState];
 
 		[self addSubview:actionButtonBox];
@@ -124,6 +132,11 @@
 		case (verifyMoveState):
 			[actionButtonBox addSubview:actionButtons[4]];
 			[actionButtonBox addSubview:actionButtons[5]];
+			break;
+			
+		case (chooseTargetState):
+			[actionButtonBox addSubview:actionButtons[6]];
+			[actionButtonBox addSubview:actionButtons[7]];
 			break;
 	}
 }

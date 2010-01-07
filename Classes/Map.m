@@ -22,7 +22,7 @@
 		};
 		
 		// {type, player, x, y}
-		int testPieces[12][4] = {
+		/*int testPieces[12][4] = {
 			{2, 0, 0, 0},
 			{1, 0, 1, 0},
 			{1, 0, 0, 1},
@@ -35,7 +35,24 @@
 			{0, 1, 7, 9},
 			{0, 1, 9, 7},
 			{0, 1, 7, 7}
-		};
+		};*/
+	
+		/* This set is close together */
+		int testPieces[12][4] = {
+		 {2, 0, 3, 3},
+		 {1, 0, 3, 4},
+		 {1, 0, 4, 3},
+		 {0, 0, 4, 2},
+		 {0, 0, 2, 4},
+		 {0, 0, 1, 4},
+		 {2, 1, 6, 6},
+		 {1, 1, 7, 6},
+		 {1, 1, 6, 7},
+		 {0, 1, 6, 8},
+		 {0, 1, 8, 6},
+		 {0, 1, 5, 5}
+		 };
+		
 
 		hexesWide = MAP_WIDTH;
 		hexesHigh = MAP_HEIGHT;
@@ -162,33 +179,32 @@
 }
 
 - (void)updateShades {
+	[CATransaction begin];
+	[CATransaction setValue:[NSNumber numberWithFloat:0.0f] forKey:kCATransactionAnimationDuration];
+	
 	[self clearShades];
 	GamePiece *piece;
 	NSArray *hexes;
 	CALayer *hex;
 	int x, y, i, j;
+	
 	switch (gameViewController.gameState) {
 		case (unitSelectedState):
-			for (i = 0; i < MAP_WIDTH; i++) {
-				for (j = 0; j < MAP_HEIGHT; j++) {
-					tileShade[i][j].backgroundColor = [UIColor blackColor].CGColor;
-					tileShade[i][j].opacity = 0.5f;
-				}
-			}
-			
 			piece = [gameViewController selectedPiece];
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
+
 			hexes = [self hexesInMovementRangeOfPiece:piece];
 			for (hex in hexes) {
 				x = [[hex valueForKey:@"hexX"] intValue];
 				y = [[hex valueForKey:@"hexY"] intValue];
-				tileShade[x][y].backgroundColor = nil;
-				tileShade[x][y].opacity = 0.0f;
+				tileShade[x][y].backgroundColor = [UIColor purpleColor].CGColor;
+				tileShade[x][y].opacity = 0.5f;
 			}
 			break;
 			
 		case (verifyMoveState):
+		case (chooseTargetState):
 			piece = [gameViewController selectedPiece];
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
@@ -203,6 +219,8 @@
 			}
 			break;
 	}
+	
+	[CATransaction commit];
 }
 
 - (void)clearShades {
@@ -226,6 +244,28 @@
 
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y {
 	return tileArray[x][y].position;
+}
+
+- (bool)pieceCanMoveToHex:(CALayer *)dest piece:(GamePiece *)piece {
+	NSArray *validHexes = [self hexesInMovementRangeOfPiece:piece];
+	CALayer *hex;
+	for (hex in validHexes) {
+		if ([self hexesAreEqual:hex otherHex:dest]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+- (bool)hexesAreEqual:(CALayer *)hex otherHex:(CALayer *)otherHex {
+	int x      = [[hex      valueForKey:@"hexX"] intValue];
+	int otherX = [[otherHex valueForKey:@"hexX"] intValue];
+	int y      = [[hex      valueForKey:@"hexY"] intValue];
+	int otherY = [[otherHex valueForKey:@"hexY"] intValue];
+	
+	if (x != otherX)
+		return false;
+	return (y == otherY);
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {

@@ -51,6 +51,11 @@
 }
 
 - (void)finishMove {
+	gameState = chooseTargetState;
+	[self refreshView];
+}
+
+- (void)finishAttack {
 	gameState = waitingState;
 	selectedPiece.moved = true;
 	[self refreshView];
@@ -90,9 +95,11 @@
 
 				case unitSelectedState:
 					if (!piece) {
-						[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
-						gameState = verifyMoveState;
-						selectedHex = hex;
+						if ([map pieceCanMoveToHex:hex piece:selectedPiece]) {
+							[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
+							gameState = verifyMoveState;
+							selectedHex = hex;
+						}
 					}
 					break;
 
