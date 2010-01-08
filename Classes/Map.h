@@ -39,5 +39,7 @@
 - (bool)hexesAreEqual:(CALayer *)hex otherHex:(CALayer *)otherHex;
 - (int)distanceBetweenHex:(CALayer *)hex1 andHex:(CALayer *)hex2;
 - (NSArray *)piecesAttackableByPiece:(GamePiece *)attacker;
+- (int)numSupportingUnitsWithAttacker:(GamePiece *)attacker defender:(GamePiece *)defender;
+- (GamePiece *)pieceOnHex:(CALayer *)hex;
 
 @end

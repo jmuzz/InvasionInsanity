@@ -347,6 +347,34 @@
 	return true;
 }
 
+- (int)numSupportingUnitsWithAttacker:(GamePiece *)attacker defender:(GamePiece *)defender {
+	int ret = 0;
+	NSArray *hexes = [self hexesBesideHex:tileArray[defender.x][defender.y]];
+	GamePiece *piece;
+	CALayer *hex;
+	
+	for (hex in hexes) {
+		piece = [self pieceOnHex:hex];
+		if (piece && piece != attacker && piece.player == attacker.player) {
+			ret++;
+		}
+	}
+	
+	return ret;
+}
+
+- (GamePiece *)pieceOnHex:(CALayer *)hex {
+	int x = [[hex valueForKey:@"hexX"] intValue];
+	int y = [[hex valueForKey:@"hexY"] intValue];
+	GamePiece *piece;
+	for (piece in gamePieces) {
+		if (piece.x == x && piece.y == y) {
+			return piece;
+		}
+	}
+	return nil;
+}
+
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y {
 	return tileArray[x][y].position;
 }

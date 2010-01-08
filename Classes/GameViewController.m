@@ -56,21 +56,23 @@
 }
 
 - (void)doAttack {
-	int damage = 0;
-	for (int i = 0; i < selectedPiece.attack; i++) {
-		if (arc4random() % 6 == 0) {
-			damage++;
+	int attackerSupport = [gameView.map numSupportingUnitsWithAttacker:selectedPiece defender:defendingPiece];
+	int defenderSupport = [gameView.map numSupportingUnitsWithAttacker:defendingPiece defender:selectedPiece];
+	int attackerDoesDamage = 0;
+	for (int i = 0; i < selectedPiece.attack * 2 + attackerSupport; i++) {
+		if (arc4random() % (defendingPiece.defense + defenderSupport) == 0) {
+			attackerDoesDamage++;
 		}
 	}
-	[defendingPiece takeDamage:damage];
 	
-	damage = 0;
-	for (int i = 0; i < defendingPiece.attack; i++) {
-		if (arc4random() % 6 == 0) {
-			damage++;
+	int defenderDoesDamage = 0;
+	for (int i = 0; i < defendingPiece.attack * 2 + defenderSupport; i++) {
+		if (arc4random() % (selectedPiece.defense + attackerSupport) == 0) {
+			defenderDoesDamage++;
 		}
 	}
-	[selectedPiece takeDamage:damage];
+	[defendingPiece takeDamage:attackerDoesDamage];
+	[selectedPiece takeDamage:defenderDoesDamage];
 
 	if (defendingPiece.hp <= 0) {
 		[defendingPiece removeFromSuperlayer];
