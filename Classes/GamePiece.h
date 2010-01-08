@@ -17,5 +17,6 @@
 
 - (id)initWithPieceType:(int)type player:(int)player;
 - (void)setCoordsToX:(int)newX y:(int)newY;
+- (void)takeDamage:(int)damage;
 
 @end

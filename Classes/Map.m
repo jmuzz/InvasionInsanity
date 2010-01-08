@@ -108,19 +108,43 @@
     return self;
 }
 
+- (void)removeGamePiece:(GamePiece *)piece {
+	[gamePieces removeObject:piece];
+}
+
 - (NSArray *)hexesInAttackRangeOfPiece:(GamePiece *)attackingPiece {
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_HEIGHT; j++) {
 			int distance = [self distanceBetweenHex:tileArray[attackingPiece.x][attackingPiece.y] andHex:tileArray[i][j]];
-			int min = attackingPiece.minRange;
-			int max = attackingPiece.maxRange;
 			if (distance >= attackingPiece.minRange && distance <= attackingPiece.maxRange) {
 				[ret addObject:tileArray[i][j]];
 			}
 		}
 	}
 	return ret;
+}
+
+- (NSArray *)piecesAttackableByPiece:(GamePiece *)attacker {
+	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:3];
+	GamePiece *piece;
+	for (piece in gamePieces) {
+		if ([self pieceCanAttackDefender:piece attacker:attacker]) {
+			[ret addObject:piece];
+		}
+	}
+	return ret;
+}
+
+- (bool)pieceCanAttackDefender:(GamePiece *)defender attacker:(GamePiece *)attacker {
+	if (attacker.player == defender.player) {
+		return false;
+	}
+	int distance = [self distanceBetweenHex:tileArray[attacker.x][attacker.y] andHex:tileArray[defender.x][defender.y]];
+	if (distance >= attacker.minRange && distance <= attacker.maxRange) {
+		return true;
+	}
+	return false;
 }
 
 - (int)distanceBetweenHex:(CALayer *)hex1 andHex:(CALayer *)hex2 {
@@ -235,13 +259,14 @@
 	
 	[self clearShades];
 	GamePiece *piece;
+	NSArray *pieces;
 	NSArray *hexes;
 	CALayer *hex;
 	int x, y;
 	
 	switch (gameViewController.gameState) {
 		case (unitSelectedState):
-			piece = [gameViewController selectedPiece];
+			piece = gameViewController.selectedPiece;
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
 
@@ -255,7 +280,7 @@
 			break;
 			
 		case (verifyMoveState):
-			piece = [gameViewController selectedPiece];
+			piece = gameViewController.selectedPiece;
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
 			
@@ -269,8 +294,24 @@
 			break;
 			
 		case (chooseTargetState):
-			piece = [gameViewController selectedPiece];
+			piece = gameViewController.selectedPiece;
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
+			tileShade[piece.x][piece.y].opacity = 0.5f;
+			
+			pieces = [self piecesAttackableByPiece:piece];
+			for (piece in pieces) {
+				tileShade[piece.x][piece.y].backgroundColor = [UIColor redColor].CGColor;
+				tileShade[piece.x][piece.y].opacity = 0.5f;
+			}
+			break;
+			
+		case (verifyAttackState):
+			piece = gameViewController.selectedPiece;
+			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
+			tileShade[piece.x][piece.y].opacity = 0.5f;
+			
+			piece = gameViewController.defendingPiece;
+			tileShade[piece.x][piece.y].backgroundColor = [UIColor redColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
 			break;
 			

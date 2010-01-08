@@ -12,7 +12,7 @@ typedef struct {
 } unitType;
 
 static const unitType unitTypes[3] = {
-	{8, 10, 5, 1, 1, @"Pawn"},
+	{3, 10, 5, 1, 1, @"Pawn"},
 	{6, 8, 3, 2, 3, @"Archer"},
 	{14, 10, 4, 1, 1, @"Hero"}
 };
@@ -47,6 +47,10 @@ static const unitType unitTypes[3] = {
 		self.contents = pieceImageRefs[player][type];
 	}
 	return self;
+}
+
+- (void)takeDamage:(int) damage {
+	hp -= damage;
 }
 
 - (void)setCoordsToX:(int)newX y:(int)newY {

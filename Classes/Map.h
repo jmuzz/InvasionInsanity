@@ -25,6 +25,7 @@
 - (CALayer *)hexFromPoint:(CGPoint)point;
 - (GamePiece *)pieceFromPoint:(CGPoint)point;
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y;
+- (void)removeGamePiece:(GamePiece *)piece;
 - (int)hexXFromPoint:(CGPoint)point;
 - (int)hexYFromPoint:(CGPoint)point;
 - (void)startNewTurn;
@@ -34,7 +35,9 @@
 - (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece;
 - (NSArray *)hexesInAttackRangeOfPiece:(GamePiece *)attackingPiece;
 - (bool)pieceCanMoveToHex:(CALayer *)dest piece:(GamePiece *)piece;
+- (bool)pieceCanAttackDefender:(GamePiece *)defender attacker:(GamePiece *)attacker;
 - (bool)hexesAreEqual:(CALayer *)hex otherHex:(CALayer *)otherHex;
 - (int)distanceBetweenHex:(CALayer *)hex1 andHex:(CALayer *)hex2;
+- (NSArray *)piecesAttackableByPiece:(GamePiece *)attacker;
 
 @end

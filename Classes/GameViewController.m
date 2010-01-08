@@ -5,7 +5,7 @@
 
 @implementation GameViewController
 
-@synthesize gameView, delegate, currentPlayerTurn, gameState, selectedPiece, selectedHex;
+@synthesize gameView, delegate, currentPlayerTurn, gameState, selectedPiece, defendingPiece, selectedHex;
 
 - (void) loadView {
 	self.wantsFullScreenLayout = YES;
@@ -55,7 +55,39 @@
 	[self refreshView];
 }
 
-- (void)finishAttack {
+- (void)doAttack {
+	int damage = 0;
+	for (int i = 0; i < selectedPiece.attack; i++) {
+		if (arc4random() % 6 == 0) {
+			damage++;
+		}
+	}
+	[defendingPiece takeDamage:damage];
+	
+	damage = 0;
+	for (int i = 0; i < defendingPiece.attack; i++) {
+		if (arc4random() % 6 == 0) {
+			damage++;
+		}
+	}
+	[selectedPiece takeDamage:damage];
+
+	if (defendingPiece.hp <= 0) {
+		[defendingPiece removeFromSuperlayer];
+		[gameView.map removeGamePiece:defendingPiece];
+	}
+	
+	if (selectedPiece.hp <= 0) {
+		[selectedPiece removeFromSuperlayer];
+		[gameView.map removeGamePiece:selectedPiece];
+	}
+	
+	selectedPiece.moved = true;
+	gameState = waitingState;
+	[self refreshView];
+}
+
+- (void)skipAttack {
 	gameState = waitingState;
 	selectedPiece.moved = true;
 	[self refreshView];
@@ -112,6 +144,18 @@
 							}
 							selectedHex = hex;
 						}
+					} else {
+						if ([map pieceCanAttackDefender:piece attacker:selectedPiece]) {
+							defendingPiece = piece;
+							gameState = verifyAttackState;
+						}
+					}
+					break;
+					
+				case chooseTargetState:
+					if (piece && [map pieceCanAttackDefender:piece attacker:selectedPiece]) {
+						defendingPiece = piece;
+						gameState = verifyAttackState;
 					}
 					break;
 			}
