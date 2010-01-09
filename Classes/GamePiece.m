@@ -43,16 +43,6 @@ static const unitType unitTypes[3] = {
 		minRange = unitTypes[type].minRange;
 		maxRange = unitTypes[type].maxRange;
 		defense  = unitTypes[type].defense;
-		
-		hpChangeAnimation = [CALayer layer];
-		hpChangeAnimation.anchorPoint = CGPointMake(0.0f, 0.0f);
-		hpChangeAnimation.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
-		hpChangeAnimation.zPosition = 40.0f;
-		
-		CALayer *hpChangeMask = [CALayer layer];
-		hpChangeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
-		hpChangeMask.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
-		//hpChangeMask.contents = [???];
 
 		self.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 		self.contents = pieceImageRefs[player][type];

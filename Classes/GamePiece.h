@@ -8,7 +8,6 @@
 	int x, y, hp, attack, defense, movement, player, minRange, maxRange;
 	NSString *title;
 	bool moved;
-	CALayer *hpChangeAnimation;
 }
 
 @property (nonatomic, assign) Map *map;
