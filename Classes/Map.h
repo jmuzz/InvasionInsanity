@@ -5,6 +5,12 @@
 @class GamePiece;
 @class GameViewController;
 
+typedef struct {
+	int movementCost;
+	int defenseBonus;
+	NSString *name;
+} TerrainType;
+
 @interface Map : UIView {
   @private
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
@@ -41,5 +47,9 @@
 - (NSArray *)piecesAttackableByPiece:(GamePiece *)attacker;
 - (int)numSupportingUnitsWithAttacker:(GamePiece *)attacker defender:(GamePiece *)defender;
 - (GamePiece *)pieceOnHex:(CALayer *)hex;
+- (bool)enemyZOCHasHex:(CALayer *)hex;
+- (bool)enemyPieceOnHex:(CALayer *)hex;
+- (CALayer *)hexUnderPiece:(GamePiece *)piece;
+- (TerrainType)typeOfHex:(CALayer *)hex;
 
 @end

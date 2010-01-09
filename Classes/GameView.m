@@ -22,6 +22,7 @@
 		[[terrainInfoBar layer] addSublayer:selectedTerrainPicture];
 		terrainInfoText = [[UILabel alloc] initWithFrame:CGRectMake(56, 0, CGRectGetWidth(mapFrame) - 176, 32)];
 		terrainInfoText.font = [UIFont systemFontOfSize:12.0f];
+		terrainInfoText.numberOfLines = 2;
 		[terrainInfoBar addSubview:terrainInfoText];
 
 		// Create game piece info par
@@ -98,23 +99,8 @@
 
 - (void)updateTerrainInfoWithHex:(CALayer *)hex {
 	selectedTerrainPicture.contents = [hex contents];
-	switch ([[hex valueForKey:@"terrainType"] intValue]) {
-		case 0:
-			terrainInfoText.text = @"Water";
-			break;
-
-		case 1:
-			terrainInfoText.text = @"Road";
-			break;
-
-		case 2:
-			terrainInfoText.text = @"Grass";
-			break;
-
-		default:
-			terrainInfoText.text = @"";
-			break;
-	}
+	TerrainType terrainType = [map typeOfHex:hex];
+	terrainInfoText.text = [NSString stringWithFormat:@"%@\nMv:%i Def:%i", terrainType.name, terrainType.movementCost, terrainType.defenseBonus];
 }
 
 - (void)updateActionButtonBoxWithState:(int)state {

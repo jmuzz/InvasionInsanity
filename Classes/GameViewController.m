@@ -56,21 +56,26 @@
 }
 
 - (void)doAttack {
-	int attackerSupport = [gameView.map numSupportingUnitsWithAttacker:selectedPiece defender:defendingPiece];
-	int defenderSupport = [gameView.map numSupportingUnitsWithAttacker:defendingPiece defender:selectedPiece];
+	Map *map = gameView.map;
+	int attackerSupport = [map numSupportingUnitsWithAttacker:selectedPiece defender:defendingPiece];
+	int defenderSupport = [map numSupportingUnitsWithAttacker:defendingPiece defender:selectedPiece];
+	int attackerTerrainDefense = [map typeOfHex:[map hexUnderPiece:selectedPiece]].defenseBonus;
+	int defenderTerrainDefense = [map typeOfHex:[map hexUnderPiece:defendingPiece]].defenseBonus;
 	int attackerDoesDamage = 0;
-	for (int i = 0; i < selectedPiece.attack * 2 + attackerSupport; i++) {
-		if (arc4random() % (defendingPiece.defense + defenderSupport) == 0) {
+
+	for (int i = 0; i < (selectedPiece.attack + attackerSupport ) * 2; i++) {
+		if (arc4random() % (defendingPiece.defense + defenderSupport + defenderTerrainDefense) == 0) {
 			attackerDoesDamage++;
 		}
 	}
-	
+
 	int defenderDoesDamage = 0;
-	for (int i = 0; i < defendingPiece.attack * 2 + defenderSupport; i++) {
-		if (arc4random() % (selectedPiece.defense + attackerSupport) == 0) {
+	for (int i = 0; i < (defendingPiece.attack + defenderSupport) * 2; i++) {
+		if (arc4random() % (selectedPiece.defense + attackerSupport + attackerTerrainDefense) == 0) {
 			defenderDoesDamage++;
 		}
 	}
+
 	[defendingPiece takeDamage:attackerDoesDamage];
 	[selectedPiece takeDamage:defenderDoesDamage];
 
@@ -78,12 +83,12 @@
 		[defendingPiece removeFromSuperlayer];
 		[gameView.map removeGamePiece:defendingPiece];
 	}
-	
+
 	if (selectedPiece.hp <= 0) {
 		[selectedPiece removeFromSuperlayer];
 		[gameView.map removeGamePiece:selectedPiece];
 	}
-	
+
 	selectedPiece.moved = true;
 	gameState = waitingState;
 	[self refreshView];

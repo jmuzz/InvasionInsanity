@@ -4,6 +4,12 @@
 
 @implementation Map
 
+static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
+	{4, 0, @"Water"},
+	{1, 1, @"Road"},
+	{2, 2, @"Grass"}
+};
+
 @synthesize hexesWide, hexesHigh, gameViewController;
 
 - (id)initWithFrame:(CGRect)frame {
@@ -22,7 +28,7 @@
 		};
 		
 		// {type, player, x, y}
-		/*int testPieces[12][4] = {
+		int testPieces[12][4] = {
 			{2, 0, 0, 0},
 			{1, 0, 1, 0},
 			{1, 0, 0, 1},
@@ -35,10 +41,10 @@
 			{0, 1, 7, 9},
 			{0, 1, 9, 7},
 			{0, 1, 7, 7}
-		};*/
+		};
 	
 		/* This set is close together */
-		int testPieces[12][4] = {
+		/*int testPieces[12][4] = {
 		 {2, 0, 3, 3},
 		 {1, 0, 3, 4},
 		 {1, 0, 4, 3},
@@ -51,7 +57,7 @@
 		 {0, 1, 6, 8},
 		 {0, 1, 8, 6},
 		 {0, 1, 5, 5}
-		 };
+		 };*/
 
 		hexesWide = MAP_WIDTH;
 		hexesHigh = MAP_HEIGHT;
@@ -66,6 +72,10 @@
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
 		CGImageRelease(ir);
+		
+		UIImage *hexMask = [UIImage imageNamed:@"hexmask.png"];
+		CGImageRef hexMaskRef = CGImageCreateCopy([hexMask CGImage]);
+		[hexMask release];
 
 		// Load terrain data and create tile layers and add them to map
 		for (int i = 0; i < MAP_WIDTH; i++) {
@@ -91,7 +101,7 @@
 				CALayer *shadeMask = [CALayer layer];
 				shadeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
 				shadeMask.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
-				shadeMask.contents = tileImageRefs[0];
+				shadeMask.contents = hexMaskRef;
 
 				tileShade[i][j].mask = shadeMask;
 
@@ -106,6 +116,11 @@
 		}
     }
     return self;
+}
+
+- (TerrainType)typeOfHex:(CALayer *)hex {
+	int type = [[hex valueForKey:@"terrainType"] intValue];
+	return terrainTypes[type];
 }
 
 - (void)removeGamePiece:(GamePiece *)piece {
@@ -207,8 +222,14 @@
 			CALayer *closeHex;
 			for (closeHex in closeHexes) {
 				int movementEstablished = [[closeHex valueForKey:@"movementLeft"] intValue];
-				if (movementEstablished == -1) {
-					[closeHex setValue:[NSNumber numberWithInteger:(movementLeft - 1)] forKey:@"movementLeft"];
+				int newMovement;
+				if ([self enemyZOCHasHex:closeHex]) {
+					newMovement = 0;
+				} else {
+					newMovement = movementLeft - [self typeOfHex:closeHex].movementCost;
+				}
+				if (newMovement > movementEstablished) {
+					[closeHex setValue:[NSNumber numberWithInteger:(newMovement)] forKey:@"movementLeft"];
 					[ret addObject:closeHex];
 					[hexQueue insertObject:closeHex atIndex:0];
 				}
@@ -363,6 +384,28 @@
 	return ret;
 }
 
+- (bool)enemyPieceOnHex:(CALayer *)hex {
+	GamePiece *piece = [self pieceOnHex:hex];
+	if (piece && piece.player != gameViewController.currentPlayerTurn) {
+		return true;
+	}
+	return false;
+}
+
+- (bool)enemyZOCHasHex:(CALayer *)hex {
+	if ([self enemyPieceOnHex:hex]) {
+		return true;
+	}
+	NSArray *hexes = [self hexesBesideHex:hex];
+	CALayer *closeHex;
+	for (closeHex in hexes) {
+		if ([self enemyPieceOnHex:closeHex]) {
+			return true;
+		}
+	}
+	return false;
+}
+
 - (GamePiece *)pieceOnHex:(CALayer *)hex {
 	int x = [[hex valueForKey:@"hexX"] intValue];
 	int y = [[hex valueForKey:@"hexY"] intValue];
@@ -419,17 +462,11 @@
 }	
 
 - (GamePiece *)pieceFromPoint:(CGPoint)point {
-	int x = [self hexXFromPoint:point];
-	int y = [self hexYFromPoint:point];
-	
-	GamePiece *piece;
-	for (piece in gamePieces) {
-		if (x == piece.x && y == piece.y) {
-			return piece;
-		}
-	}
+	return [self pieceOnHex:[self hexFromPoint:point]];
+}
 
-	return nil;
+- (CALayer *)hexUnderPiece:(GamePiece *)piece {
+	return tileArray[piece.x][piece.y];
 }
 
 - (void)startNewTurn {
