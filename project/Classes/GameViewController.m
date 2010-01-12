@@ -46,7 +46,7 @@
 
 - (void)cancelMove {
 	gameState = unitSelectedState;
-	[selectedPiece setCoordsToX:oldPieceX y:oldPieceY];
+	//[selectedPiece setCoordsToX:oldPieceX y:oldPieceY];
 	[self refreshView];
 }
 
@@ -78,7 +78,7 @@
 
 	[defendingPiece takeDamage:attackerDoesDamage];
 	[selectedPiece takeDamage:defenderDoesDamage];
-	
+
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"The battle animation" message:[NSString stringWithFormat:@"Your support bonus: %i\nEnemy support bonus: %i\n\nYour terrain bonus: %i\nEnemy terrain bonus: %i\n\nYou do damage: %i\nEnemy does damage: %i", attackerSupport, defenderSupport, attackerTerrainDefense, defenderTerrainDefense, attackerDoesDamage, defenderDoesDamage] delegate:nil cancelButtonTitle:@"Bam" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
@@ -139,10 +139,11 @@
 				case unitSelectedState:
 					if (!piece) {
 						if ([map pieceCanMoveToHex:hex piece:selectedPiece]) {
-							[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
-							gameState = verifyMoveState;
+							[selectedPiece moveToHex:hex];
 							selectedHex = hex;
 						}
+					} else if (piece.player == currentPlayerTurn) {
+						selectedPiece = piece;
 					}
 					break;
 

@@ -254,7 +254,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	}
 
 	CALayer *hex = tileArray[movingPiece.x][movingPiece.y];
-	[hex setValue:[NSNumber numberWithInteger:(movingPiece.movement)] forKey:@"movementLeft"];
+	[hex setValue:[NSNumber numberWithInteger:(movingPiece.curMovement)] forKey:@"movementLeft"];
 
 	NSMutableArray *hexQueue = [NSMutableArray arrayWithCapacity:60];
 	[hexQueue insertObject:hex atIndex:0];
@@ -532,7 +532,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 - (void)startNewTurn {
 	GamePiece *piece;
 	for (piece in gamePieces) {
-		piece.moved = false;
+		[piece resetMovement];
 	}
 }
 

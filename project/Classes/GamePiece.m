@@ -17,7 +17,7 @@ static const unitType unitTypes[3] = {
 	{14, 10, 7, 4, 1, 1, @"Hero"}
 };
 
-@synthesize map, x, y, hp, attack, defense, movement, title, player, moved, minRange, maxRange;
+@synthesize map, x, y, hp, attack, defense, maxMovement, curMovement, title, player, moved, minRange, maxRange;
 
 - (id)initWithPieceType:(int)type player:(int)ownedByPlayer {
 	if (self = [super init]) {
@@ -34,15 +34,16 @@ static const unitType unitTypes[3] = {
 			initialized = true;
 		}
 
-		moved    = false;
-		player   = ownedByPlayer;
-		hp       = unitTypes[type].hp;
-		attack   = unitTypes[type].attack;
-		movement = unitTypes[type].movement;
-		title    = unitTypes[type].title;
-		minRange = unitTypes[type].minRange;
-		maxRange = unitTypes[type].maxRange;
-		defense  = unitTypes[type].defense;
+		moved       = false;
+		player      = ownedByPlayer;
+		hp          = unitTypes[type].hp;
+		attack	    = unitTypes[type].attack;
+		maxMovement = unitTypes[type].movement;
+		title       = unitTypes[type].title;
+		minRange    = unitTypes[type].minRange;
+		maxRange    = unitTypes[type].maxRange;
+		defense     = unitTypes[type].defense;
+		curMovement = maxMovement;
 
 		self.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 		self.contents = pieceImageRefs[player][type];
@@ -50,15 +51,29 @@ static const unitType unitTypes[3] = {
 	return self;
 }
 
-- (void)takeDamage:(int) damage {
-	hp -= damage;
-}
-
 - (void)setCoordsToX:(int)newX y:(int)newY {
 	CGPoint location = [map locationOfHexAtX:newX y:newY];
 	self.position = location;
 	x = newX;
 	y = newY;
+}
+
+- (void)takeDamage:(int) damage {
+	hp -= damage;
+}
+
+// This assumes [map hexesInMovementRangeOfPiece] was called for this piece last, as it
+// uses the keys set by that method
+- (void)moveToHex:(CALayer *)hex {
+	self.position = hex.position;
+	curMovement   = [[hex valueForKey:@"movementLeft"] intValue];
+	x             = [[hex valueForKey:@"hexX"]         intValue];
+	y             = [[hex valueForKey:@"hexY"]         intValue];
+}
+
+- (void)resetMovement {
+	moved = false;
+	curMovement = maxMovement;
 }
 
 - (void)dealloc {

@@ -91,7 +91,7 @@
 - (void)updatePieceInfoWithPiece:(GamePiece *)piece {
 	selectedPiecePicture.contents = [piece contents];
 	if (piece) {
-		pieceInfoText.text = [NSString stringWithFormat:@"%@\nHP:%i Att:%i Mv:%i Def:%i", piece.title, piece.hp, piece.attack, piece.movement, piece.defense];
+		pieceInfoText.text = [NSString stringWithFormat:@"%@\nHP:%i Att:%i Mv:%i/%i Def:%i", piece.title, piece.hp, piece.attack, piece.curMovement, piece.maxMovement, piece.defense];
 	} else {
 		pieceInfoText.text = @"No unit";
 	}
