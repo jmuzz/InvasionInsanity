@@ -274,6 +274,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 					newMovement = 0;
 				} else {
 					newMovement = movementLeft - [self typeOfHex:closeHex].movementCost;
+					if (newMovement < 0) {
+						newMovement = 0;
+					}
 				}
 				if (newMovement > movementEstablished) {
 					[closeHex setValue:[NSNumber numberWithInteger:(newMovement)] forKey:@"movementLeft"];
@@ -340,11 +343,11 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 			CABasicAnimation *theAnimation;
 			theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-			theAnimation.duration=0.5;
+			theAnimation.duration=1.0;
 			theAnimation.repeatCount=2000000;
 			theAnimation.autoreverses=YES;
-			theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-			theAnimation.toValue=[NSNumber numberWithFloat:0.0];
+			theAnimation.fromValue=[NSNumber numberWithFloat:0.5f];
+			theAnimation.toValue=[NSNumber numberWithFloat:0.0f];
 			[highlight addAnimation:theAnimation forKey:@"animateOpacity"];
 
 			hexes = [self hexesInMovementRangeOfPiece:piece];
