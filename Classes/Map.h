@@ -1,6 +1,6 @@
 #define NUM_TILE_TYPES 5
 #define MAP_HEIGHT 10
-#define MAP_WIDTH 12
+#define MAP_WIDTH 10
 
 @class GamePiece;
 @class GameViewController;
@@ -15,6 +15,7 @@ typedef struct {
   @private
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
 	CALayer *tileShade[MAP_WIDTH][MAP_HEIGHT];
+	CALayer *highlight;
 	int hexesWide, hexesHigh;
 	CGImageRef tileImageRefs[NUM_TILE_TYPES];
 	NSMutableArray *gamePieces;

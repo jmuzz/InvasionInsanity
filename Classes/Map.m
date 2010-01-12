@@ -16,7 +16,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-		/*int testMap[10][10] = {
+		// Testmap 1
+		int testMap[10][10] = {
 			{2, 2, 2, 4, 2, 2, 0, 0, 0, 0},
 			{2, 2, 2, 4, 1, 2, 0, 0, 0, 0},
 			{2, 2, 4, 2, 2, 3, 2, 0, 0, 0},
@@ -27,22 +28,41 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			{0, 0, 1, 2, 3, 1, 4, 2, 2, 2},
 			{0, 0, 0, 2, 2, 2, 4, 4, 2, 2},
 			{0, 0, 0, 1, 2, 3, 2, 4, 2, 2}
-		};*/
-		
-		int testMap[10][12] = {
-			{2, 2, 2, 4, 2, 2, 0, 0, 0, 0, 0, 0},
-			{2, 2, 2, 4, 1, 2, 0, 0, 0, 0, 0, 0},
-			{2, 2, 4, 2, 2, 3, 2, 0, 0, 0, 0, 0},
-			{4, 4, 4, 4, 3, 1, 3, 2, 0, 0, 0, 0},
-			{2, 1, 3, 2, 4, 2, 2, 1, 2, 2, 0, 0},
-			{1, 2, 2, 2, 4, 4, 3, 2, 2, 4, 0, 0},
-			{0, 2, 2, 3, 2, 4, 2, 4, 4, 2, 0, 0},
-			{0, 0, 1, 2, 3, 1, 4, 2, 2, 2, 0, 0},
-			{0, 0, 0, 2, 2, 2, 4, 4, 2, 2, 0, 0},
-			{0, 0, 0, 1, 2, 3, 2, 4, 2, 2, 0, 0}
 		};
 		
+		// Testmap 2
+		/*int testMap[9][11] = {
+			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2},
+			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2}
+		};*/
+		
 		// {type, player, x, y}
+		// For testmap 1
+		/*int testPieces[12][4] = {
+			{2, 0, 0, 0},
+			{1, 0, 1, 0},
+			{1, 0, 0, 1},
+			{0, 0, 2, 0},
+			{0, 0, 0, 2},
+			{0, 0, 2, 2},
+			{2, 1, 9, 9},
+			{1, 1, 8, 9},
+			{1, 1, 9, 8},
+			{0, 1, 7, 9},
+			{0, 1, 9, 7},
+			{0, 1, 7, 7}
+		};*/
+		
+		// {type, player, x, y}
+		// For testmap 1
 		int testPieces[12][4] = {
 			{2, 0, 0, 0},
 			{1, 0, 1, 0},
@@ -59,19 +79,20 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		};
 	
 		/* This set is close together */
+		// For test map 2
 		/*int testPieces[12][4] = {
-		 {2, 0, 3, 3},
-		 {1, 0, 3, 4},
-		 {1, 0, 4, 3},
-		 {0, 0, 4, 2},
+		 {2, 0, 0, 4},
+		 {1, 0, 1, 2},
+		 {1, 0, 1, 5},
+		 {0, 0, 2, 6},
 		 {0, 0, 2, 4},
-		 {0, 0, 1, 4},
-		 {2, 1, 6, 6},
-		 {1, 1, 7, 6},
-		 {1, 1, 6, 7},
-		 {0, 1, 6, 8},
+		 {0, 0, 2, 2},
+		 {2, 1, 10, 4},
+		 {1, 1, 9, 2},
+		 {1, 1, 9, 5},
 		 {0, 1, 8, 6},
-		 {0, 1, 5, 5}
+		 {0, 1, 8, 4},
+		 {0, 1, 8, 2}
 		 };*/
 
 		hexesWide = MAP_WIDTH;
@@ -87,6 +108,17 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
 		CGImageRelease(ir);
+		
+		// Load hex highlight
+		UIImage *highlightImage = [UIImage imageNamed:@"highlight.png"];
+		CGImageRef ir2 = CGImageCreateCopy([highlightImage CGImage]);
+		[highlightImage release];
+		highlight = [[CALayer layer] retain];
+		highlight.anchorPoint = CGPointMake(0.0f, 0.0f);
+		highlight.bounds = CGRectMake(0.0f, 0.0f, 40.0f, 36.0f);
+		highlight.zPosition = 50.0f;
+		highlight.contents = ir2;
+		highlight.position = CGPointMake(0.0f, 0.0f);
 		
 		UIImage *hexMask = [UIImage imageNamed:@"hexmask.png"];
 		CGImageRef hexMaskRef = CGImageCreateCopy([hexMask CGImage]);
@@ -303,17 +335,17 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	switch (gameViewController.gameState) {
 		case (unitSelectedState):
 			piece = gameViewController.selectedPiece;
-			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
-			tileShade[piece.x][piece.y].opacity = 0.5f;
+			highlight.position = CGPointMake(piece.position.x - 2.0f, piece.position.y - 2.0f);
+			[self.layer addSublayer:highlight];
 			
 			CABasicAnimation *theAnimation;
 			theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
 			theAnimation.duration=0.5;
-			theAnimation.repeatCount=200;
+			theAnimation.repeatCount=2000000;
 			theAnimation.autoreverses=YES;
-			theAnimation.fromValue=[NSNumber numberWithFloat:0.5];
+			theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
 			theAnimation.toValue=[NSNumber numberWithFloat:0.0];
-			[tileShade[piece.x][piece.y] addAnimation:theAnimation forKey:@"animateOpacity"];
+			[highlight addAnimation:theAnimation forKey:@"animateOpacity"];
 
 			hexes = [self hexesInMovementRangeOfPiece:piece];
 			for (hex in hexes) {
@@ -374,6 +406,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 }
 
 - (void)clearShades {
+	[highlight removeFromSuperlayer];
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_HEIGHT; j++) {
 			tileShade[i][j].opacity = 0.0f;
