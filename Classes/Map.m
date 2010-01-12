@@ -5,26 +5,41 @@
 @implementation Map
 
 static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
-	{4, 0, @"Water"},
-	{1, 1, @"Road"},
-	{2, 2, @"Grass"}
+	{6, 0, @"Water"},
+	{4, 6, @"Mountain"},
+	{2, 2, @"Grass"},
+	{3, 4, @"Forest"},
+	{1, 1, @"Road"}
 };
 
 @synthesize hexesWide, hexesHigh, gameViewController;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-		int testMap[10][10] = {
-			{2, 2, 2, 1, 2, 2, 0, 0, 0, 0},
-			{2, 2, 2, 1, 2, 2, 0, 0, 0, 0},
-			{2, 2, 1, 2, 2, 2, 2, 0, 0, 0},
-			{1, 1, 1, 1, 2, 2, 2, 2, 0, 0},
-			{2, 2, 2, 2, 1, 2, 2, 2, 2, 2},
-			{2, 2, 2, 2, 1, 1, 2, 2, 2, 1},
-			{0, 2, 2, 2, 2, 1, 2, 1, 1, 2},
-			{0, 0, 2, 2, 2, 2, 1, 2, 2, 2},
-			{0, 0, 0, 2, 2, 2, 1, 1, 2, 2},
-			{0, 0, 0, 2, 2, 2, 2, 1, 2, 2}
+		/*int testMap[10][10] = {
+			{2, 2, 2, 4, 2, 2, 0, 0, 0, 0},
+			{2, 2, 2, 4, 1, 2, 0, 0, 0, 0},
+			{2, 2, 4, 2, 2, 3, 2, 0, 0, 0},
+			{4, 4, 4, 4, 3, 1, 3, 2, 0, 0},
+			{2, 1, 3, 2, 4, 2, 2, 1, 2, 2},
+			{1, 2, 2, 2, 4, 4, 3, 2, 2, 4},
+			{0, 2, 2, 3, 2, 4, 2, 4, 4, 2},
+			{0, 0, 1, 2, 3, 1, 4, 2, 2, 2},
+			{0, 0, 0, 2, 2, 2, 4, 4, 2, 2},
+			{0, 0, 0, 1, 2, 3, 2, 4, 2, 2}
+		};*/
+		
+		int testMap[10][12] = {
+			{2, 2, 2, 4, 2, 2, 0, 0, 0, 0, 0, 0},
+			{2, 2, 2, 4, 1, 2, 0, 0, 0, 0, 0, 0},
+			{2, 2, 4, 2, 2, 3, 2, 0, 0, 0, 0, 0},
+			{4, 4, 4, 4, 3, 1, 3, 2, 0, 0, 0, 0},
+			{2, 1, 3, 2, 4, 2, 2, 1, 2, 2, 0, 0},
+			{1, 2, 2, 2, 4, 4, 3, 2, 2, 4, 0, 0},
+			{0, 2, 2, 3, 2, 4, 2, 4, 4, 2, 0, 0},
+			{0, 0, 1, 2, 3, 1, 4, 2, 2, 2, 0, 0},
+			{0, 0, 0, 2, 2, 2, 4, 4, 2, 2, 0, 0},
+			{0, 0, 0, 1, 2, 3, 2, 4, 2, 2, 0, 0}
 		};
 		
 		// {type, player, x, y}
@@ -290,6 +305,15 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			piece = gameViewController.selectedPiece;
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
+			
+			CABasicAnimation *theAnimation;
+			theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+			theAnimation.duration=0.5;
+			theAnimation.repeatCount=200;
+			theAnimation.autoreverses=YES;
+			theAnimation.fromValue=[NSNumber numberWithFloat:0.5];
+			theAnimation.toValue=[NSNumber numberWithFloat:0.0];
+			[tileShade[piece.x][piece.y] addAnimation:theAnimation forKey:@"animateOpacity"];
 
 			hexes = [self hexesInMovementRangeOfPiece:piece];
 			for (hex in hexes) {

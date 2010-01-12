@@ -1,6 +1,6 @@
-#define NUM_TILE_TYPES 3
+#define NUM_TILE_TYPES 5
 #define MAP_HEIGHT 10
-#define MAP_WIDTH 10
+#define MAP_WIDTH 12
 
 @class GamePiece;
 @class GameViewController;
