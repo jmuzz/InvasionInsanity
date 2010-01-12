@@ -337,7 +337,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			piece = gameViewController.selectedPiece;
 			highlight.position = CGPointMake(piece.position.x - 2.0f, piece.position.y - 2.0f);
 			[self.layer addSublayer:highlight];
-			
+
 			CABasicAnimation *theAnimation;
 			theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
 			theAnimation.duration=0.5;
