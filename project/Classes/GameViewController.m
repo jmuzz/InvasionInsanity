@@ -78,6 +78,10 @@
 
 	[defendingPiece takeDamage:attackerDoesDamage];
 	[selectedPiece takeDamage:defenderDoesDamage];
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"The battle animation" message:[NSString stringWithFormat:@"Your support bonus: %i\nEnemy support bonus: %i\n\nYour terrain bonus: %i\nEnemy terrain bonus: %i\n\nYou do damage: %i\nEnemy does damage: %i", attackerSupport, defenderSupport, attackerTerrainDefense, defenderTerrainDefense, attackerDoesDamage, defenderDoesDamage] delegate:nil cancelButtonTitle:@"Bam" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 
 	if (defendingPiece.hp <= 0) {
 		[defendingPiece removeFromSuperlayer];
