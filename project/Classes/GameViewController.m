@@ -44,17 +44,6 @@
 	[alert release];
 }
 
-- (void)cancelMove {
-	gameState = unitSelectedState;
-	//[selectedPiece setCoordsToX:oldPieceX y:oldPieceY];
-	[self refreshView];
-}
-
-- (void)finishMove {
-	gameState = chooseTargetState;
-	[self refreshView];
-}
-
 - (void)doAttack {
 	Map *map = gameView.map;
 	int attackerSupport = [map numSupportingUnitsWithAttacker:selectedPiece defender:defendingPiece];
@@ -93,14 +82,38 @@
 		[gameView.map removeGamePiece:selectedPiece];
 	}
 
-	selectedPiece.moved = true;
+	[selectedPiece afterAttack];
 	gameState = waitingState;
 	[self refreshView];
 }
 
+- (void)finishMove {
+	[selectedPiece wasteMovement];
+	gameState = waitingState;
+	[self refreshView];
+}
+
+- (void)selectUsableUnit {
+	GamePiece *piece = [gameView.map firstUsableUnit];
+	if (piece) {
+		gameState = unitSelectedState;
+		selectedPiece = piece;
+		[self refreshView];
+	} else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No more units" message:@"All of your units have moved.  End your turn?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+		[alert show];
+		[alert release];
+	}
+}
+
+- (void)cancelAttack {
+	gameState = unitSelectedState;
+	[self refreshView];
+}
+
+// TODO: Reimplement hold fire button
 - (void)skipAttack {
 	gameState = waitingState;
-	selectedPiece.moved = true;
 	[self refreshView];
 }
 
@@ -120,11 +133,10 @@
 			GamePiece *piece = [map pieceFromPoint:tloc];
 
 			switch (gameState) {
+				default:
 				case waitingState:
-					if (piece && piece.moved == false && piece.player == currentPlayerTurn) {
+					if (piece && [piece canBeUsed] && piece.player == currentPlayerTurn) {
 						gameState = unitSelectedState;
-						oldPieceX = piece.x;
-						oldPieceY = piece.y;
 					}
 					
 					if (piece) {
@@ -148,30 +160,6 @@
 						defendingPiece = piece;
 						gameState = verifyAttackState;
 					}					
-					break;
-
-				case verifyMoveState:
-					if (!piece) {
-/*						if ([map pieceCanMoveToHex:hex piece:selectedPiece]) {
-							[selectedPiece setCoordsToX:[map hexXFromPoint:tloc] y:[map hexYFromPoint:tloc]];
-							if (selectedPiece.x == oldPieceX && selectedPiece.y == oldPieceY) {
-								gameState = unitSelectedState;
-							}
-							selectedHex = hex;
-						}*/
-					} else {
-						if ([map pieceCanAttackDefender:piece attacker:selectedPiece]) {
-							defendingPiece = piece;
-							gameState = verifyAttackState;
-						}
-					}
-					break;
-					
-				case chooseTargetState:
-					if (piece && [map pieceCanAttackDefender:piece attacker:selectedPiece]) {
-						defendingPiece = piece;
-						gameState = verifyAttackState;
-					}
 					break;
 			}
 			[self refreshView];

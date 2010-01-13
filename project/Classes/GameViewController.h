@@ -5,8 +5,6 @@
 typedef enum {
 	waitingState,
 	unitSelectedState,
-	verifyMoveState,
-	chooseTargetState,
 	verifyAttackState
 } GameState;
 
@@ -21,12 +19,13 @@ typedef enum {
 }
 
 - (void)deselectPiece;
-- (void)cancelMove;
-- (void)finishMove;
 - (void)endTurn;
 - (void)refreshView;
 - (void)skipAttack;
 - (void)doAttack;
+- (void)finishMove;
+- (void)selectUsableUnit;
+- (void)cancelAttack;
 
 @property (nonatomic, retain) IBOutlet GameView *gameView;
 @property (nonatomic, assign) id <GameViewControllerDelegate> delegate;

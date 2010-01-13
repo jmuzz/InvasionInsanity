@@ -17,7 +17,7 @@ static const unitType unitTypes[3] = {
 	{14, 10, 7, 4, 1, 1, @"Hero"}
 };
 
-@synthesize map, x, y, hp, attack, defense, maxMovement, curMovement, title, player, moved, minRange, maxRange;
+@synthesize map, x, y, hp, attack, defense, maxMovement, curMovement, title, player, minRange, maxRange, didAttack;
 
 - (id)initWithPieceType:(int)type player:(int)ownedByPlayer {
 	if (self = [super init]) {
@@ -34,7 +34,6 @@ static const unitType unitTypes[3] = {
 			initialized = true;
 		}
 
-		moved       = false;
 		player      = ownedByPlayer;
 		hp          = unitTypes[type].hp;
 		attack	    = unitTypes[type].attack;
@@ -49,6 +48,23 @@ static const unitType unitTypes[3] = {
 		self.contents = pieceImageRefs[player][type];
 	}
 	return self;
+}
+
+- (void)wasteMovement {
+	curMovement = 0;
+}
+
+- (void)afterAttack {
+	curMovement = 0;
+	didAttack = true;
+}
+
+- (bool)canAttack {
+	return ([[map piecesAttackableByPiece:self] count] > 0 && false == didAttack);
+}
+
+- (bool)canBeUsed {
+	return ([self canAttack] || curMovement > 0);
 }
 
 - (void)setCoordsToX:(int)newX y:(int)newY {
@@ -72,8 +88,8 @@ static const unitType unitTypes[3] = {
 }
 
 - (void)resetMovement {
-	moved = false;
 	curMovement = maxMovement;
+	didAttack = false;
 }
 
 - (void)dealloc {

@@ -336,6 +336,21 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	int x, y;
 	
 	switch (gameViewController.gameState) {
+		default:
+		case (waitingState):
+			for (piece in gamePieces) {
+				if (piece.player == gameViewController.currentPlayerTurn) {
+					if ([piece canBeUsed]) {
+						tileShade[piece.x][piece.y].backgroundColor = [UIColor whiteColor].CGColor;
+						tileShade[piece.x][piece.y].opacity = 0.35f;
+					} else {
+						tileShade[piece.x][piece.y].backgroundColor = [UIColor blackColor].CGColor;
+						tileShade[piece.x][piece.y].opacity = 0.3f;
+					}
+				}
+			}
+			break;
+
 		case (unitSelectedState):
 			// Add unit cursor
 			piece = gameViewController.selectedPiece;
@@ -368,32 +383,6 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			}
 			break;
 			
-		case (verifyMoveState):
-			piece = gameViewController.selectedPiece;
-			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
-			tileShade[piece.x][piece.y].opacity = 0.5f;
-			
-			hexes = [self hexesInAttackRangeOfPiece:piece];
-			for (hex in hexes) {
-				x = [[hex valueForKey:@"hexX"] intValue];
-				y = [[hex valueForKey:@"hexY"] intValue];
-				tileShade[x][y].backgroundColor = [UIColor redColor].CGColor;
-				tileShade[x][y].opacity = 0.5f;
-			}
-			break;
-			
-		case (chooseTargetState):
-			piece = gameViewController.selectedPiece;
-			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
-			tileShade[piece.x][piece.y].opacity = 0.5f;
-			
-			pieces = [self piecesAttackableByPiece:piece];
-			for (piece in pieces) {
-				tileShade[piece.x][piece.y].backgroundColor = [UIColor redColor].CGColor;
-				tileShade[piece.x][piece.y].opacity = 0.5f;
-			}
-			break;
-			
 		case (verifyAttackState):
 			piece = gameViewController.selectedPiece;
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
@@ -402,15 +391,6 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			piece = gameViewController.defendingPiece;
 			tileShade[piece.x][piece.y].backgroundColor = [UIColor redColor].CGColor;
 			tileShade[piece.x][piece.y].opacity = 0.5f;
-			break;
-			
-		case (waitingState):
-			for (piece in gamePieces) {
-				if (piece.moved == false && piece.player == gameViewController.currentPlayerTurn) {
-					tileShade[piece.x][piece.y].backgroundColor = [UIColor whiteColor].CGColor;
-					tileShade[piece.x][piece.y].opacity = 0.5f;
-				}
-			}
 			break;
 	}
 	
@@ -425,6 +405,16 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			tileShade[i][j].backgroundColor = nil;
 		}
 	}
+}
+
+- (GamePiece *)firstUsableUnit {
+	GamePiece *piece;
+	for (piece in gamePieces) {
+		if ([piece canBeUsed] && piece.player == gameViewController.currentPlayerTurn) {
+			return piece;
+		}
+	}
+	return nil;
 }
 
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y {
