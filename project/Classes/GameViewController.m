@@ -144,7 +144,10 @@
 						}
 					} else if (piece.player == currentPlayerTurn) {
 						selectedPiece = piece;
-					}
+					} else if ([map pieceCanAttackDefender:piece attacker:selectedPiece]) {
+						defendingPiece = piece;
+						gameState = verifyAttackState;
+					}					
 					break;
 
 				case verifyMoveState:

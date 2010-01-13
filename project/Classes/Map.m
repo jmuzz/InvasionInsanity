@@ -329,7 +329,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	[CATransaction setValue:[NSNumber numberWithFloat:0.0f] forKey:kCATransactionAnimationDuration];
 	
 	[self clearShades];
-	GamePiece *piece;
+	GamePiece *piece, *attackablePiece;
 	NSArray *pieces;
 	NSArray *hexes;
 	CALayer *hex;
@@ -337,6 +337,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	
 	switch (gameViewController.gameState) {
 		case (unitSelectedState):
+			// Add unit cursor
 			piece = gameViewController.selectedPiece;
 			highlight.position = CGPointMake(piece.position.x - 2.0f, piece.position.y - 2.0f);
 			[self.layer addSublayer:highlight];
@@ -349,7 +350,15 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			theAnimation.fromValue=[NSNumber numberWithFloat:0.5f];
 			theAnimation.toValue=[NSNumber numberWithFloat:0.0f];
 			[highlight addAnimation:theAnimation forKey:@"animateOpacity"];
+			
+			// Highlight attackable pieces
+			pieces = [self piecesAttackableByPiece:piece];
+			for (attackablePiece in pieces) {
+				tileShade[attackablePiece.x][attackablePiece.y].backgroundColor = [UIColor redColor].CGColor;
+				tileShade[attackablePiece.x][attackablePiece.y].opacity = 0.5f;
+			}
 
+			// Highlight movement range
 			hexes = [self hexesInMovementRangeOfPiece:piece];
 			for (hex in hexes) {
 				x = [[hex valueForKey:@"hexX"] intValue];
