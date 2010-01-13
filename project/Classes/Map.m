@@ -101,24 +101,35 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		[gamePieces retain];
 
 		// Load tile images
-		UIImage *tileImages = [UIImage imageNamed:@"hexes.png"];
-		CGImageRef ir = CGImageCreateCopy([tileImages CGImage]);
-		[tileImages release];
+		UIImage *image = [UIImage imageNamed:@"hexes.png"];
+		CGImageRef ir = CGImageCreateCopy([image CGImage]);
+		[image release];
 		for (int i = 0; i < NUM_TILE_TYPES; i++) {
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
 		CGImageRelease(ir);
 		
 		// Load hex highlight
-		UIImage *highlightImage = [UIImage imageNamed:@"highlight.png"];
-		CGImageRef ir2 = CGImageCreateCopy([highlightImage CGImage]);
-		[highlightImage release];
+		image = [UIImage imageNamed:@"highlight.png"];
+		ir = CGImageCreateCopy([image CGImage]);
+		[image release];
 		highlight = [[CALayer layer] retain];
 		highlight.anchorPoint = CGPointMake(0.0f, 0.0f);
 		highlight.bounds = CGRectMake(0.0f, 0.0f, 40.0f, 36.0f);
 		highlight.zPosition = 50.0f;
-		highlight.contents = ir2;
-		highlight.position = CGPointMake(0.0f, 0.0f);
+		highlight.contents = ir;
+		
+		// Load target graphic
+		image = [UIImage imageNamed:@"attack.png"];
+		ir = CGImageCreateCopy([image CGImage]);
+		[image release];
+		target = [[CALayer layer] retain];
+		target.anchorPoint = CGPointMake(0.0f, 0.0f);
+		target.bounds = CGRectMake(0.0f, 0.0f, 40.0f, 36.0f);
+		target.zPosition = 50.0f;
+		target.contents = ir;
+		target.position = CGPointMake(0.0f, 0.0f);
+		target.opacity = 0.7f;
 		
 		UIImage *hexMask = [UIImage imageNamed:@"hexmask.png"];
 		CGImageRef hexMaskRef = CGImageCreateCopy([hexMask CGImage]);
@@ -370,7 +381,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			pieces = [self piecesAttackableByPiece:piece];
 			for (attackablePiece in pieces) {
 				tileShade[attackablePiece.x][attackablePiece.y].backgroundColor = [UIColor redColor].CGColor;
-				tileShade[attackablePiece.x][attackablePiece.y].opacity = 0.5f;
+				tileShade[attackablePiece.x][attackablePiece.y].opacity = 0.3f;
 			}
 
 			// Highlight movement range
@@ -379,18 +390,16 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				x = [[hex valueForKey:@"hexX"] intValue];
 				y = [[hex valueForKey:@"hexY"] intValue];
 				tileShade[x][y].backgroundColor = [UIColor purpleColor].CGColor;
-				tileShade[x][y].opacity = 0.5f;
+				tileShade[x][y].opacity = 0.3f;
 			}
 			break;
 			
 		case (verifyAttackState):
-			piece = gameViewController.selectedPiece;
-			tileShade[piece.x][piece.y].backgroundColor = [UIColor yellowColor].CGColor;
-			tileShade[piece.x][piece.y].opacity = 0.5f;
+			[self.layer addSublayer:highlight];
 			
 			piece = gameViewController.defendingPiece;
-			tileShade[piece.x][piece.y].backgroundColor = [UIColor redColor].CGColor;
-			tileShade[piece.x][piece.y].opacity = 0.5f;
+			target.position = CGPointMake(piece.position.x - 2.0f, piece.position.y - 2.0f);
+			[self.layer addSublayer:target];
 			break;
 	}
 	
@@ -399,6 +408,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (void)clearShades {
 	[highlight removeFromSuperlayer];
+	[target removeFromSuperlayer];
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_HEIGHT; j++) {
 			tileShade[i][j].opacity = 0.0f;

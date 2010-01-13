@@ -15,7 +15,7 @@ typedef struct {
   @private
 	CALayer *tileArray[MAP_WIDTH][MAP_HEIGHT];
 	CALayer *tileShade[MAP_WIDTH][MAP_HEIGHT];
-	CALayer *highlight;
+	CALayer *highlight, *target;
 	int hexesWide, hexesHigh;
 	CGImageRef tileImageRefs[NUM_TILE_TYPES];
 	NSMutableArray *gamePieces;

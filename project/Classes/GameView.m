@@ -59,10 +59,6 @@
 		[actionButtons[3] addTarget:gameViewController action:@selector(endTurn) forControlEvents:UIControlEventTouchUpInside];
 		actionButtons[3].frame = CGRectMake(0, 24, 102, 16);
 		
-		/*[actionButtons[6] setTitle:@"Hold Fire" forState:UIControlStateNormal];
-		[actionButtons[6] addTarget:gameViewController action:@selector(skipAttack) forControlEvents:UIControlEventTouchUpInside];
-		actionButtons[6].frame = CGRectMake(0, 24, 102, 16);*/
-		
 		[actionButtons[4] setTitle:@"Back" forState:UIControlStateNormal];
 		[actionButtons[4] addTarget:gameViewController action:@selector(cancelAttack) forControlEvents:UIControlEventTouchUpInside];
 		actionButtons[4].frame = CGRectMake(0, 48, 102, 16);
@@ -70,6 +66,10 @@
 		[actionButtons[5] setTitle:@"Attack" forState:UIControlStateNormal];
 		[actionButtons[5] addTarget:gameViewController action:@selector(doAttack) forControlEvents:UIControlEventTouchUpInside];
 		actionButtons[5].frame = CGRectMake(0, 24, 102, 16);
+		
+		[actionButtons[6] setTitle:@"Hold Fire" forState:UIControlStateNormal];
+		[actionButtons[6] addTarget:gameViewController action:@selector(skipAttack) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[6].frame = CGRectMake(0, 0, 102, 16);
 		
 		[self updateActionButtonBoxWithState:waitingState];
 
@@ -101,9 +101,14 @@
 		[actionButtons[i] removeFromSuperview];
 	}
 
+	GamePiece *piece = gameViewController.selectedPiece;
 	switch (state) {
 		case (unitSelectedState):
-			[actionButtonBox addSubview:actionButtons[0]];
+			if (piece.curMovement == 0 && [piece canAttack]) {
+				[actionButtonBox addSubview:actionButtons[6]];
+			} else {
+				[actionButtonBox addSubview:actionButtons[0]];
+			}
 			[actionButtonBox addSubview:actionButtons[1]];
 			break;
 

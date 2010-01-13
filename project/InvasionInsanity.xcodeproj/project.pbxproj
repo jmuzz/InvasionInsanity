@@ -23,6 +23,7 @@
 		5D9499CC10982D6E002FED92 /* GameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9499CA10982D6E002FED92 /* GameOverViewController.m */; };
 		5D9499CD10982D6E002FED92 /* GameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D9499CB10982D6E002FED92 /* GameOverView.xib */; };
 		5D9A970010FC98960064A33F /* hexmask.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D9A96FF10FC98960064A33F /* hexmask.png */; };
+		5D9A98B810FDC0C30064A33F /* attack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D9A98B710FDC0C30064A33F /* attack.png */; };
 		5DCD57B110FC0ECF0048ADB0 /* highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DCD57B010FC0ECF0048ADB0 /* highlight.png */; };
 		5DF17F691096CA3E001F48D7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF17F681096CA3E001F48D7 /* GameViewController.m */; };
 		5DF17F771096CA97001F48D7 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF17F761096CA97001F48D7 /* GameView.m */; };
@@ -52,6 +53,7 @@
 		5D9499CA10982D6E002FED92 /* GameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverViewController.m; sourceTree = "<group>"; };
 		5D9499CB10982D6E002FED92 /* GameOverView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GameOverView.xib; path = Classes/GameOverView.xib; sourceTree = "<group>"; };
 		5D9A96FF10FC98960064A33F /* hexmask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hexmask.png; path = Images/hexmask.png; sourceTree = "<group>"; };
+		5D9A98B710FDC0C30064A33F /* attack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = attack.png; path = Images/attack.png; sourceTree = "<group>"; };
 		5DCD57B010FC0ECF0048ADB0 /* highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highlight.png; path = Images/highlight.png; sourceTree = "<group>"; };
 		5DF17F671096CA3E001F48D7 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		5DF17F681096CA3E001F48D7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5D9A98B710FDC0C30064A33F /* attack.png */,
 				5D9A96FF10FC98960064A33F /* hexmask.png */,
 				5DCD57B010FC0ECF0048ADB0 /* highlight.png */,
 				5D007B4510EC64CC0056A16F /* pieces.png */,
@@ -200,6 +203,7 @@
 				5D007B4610EC64CC0056A16F /* pieces.png in Resources */,
 				5DCD57B110FC0ECF0048ADB0 /* highlight.png in Resources */,
 				5D9A970010FC98960064A33F /* hexmask.png in Resources */,
+				5D9A98B810FDC0C30064A33F /* attack.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -153,6 +153,9 @@
 						if ([map pieceCanMoveToHex:hex piece:selectedPiece]) {
 							[selectedPiece moveToHex:hex];
 							selectedHex = hex;
+							if (false == [selectedPiece canBeUsed]) {
+								gameState = waitingState;
+							}
 						}
 					} else if (piece.player == currentPlayerTurn) {
 						selectedPiece = piece;
@@ -160,6 +163,12 @@
 						defendingPiece = piece;
 						gameState = verifyAttackState;
 					}					
+					break;
+					
+				case verifyAttackState:
+					if (piece == defendingPiece) {
+						[self doAttack];
+					}
 					break;
 			}
 			[self refreshView];
