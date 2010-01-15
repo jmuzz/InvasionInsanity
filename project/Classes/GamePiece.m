@@ -17,7 +17,7 @@ static const unitType unitTypes[3] = {
 	{14, 10, 7, 4, 1, 1, @"Hero"}
 };
 
-@synthesize map, x, y, hp, attack, defense, maxMovement, curMovement, title, player, minRange, maxRange, didAttack, canUndo;
+@synthesize map, x, y, hp, attack, defense, maxMovement, curMovement, title, player, minRange, maxRange, didAttack;
 
 - (id)initWithPieceType:(int)type player:(int)ownedByPlayer {
 	if (self = [super init]) {
@@ -50,6 +50,17 @@ static const unitType unitTypes[3] = {
 	return self;
 }
 
+- (bool)canUndo {
+	if (canUndo == false) {
+		return false;
+	}
+	GamePiece *obstacle = [map pieceAtLocationX:undoX y:undoY];
+	if (!obstacle || [obstacle canUndo]) {
+		return true;
+	}
+	return false;
+}
+
 - (void)wasteMovement {
 	curMovement = 0;
 }
@@ -68,12 +79,20 @@ static const unitType unitTypes[3] = {
 }
 
 - (void)undo {
+	GamePiece *obstacle = [map pieceAtLocationX:undoX y:undoY];
+	if (obstacle && [obstacle canUndo]) {
+		[obstacle undo];
+	} else if (obstacle) { // Shouldn't be able to happen
+		return;
+	}
+	
 	CGPoint location = [map locationOfHexAtX:undoX y:undoY];
 	self.position = location;
 	canUndo = false;
 	curMovement = undoMovement;
 	x = undoX;
 	y = undoY;
+	didAttack = false;
 }
 
 - (bool)canAttack {

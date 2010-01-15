@@ -49,6 +49,7 @@ typedef struct {
 - (GamePiece *)firstUsableUnit;
 - (int)numSupportingUnitsWithAttacker:(GamePiece *)attacker defender:(GamePiece *)defender;
 - (GamePiece *)pieceOnHex:(CALayer *)hex;
+- (GamePiece *)pieceAtLocationX:(int)x y:(int)y;
 - (bool)enemyZOCHasHex:(CALayer *)hex;
 - (bool)enemyPieceOnHex:(CALayer *)hex;
 - (CALayer *)hexUnderPiece:(GamePiece *)piece;

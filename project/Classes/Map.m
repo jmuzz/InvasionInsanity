@@ -484,9 +484,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	return false;
 }
 
-- (GamePiece *)pieceOnHex:(CALayer *)hex {
-	int x = [[hex valueForKey:@"hexX"] intValue];
-	int y = [[hex valueForKey:@"hexY"] intValue];
+- (GamePiece *)pieceAtLocationX:(int)x y:(int)y {
 	GamePiece *piece;
 	for (piece in gamePieces) {
 		if (piece.x == x && piece.y == y) {
@@ -494,6 +492,12 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		}
 	}
 	return nil;
+}
+
+- (GamePiece *)pieceOnHex:(CALayer *)hex {
+	int x = [[hex valueForKey:@"hexX"] intValue];
+	int y = [[hex valueForKey:@"hexY"] intValue];
+	return [self pieceAtLocationX:x y:y];
 }
 
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y {
