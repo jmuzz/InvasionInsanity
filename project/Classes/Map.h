@@ -30,6 +30,7 @@ typedef struct {
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y;
 - (CGImageRef)getTerrainImageAtX:(int)x y:(int)y;
 - (CALayer *)hexFromPoint:(CGPoint)point;
+- (CALayer *)hexAtLocationX:(int)x y:(int)y;
 - (GamePiece *)pieceFromPoint:(CGPoint)point;
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y;
 - (void)removeGamePiece:(GamePiece *)piece;

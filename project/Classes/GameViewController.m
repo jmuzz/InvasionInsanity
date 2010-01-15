@@ -17,6 +17,7 @@
 	gameState = waitingState;
 	currentPlayerTurn = 0;
 	view.map.gameViewController = self;
+	selectedHex = [gameView.map hexAtLocationX:5 y:5];
 	[self refreshView];
 	[view release];
 }

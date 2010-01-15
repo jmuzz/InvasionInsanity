@@ -119,6 +119,20 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		highlight.zPosition = 50.0f;
 		highlight.contents = ir;
 		
+		highlight.position = CGPointMake(0.0f, 0.0f);
+		[self.layer addSublayer:highlight];
+		
+		CABasicAnimation *theAnimation;
+		theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+		theAnimation.duration=1.0;
+		theAnimation.repeatCount=2000000;
+		theAnimation.autoreverses=YES;
+		theAnimation.fromValue=[NSNumber numberWithFloat:0.5f];
+		theAnimation.toValue=[NSNumber numberWithFloat:0.0f];
+		[highlight addAnimation:theAnimation forKey:@"animateOpacity"];
+		
+		[highlight removeFromSuperlayer];
+		
 		// Load target graphic
 		image = [UIImage imageNamed:@"attack.png"];
 		ir = CGImageCreateCopy([image CGImage]);
@@ -369,6 +383,10 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 					}
 				}
 			}
+			
+			hex = gameViewController.selectedHex;
+			highlight.position = CGPointMake(hex.position.x - 2.0f, hex.position.y - 2.0f);
+			[self.layer addSublayer:highlight];
 			break;
 
 		case (unitSelectedState):
@@ -376,15 +394,6 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			piece = gameViewController.selectedPiece;
 			highlight.position = CGPointMake(piece.position.x - 2.0f, piece.position.y - 2.0f);
 			[self.layer addSublayer:highlight];
-
-			CABasicAnimation *theAnimation;
-			theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
-			theAnimation.duration=1.0;
-			theAnimation.repeatCount=2000000;
-			theAnimation.autoreverses=YES;
-			theAnimation.fromValue=[NSNumber numberWithFloat:0.5f];
-			theAnimation.toValue=[NSNumber numberWithFloat:0.0f];
-			[highlight addAnimation:theAnimation forKey:@"animateOpacity"];
 			
 			// Highlight attackable pieces
 			pieces = [self piecesAttackableByPiece:piece];
@@ -524,6 +533,10 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	if (x != otherX)
 		return false;
 	return (y == otherY);
+}
+
+- (CALayer *)hexAtLocationX:(int)x y:(int)y {
+	return tileArray[x][y];
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {
