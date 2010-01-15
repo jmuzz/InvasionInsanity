@@ -6,13 +6,14 @@
   @private
 	Map *map;
 	int x, y, hp, attack, defense, maxMovement, curMovement, player, minRange, maxRange;
+	int undoX, undoY, undoMovement;
 	NSString *title;
-	bool didAttack;
+	bool didAttack, canUndo;
 }
 
 @property (nonatomic, assign) Map *map;
 @property (nonatomic, readonly) int x, y, hp, attack, defense, maxMovement, curMovement, player, minRange, maxRange;
-@property (nonatomic, readonly) bool didAttack;
+@property (nonatomic, readonly) bool didAttack, canUndo;
 @property (nonatomic, readonly) NSString *title;
 
 - (id)initWithPieceType:(int)type player:(int)player;
@@ -24,5 +25,8 @@
 - (bool)canAttack;
 - (void)wasteMovement;
 - (bool)canBeUsed;
+- (bool)canBeSelected;
+- (void)resetUndo;
+- (void)undo;
 
 @end

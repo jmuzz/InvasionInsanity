@@ -71,6 +71,10 @@
 		[actionButtons[6] addTarget:gameViewController action:@selector(skipAttack) forControlEvents:UIControlEventTouchUpInside];
 		actionButtons[6].frame = CGRectMake(0, 0, 102, 16);
 		
+		[actionButtons[7] setTitle:@"Undo" forState:UIControlStateNormal];
+		[actionButtons[7] addTarget:gameViewController action:@selector(undoMove) forControlEvents:UIControlEventTouchUpInside];
+		actionButtons[7].frame = CGRectMake(0, 48, 102, 16);
+		
 		[self updateActionButtonBoxWithState:waitingState];
 
 		[self addSubview:actionButtonBox];
@@ -106,8 +110,11 @@
 		case (unitSelectedState):
 			if (piece.curMovement == 0 && [piece canAttack]) {
 				[actionButtonBox addSubview:actionButtons[6]];
-			} else {
+			} else if (piece.curMovement > 0) {
 				[actionButtonBox addSubview:actionButtons[0]];
+			}
+			if (piece.canUndo) {
+				[actionButtonBox addSubview:actionButtons[7]];
 			}
 			[actionButtonBox addSubview:actionButtons[1]];
 			break;

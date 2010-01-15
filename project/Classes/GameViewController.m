@@ -71,6 +71,8 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"The battle animation" message:[NSString stringWithFormat:@"Your support bonus: %i\nEnemy support bonus: %i\n\nYour terrain bonus: %i\nEnemy terrain bonus: %i\n\nYou do damage: %i\nEnemy does damage: %i", attackerSupport, defenderSupport, attackerTerrainDefense, defenderTerrainDefense, attackerDoesDamage, defenderDoesDamage] delegate:nil cancelButtonTitle:@"Bam" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+	
+	[map clearUndo];
 
 	if (defendingPiece.hp <= 0) {
 		[defendingPiece removeFromSuperlayer];
@@ -111,9 +113,14 @@
 	[self refreshView];
 }
 
-// TODO: Reimplement hold fire button
 - (void)skipAttack {
 	gameState = waitingState;
+	[selectedPiece afterAttack];
+	[self refreshView];
+}
+
+- (void)undoMove {
+	[selectedPiece undo];
 	[self refreshView];
 }
 
@@ -135,7 +142,7 @@
 			switch (gameState) {
 				default:
 				case waitingState:
-					if (piece && [piece canBeUsed] && piece.player == currentPlayerTurn) {
+					if (piece && [piece canBeSelected] && piece.player == currentPlayerTurn) {
 						gameState = unitSelectedState;
 					}
 					
@@ -157,7 +164,7 @@
 								gameState = waitingState;
 							}
 						}
-					} else if (piece.player == currentPlayerTurn) {
+					} else if ([piece canBeSelected] && piece.player == currentPlayerTurn) {
 						selectedPiece = piece;
 					} else if ([map pieceCanAttackDefender:piece attacker:selectedPiece]) {
 						defendingPiece = piece;
@@ -168,6 +175,9 @@
 				case verifyAttackState:
 					if (piece == defendingPiece) {
 						[self doAttack];
+					} else if ([piece canBeSelected] && piece.player == currentPlayerTurn) {
+						selectedPiece = piece;
+						gameState = unitSelectedState;
 					}
 					break;
 			}

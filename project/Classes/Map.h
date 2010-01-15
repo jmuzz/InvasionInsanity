@@ -53,5 +53,6 @@ typedef struct {
 - (bool)enemyPieceOnHex:(CALayer *)hex;
 - (CALayer *)hexUnderPiece:(GamePiece *)piece;
 - (TerrainType)typeOfHex:(CALayer *)hex;
+- (void)clearUndo;
 
 @end

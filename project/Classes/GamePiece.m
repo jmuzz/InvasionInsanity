@@ -17,7 +17,7 @@ static const unitType unitTypes[3] = {
 	{14, 10, 7, 4, 1, 1, @"Hero"}
 };
 
-@synthesize map, x, y, hp, attack, defense, maxMovement, curMovement, title, player, minRange, maxRange, didAttack;
+@synthesize map, x, y, hp, attack, defense, maxMovement, curMovement, title, player, minRange, maxRange, didAttack, canUndo;
 
 - (id)initWithPieceType:(int)type player:(int)ownedByPlayer {
 	if (self = [super init]) {
@@ -59,6 +59,23 @@ static const unitType unitTypes[3] = {
 	didAttack = true;
 }
 
+- (void)resetUndo {
+	canUndo = false;
+}
+
+- (bool) canBeSelected {
+	return ([self canBeUsed] || self.canUndo);
+}
+
+- (void)undo {
+	CGPoint location = [map locationOfHexAtX:undoX y:undoY];
+	self.position = location;
+	canUndo = false;
+	curMovement = undoMovement;
+	x = undoX;
+	y = undoY;
+}
+
 - (bool)canAttack {
 	return ([[map piecesAttackableByPiece:self] count] > 0 && false == didAttack);
 }
@@ -81,6 +98,13 @@ static const unitType unitTypes[3] = {
 // This assumes [map hexesInMovementRangeOfPiece] was called for this piece last, as it
 // uses the keys set by that method
 - (void)moveToHex:(CALayer *)hex {
+	if (canUndo == false) {
+		canUndo = true;
+		undoX = x;
+		undoY = y;
+		undoMovement = curMovement;
+	}
+	
 	self.position = hex.position;
 	curMovement   = [[hex valueForKey:@"movementLeft"] intValue];
 	x             = [[hex valueForKey:@"hexX"]         intValue];
@@ -90,6 +114,7 @@ static const unitType unitTypes[3] = {
 - (void)resetMovement {
 	curMovement = maxMovement;
 	didAttack = false;
+	canUndo = false;
 }
 
 - (void)dealloc {

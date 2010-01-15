@@ -26,6 +26,7 @@ typedef enum {
 - (void)finishMove;
 - (void)selectUsableUnit;
 - (void)cancelAttack;
+- (void)undoMove;
 
 @property (nonatomic, retain) IBOutlet GameView *gameView;
 @property (nonatomic, assign) id <GameViewControllerDelegate> delegate;

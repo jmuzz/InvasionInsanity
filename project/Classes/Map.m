@@ -185,6 +185,15 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	[gamePieces removeObject:piece];
 }
 
+- (void)clearUndo {
+	GamePiece *piece;
+	for (piece in gamePieces) {
+		if (piece.player == gameViewController.currentPlayerTurn) {
+			[piece resetUndo];
+		}
+	}
+}
+
 - (NSArray *)hexesInAttackRangeOfPiece:(GamePiece *)attackingPiece {
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 0; i < MAP_WIDTH; i++) {
