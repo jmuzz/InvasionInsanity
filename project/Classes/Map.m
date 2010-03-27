@@ -150,10 +150,10 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		[hexMask release];
 
 		// Load terrain data and create tile layers and add them to map
-		tileArray = [NSMutableArray arrayWithCapacity:MAP_WIDTH];
+		tileArray = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
 		NSMutableArray *column;
 		for (int i = 0; i < MAP_WIDTH; i++) {
-			column = [[NSMutableArray arrayWithCapacity:MAP_HEIGHT] retain];
+			column = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
 			for (int j = 0; j < MAP_HEIGHT; j++) {
 				CALayer *hex;
 				
@@ -167,6 +167,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				[hex setValue:[NSNumber numberWithInteger:j] forKey:@"hexY"];
 				hex.contents = tileImageRefs[terrainType];
 				hex.zPosition = 10.0f;
+				[[self layer] addSublayer:hex];
 				[column addObject:hex];
 				
 				/*
@@ -198,9 +199,6 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				[[self layer] addSublayer:tileShade[i][j]];
 			}
 			[tileArray addObject:column];
-			int test;
-			test = 5;
-			test = 6;
 		}
 
 		// Add some game pieces to the map
@@ -309,7 +307,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_WIDTH; j++) {
 			//[tileArray[i][j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
-			[[self hexAtLocationX:i y:i] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
+			[[self hexAtLocationX:i y:j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
 		}
 	}
 
@@ -348,11 +346,11 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		}
 	}
 
-	GamePiece *piece;
+	/*GamePiece *piece;
 	for (piece in gamePieces) {
 		//[ret removeObject:tileArray[piece.x][piece.y]];
 		[ret removeObject:[self hexAtLocationX:piece.x y:piece.y]];
-	}
+	}*/
 
 	return ret;
 }
