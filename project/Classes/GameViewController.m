@@ -51,8 +51,13 @@
 	int defenderSupport = [map numSupportingUnitsWithAttacker:defendingPiece defender:selectedPiece];
 	int attackerTerrainDefense = [map typeOfHex:[map hexUnderPiece:selectedPiece]].defenseBonus;
 	int defenderTerrainDefense = [map typeOfHex:[map hexUnderPiece:defendingPiece]].defenseBonus;
+	
+	// Ranged attacks do not use support
+	if (selectedPiece.minRange > 0) {
+		attackerSupport = defenderSupport = 0;
+	}
+	
 	int attackerDoesDamage = 0;
-
 	for (int i = 0; i < (selectedPiece.attack + attackerSupport ) * 2; i++) {
 		if (arc4random() % (defendingPiece.defense + defenderSupport + defenderTerrainDefense) == 0) {
 			attackerDoesDamage++;
@@ -64,6 +69,11 @@
 		if (arc4random() % (selectedPiece.defense + attackerSupport + attackerTerrainDefense) == 0) {
 			defenderDoesDamage++;
 		}
+	}
+	
+	// Ranged attacks cannot be retaliated
+	if (selectedPiece.minRange > 0) {
+		defenderDoesDamage = 0;
 	}
 
 	[defendingPiece takeDamage:attackerDoesDamage];
