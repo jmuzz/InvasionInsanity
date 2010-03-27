@@ -150,8 +150,26 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		[hexMask release];
 
 		// Load terrain data and create tile layers and add them to map
+		tileArray = [NSMutableArray arrayWithCapacity:MAP_WIDTH];
+		NSMutableArray *column;
 		for (int i = 0; i < MAP_WIDTH; i++) {
+			column = [[NSMutableArray arrayWithCapacity:MAP_HEIGHT] retain];
 			for (int j = 0; j < MAP_HEIGHT; j++) {
+				CALayer *hex;
+				
+				hex = [CALayer layer];
+				hex.anchorPoint = CGPointMake(0.0f, 0.0f);
+				hex.position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
+				hex.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+				int terrainType = testMap[j][i];
+				[hex setValue:[NSNumber numberWithInteger:terrainType] forKey:@"terrainType"];
+				[hex setValue:[NSNumber numberWithInteger:i] forKey:@"hexX"];
+				[hex setValue:[NSNumber numberWithInteger:j] forKey:@"hexY"];
+				hex.contents = tileImageRefs[terrainType];
+				hex.zPosition = 10.0f;
+				[column addObject:hex];
+				
+				/*
 				tileArray[i][j] = [CALayer layer];
 				tileArray[i][j].anchorPoint = CGPointMake(0.0f, 0.0f);
 				tileArray[i][j].position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
@@ -163,7 +181,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				tileArray[i][j].contents = tileImageRefs[terrainType];
 				tileArray[i][j].zPosition = 10.0f;
 				[[self layer] addSublayer:tileArray[i][j]];
-
+			    */
 				tileShade[i][j] = [CALayer layer];
 				tileShade[i][j].anchorPoint = CGPointMake(0.0f, 0.0f);
 				tileShade[i][j].position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
@@ -179,6 +197,10 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 				[[self layer] addSublayer:tileShade[i][j]];
 			}
+			[tileArray addObject:column];
+			int test;
+			test = 5;
+			test = 6;
 		}
 
 		// Add some game pieces to the map
@@ -212,9 +234,11 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_HEIGHT; j++) {
-			int distance = [self distanceBetweenHex:tileArray[attackingPiece.x][attackingPiece.y] andHex:tileArray[i][j]];
+			//int distance = [self distanceBetweenHex:tileArray[attackingPiece.x][attackingPiece.y] andHex:tileArray[i][j]];
+			int distance = [self distanceBetweenHex:[self hexAtLocationX:attackingPiece.x y:attackingPiece.y] andHex:[self hexAtLocationX:i y:j]];
 			if (distance >= attackingPiece.minRange && distance <= attackingPiece.maxRange) {
-				[ret addObject:tileArray[i][j]];
+				//[ret addObject:tileArray[i][j]];
+				[ret addObject:[self hexAtLocationX:i y:j]];
 			}
 		}
 	}
@@ -236,7 +260,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	if (attacker.player == defender.player) {
 		return false;
 	}
-	int distance = [self distanceBetweenHex:tileArray[attacker.x][attacker.y] andHex:tileArray[defender.x][defender.y]];
+	//int distance = [self distanceBetweenHex:tileArray[attacker.x][attacker.y] andHex:tileArray[defender.x][defender.y]];
+	int distance = [self distanceBetweenHex:[self hexAtLocationX:attacker.x y:attacker.y] andHex:[self hexAtLocationX:defender.x y:defender.y]];
 	if (distance >= attacker.minRange && distance <= attacker.maxRange) {
 		return true;
 	}
@@ -283,11 +308,13 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 - (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece {
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_WIDTH; j++) {
-			[tileArray[i][j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
+			//[tileArray[i][j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
+			[[self hexAtLocationX:i y:i] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
 		}
 	}
 
-	CALayer *hex = tileArray[movingPiece.x][movingPiece.y];
+	//CALayer *hex = tileArray[movingPiece.x][movingPiece.y];
+	CALayer *hex = [self hexAtLocationX:movingPiece.x y:movingPiece.y];
 	[hex setValue:[NSNumber numberWithInteger:(movingPiece.curMovement)] forKey:@"movementLeft"];
 
 	NSMutableArray *hexQueue = [NSMutableArray arrayWithCapacity:60];
@@ -323,7 +350,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 	GamePiece *piece;
 	for (piece in gamePieces) {
-		[ret removeObject:tileArray[piece.x][piece.y]];
+		//[ret removeObject:tileArray[piece.x][piece.y]];
+		[ret removeObject:[self hexAtLocationX:piece.x y:piece.y]];
 	}
 
 	return ret;
@@ -351,7 +379,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 0; i < 6; i ++) {
 		if (coordinates[i][0] >= 0 && coordinates[i][0] < MAP_WIDTH && coordinates[i][1] >= 0 && coordinates[i][1] < MAP_WIDTH) {
-			[ret addObject:tileArray[coordinates[i][0]][coordinates[i][1]]];
+			//[ret addObject:tileArray[coordinates[i][0]][coordinates[i][1]]];
+			[ret addObject:[self hexAtLocationX:coordinates[i][0] y:coordinates[i][1]]];
 		}
 	}
 
@@ -457,10 +486,11 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (int)numSupportingUnitsWithAttacker:(GamePiece *)attacker defender:(GamePiece *)defender {
 	int ret = 0;
-	NSArray *hexes = [self hexesBesideHex:tileArray[defender.x][defender.y]];
+	//NSArray *hexes = [self hexesBesideHex:tileArray[defender.x][defender.y]];
+	NSArray *hexes = [self hexesBesideHex:[self hexAtLocationX:defender.x y:defender.y]];
 	GamePiece *piece;
 	CALayer *hex;
-	
+
 	for (hex in hexes) {
 		piece = [self pieceOnHex:hex];
 		if (piece && piece != attacker && piece.player == attacker.player) {
@@ -510,7 +540,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 }
 
 - (CGPoint)locationOfHexAtX:(int)x y:(int)y {
-	return tileArray[x][y].position;
+	//return tileArray[x][y].position;
+	CALayer *hex = [self hexAtLocationX:x y:y];
+	return hex.position;
 }
 
 - (bool)pieceCanMoveToHex:(CALayer *)dest piece:(GamePiece *)piece {
@@ -536,7 +568,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 }
 
 - (CALayer *)hexAtLocationX:(int)x y:(int)y {
-	return tileArray[x][y];
+	return [[tileArray objectAtIndex:x] objectAtIndex:y];
+	//return tileArray[x][y];
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {
@@ -544,7 +577,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	if (x < 0 || x >= hexesWide) return nil;
 	int y = [self hexYFromPoint:point];
 	if (y < 0 || y >= hexesHigh) return nil;
-	return tileArray[[self hexXFromPoint:point]][[self hexYFromPoint:point]];
+	
+	return [self hexAtLocationX:x y:y];
+	//return tileArray[[self hexXFromPoint:point]][[self hexYFromPoint:point]];
 }
 
 - (int)hexXFromPoint:(CGPoint)point {
@@ -561,7 +596,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 }
 
 - (CALayer *)hexUnderPiece:(GamePiece *)piece {
-	return tileArray[piece.x][piece.y];
+	//return tileArray[piece.x][piece.y];
+	return [self hexAtLocationX:piece.x y:piece.y];
 }
 
 - (void)startNewTurn {
@@ -572,7 +608,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 }
 
 - (CGImageRef)getTerrainImageAtX:(int)x y:(int)y {
-	int terrainType = [[tileArray[x][y] valueForKey:@"terrainType"] intValue];
+	//int terrainType = [[tileArray[x][y] valueForKey:@"terrainType"] intValue];
+	CALayer *hex = [self hexAtLocationX:x y:y];
+	int terrainType = [[hex valueForKey:@"terrainType"] intValue];
 	return tileImageRefs[terrainType];
 }
 
