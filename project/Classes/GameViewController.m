@@ -53,7 +53,7 @@
 	int defenderTerrainDefense = [map typeOfHex:[map hexUnderPiece:defendingPiece]].defenseBonus;
 	
 	// Ranged attacks do not use support
-	if (selectedPiece.minRange > 0) {
+	if (selectedPiece.minRange > 1) {
 		attackerSupport = defenderSupport = 0;
 	}
 	
@@ -72,7 +72,7 @@
 	}
 	
 	// Ranged attacks cannot be retaliated
-	if (selectedPiece.minRange > 0) {
+	if (selectedPiece.minRange > 1) {
 		defenderDoesDamage = 0;
 	}
 

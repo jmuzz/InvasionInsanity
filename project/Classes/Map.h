@@ -13,7 +13,7 @@ typedef struct {
 
 @interface Map : UIView {
   @private
-	CALayer *tileShade[MAP_WIDTH][MAP_HEIGHT];
+	NSMutableArray *tileShade;
 	NSMutableArray *tileArray;
 	CALayer *highlight, *target;
 	int hexesWide, hexesHigh;
@@ -31,6 +31,7 @@ typedef struct {
 - (CGImageRef)getTerrainImageAtX:(int)x y:(int)y;
 - (CALayer *)hexFromPoint:(CGPoint)point;
 - (CALayer *)hexAtLocationX:(int)x y:(int)y;
+- (CALayer *)shadeAtLocationX:(int)x y:(int)y;
 - (GamePiece *)pieceFromPoint:(CGPoint)point;
 - (bool)addGamePiece:(GamePiece *)piece atX:(int)x y:(int)y;
 - (void)removeGamePiece:(GamePiece *)piece;

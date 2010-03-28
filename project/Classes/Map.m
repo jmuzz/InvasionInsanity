@@ -108,7 +108,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			tileImageRefs[i] = CGImageCreateWithImageInRect(ir, CGRectMake(i*36, 0, 36, 32));
 		}
 		CGImageRelease(ir);
-		
+
 		// Load hex highlight
 		image = [UIImage imageNamed:@"highlight.png"];
 		ir = CGImageCreateCopy([image CGImage]);
@@ -118,7 +118,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		highlight.bounds = CGRectMake(0.0f, 0.0f, 40.0f, 36.0f);
 		highlight.zPosition = 50.0f;
 		highlight.contents = ir;
-		
+
 		highlight.position = CGPointMake(0.0f, 0.0f);
 		[self.layer addSublayer:highlight];
 		
@@ -144,20 +144,19 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		target.contents = ir;
 		target.position = CGPointMake(0.0f, 0.0f);
 		target.opacity = 0.7f;
-		
+
 		UIImage *hexMask = [UIImage imageNamed:@"hexmask.png"];
 		CGImageRef hexMaskRef = CGImageCreateCopy([hexMask CGImage]);
 		[hexMask release];
 
 		// Load terrain data and create tile layers and add them to map
 		tileArray = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
-		NSMutableArray *column;
+		tileShade = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
 		for (int i = 0; i < MAP_WIDTH; i++) {
-			column = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
+			NSMutableArray *tileColumn = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
+			NSMutableArray *shadeColumn = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
 			for (int j = 0; j < MAP_HEIGHT; j++) {
-				CALayer *hex;
-				
-				hex = [CALayer layer];
+				CALayer *hex = [CALayer layer];
 				hex.anchorPoint = CGPointMake(0.0f, 0.0f);
 				hex.position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
 				hex.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
@@ -168,24 +167,26 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				hex.contents = tileImageRefs[terrainType];
 				hex.zPosition = 10.0f;
 				[[self layer] addSublayer:hex];
-				[column addObject:hex];
-				
-				tileShade[i][j] = [CALayer layer];
-				tileShade[i][j].anchorPoint = CGPointMake(0.0f, 0.0f);
-				tileShade[i][j].position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
-				tileShade[i][j].bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
-				tileShade[i][j].zPosition = 30.0f;
+				[tileColumn addObject:hex];
 
-				CALayer *shadeMask = [CALayer layer];
+				CALayer *shade = [[CALayer layer] retain];
+				shade.anchorPoint = CGPointMake(0.0f, 0.0f);
+				shade.position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
+				shade.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
+				shade.zPosition = 30.0f;
+
+				CALayer *shadeMask = [[CALayer layer] retain];
 				shadeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
 				shadeMask.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 				shadeMask.contents = hexMaskRef;
 
-				tileShade[i][j].mask = shadeMask;
+				shade.mask = shadeMask;
 
-				[[self layer] addSublayer:tileShade[i][j]];
+				[[self layer] addSublayer:shade];
+				[shadeColumn addObject:shade];
 			}
-			[tileArray addObject:column];
+			[tileArray addObject:tileColumn];
+			[tileShade addObject:shadeColumn];
 		}
 
 		// Add some game pieces to the map
@@ -294,7 +295,6 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		}
 	}
 
-	//CALayer *hex = tileArray[movingPiece.x][movingPiece.y];
 	CALayer *hex = [self hexAtLocationX:movingPiece.x y:movingPiece.y];
 	[hex setValue:[NSNumber numberWithInteger:(movingPiece.curMovement)] forKey:@"movementLeft"];
 
@@ -382,12 +382,13 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		case (waitingState):
 			for (piece in gamePieces) {
 				if (piece.player == gameViewController.currentPlayerTurn) {
+					CALayer *shade = [self shadeAtLocationX:piece.x y:piece.y];
 					if ([piece canBeUsed]) {
-						tileShade[piece.x][piece.y].backgroundColor = [UIColor whiteColor].CGColor;
-						tileShade[piece.x][piece.y].opacity = 0.35f;
+						shade.backgroundColor = [UIColor whiteColor].CGColor;
+						shade.opacity = 0.35f;
 					} else {
-						tileShade[piece.x][piece.y].backgroundColor = [UIColor blackColor].CGColor;
-						tileShade[piece.x][piece.y].opacity = 0.3f;
+						shade.backgroundColor = [UIColor blackColor].CGColor;
+						shade.opacity = 0.3f;
 					}
 				}
 			}
@@ -406,8 +407,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			// Highlight attackable pieces
 			pieces = [self piecesAttackableByPiece:piece];
 			for (attackablePiece in pieces) {
-				tileShade[attackablePiece.x][attackablePiece.y].backgroundColor = [UIColor redColor].CGColor;
-				tileShade[attackablePiece.x][attackablePiece.y].opacity = 0.3f;
+				CALayer *shade = [self shadeAtLocationX:attackablePiece.x y:attackablePiece.y];
+				shade.backgroundColor = [UIColor redColor].CGColor;
+				shade.opacity = 0.3f;
 			}
 
 			// Highlight movement range
@@ -415,8 +417,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 			for (hex in hexes) {
 				x = [[hex valueForKey:@"hexX"] intValue];
 				y = [[hex valueForKey:@"hexY"] intValue];
-				tileShade[x][y].backgroundColor = [UIColor purpleColor].CGColor;
-				tileShade[x][y].opacity = 0.3f;
+				CALayer *shade = [self shadeAtLocationX:x y:y];
+				shade.backgroundColor = [UIColor purpleColor].CGColor;
+				shade.opacity = 0.3f;
 			}
 			break;
 			
@@ -437,8 +440,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 	[target removeFromSuperlayer];
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_HEIGHT; j++) {
-			tileShade[i][j].opacity = 0.0f;
-			tileShade[i][j].backgroundColor = nil;
+			CALayer *shade = [self shadeAtLocationX:i y:j];
+			shade.opacity = 0.9f;
+			shade.backgroundColor = nil;
 		}
 	}
 }
@@ -546,6 +550,10 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (CALayer *)hexAtLocationX:(int)x y:(int)y {
 	return [[tileArray objectAtIndex:x] objectAtIndex:y];
+}
+
+- (CALayer *)shadeAtLocationX:(int)x y:(int)y {
+	return [[tileShade objectAtIndex:x] objectAtIndex:y];
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {
