@@ -36,7 +36,8 @@
 	[window addSubview:[gameOverViewController view]];
 }
 
-- (void)startGame {
+- (void)startGame:(int)mapChoice {
+	[gameViewController resetGameWithMap:mapChoice];
 	gameViewController.view.frame = [UIScreen mainScreen].applicationFrame;
 	[window addSubview:[gameViewController view]];
 }

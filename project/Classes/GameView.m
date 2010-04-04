@@ -7,11 +7,11 @@
 
 @synthesize gameViewController, map;
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame mapChoice:(int)mapChoice {
 	if (self = [super initWithFrame:frame]) {
 		// Create map
 		CGRect mapFrame = CGRectMake(0, 0, CGRectGetWidth([self frame]), CGRectGetHeight([self frame]) - 88);
-		map = [[Map alloc] initWithFrame:mapFrame];
+		map = [[Map alloc] initWithFrame:mapFrame mapChoice:mapChoice];
 
 		// Create terrain info bar
 		terrainInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(mapFrame) + 48, CGRectGetWidth(mapFrame) - 120, 32)];

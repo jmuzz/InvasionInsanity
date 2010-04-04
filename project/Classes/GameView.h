@@ -14,6 +14,7 @@
 	UIButton *actionButtons[NUM_ACTION_BUTTONS];
 }
 
+- (id)initWithFrame:(CGRect)frame mapChoice:(int)mapChoice;
 - (void)updateTerrainInfoWithHex:(CALayer *)hex;
 - (void)updatePieceInfoWithPiece:(GamePiece *)piece;
 - (void)updateActionButtonBoxWithState:(int)state;

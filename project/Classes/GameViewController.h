@@ -18,6 +18,7 @@ typedef enum {
 	CALayer *selectedHex;
 }
 
+- (void)resetGameWithMap:(int)mapChoice;
 - (void)deselectPiece;
 - (void)endTurn;
 - (void)refreshView;

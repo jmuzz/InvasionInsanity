@@ -9,8 +9,10 @@
 
 - (void) loadView {
 	self.wantsFullScreenLayout = YES;
+}
 
-	GameView *view = [[GameView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+- (void)resetGameWithMap:(int)mapChoice {
+	GameView *view = [[GameView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame mapChoice:mapChoice];
 	view.gameViewController = self;
 	self.view = view;
 	self.gameView = view;

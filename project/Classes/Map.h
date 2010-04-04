@@ -55,5 +55,6 @@ typedef struct {
 - (CALayer *)hexUnderPiece:(GamePiece *)piece;
 - (TerrainType)typeOfHex:(CALayer *)hex;
 - (void)clearUndo;
+- (id)initWithFrame:(CGRect)frame mapChoice:(int)mapChoice;
 
 @end

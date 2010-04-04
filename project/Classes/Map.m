@@ -14,14 +14,12 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 @synthesize hexesWide, hexesHigh, gameViewController;
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame mapChoice:(int)mapChoice{
     if (self = [super initWithFrame:frame]) {
-		int chosenMap = 2;
-		
 		NSMutableArray *mapInit;
 		NSMutableArray *piecesInit;
 		
-		switch (chosenMap) {
+		switch (mapChoice) {
 			case 1:
 				hexesWide = 10;
 				hexesHigh = 10;
