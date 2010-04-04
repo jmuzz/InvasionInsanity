@@ -16,20 +16,41 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-		// Testmap 1
-		int testMap[10][10] = {
-			{2, 2, 2, 4, 2, 2, 0, 0, 0, 0},
-			{2, 2, 2, 4, 1, 2, 0, 0, 0, 0},
-			{2, 2, 4, 2, 2, 3, 2, 0, 0, 0},
-			{4, 4, 4, 4, 3, 1, 3, 2, 0, 0},
-			{2, 1, 3, 2, 4, 2, 2, 1, 2, 2},
-			{1, 2, 2, 2, 4, 4, 3, 2, 2, 4},
-			{0, 2, 2, 3, 2, 4, 2, 4, 4, 2},
-			{0, 0, 1, 2, 3, 1, 4, 2, 2, 2},
-			{0, 0, 0, 2, 2, 2, 4, 4, 2, 2},
-			{0, 0, 0, 1, 2, 3, 2, 4, 2, 2}
-		};
+		int chosenMap = 1;
+		NSMutableArray *mapInit;
 		
+		switch (chosenMap) {
+			case 1:
+				hexesWide = 10;
+				hexesHigh = 10;
+				mapInit = [NSMutableArray arrayWithCapacity:hexesWide];
+				
+				// Testmap 1
+				int testMap[10][10] = {
+					{2, 2, 2, 4, 2, 2, 0, 0, 0, 0},
+					{2, 2, 2, 4, 1, 2, 0, 0, 0, 0},
+					{2, 2, 4, 2, 2, 3, 2, 0, 0, 0},
+					{4, 4, 4, 4, 3, 1, 3, 2, 0, 0},
+					{2, 1, 3, 2, 4, 2, 2, 1, 2, 2},
+					{1, 2, 2, 2, 4, 4, 3, 2, 2, 4},
+					{0, 2, 2, 3, 2, 4, 2, 4, 4, 2},
+					{0, 0, 1, 2, 3, 1, 4, 2, 2, 2},
+					{0, 0, 0, 2, 2, 2, 4, 4, 2, 2},
+					{0, 0, 0, 1, 2, 3, 2, 4, 2, 2}
+				};
+				
+				// This is gonna be duplicated for now but should be DRY in the final version
+				for (int i = 0; i < hexesWide; i++) {
+					NSMutableArray *mapInitColumn = [NSMutableArray arrayWithCapacity:hexesHigh];
+					for (int j = 0; j < hexesHigh; j++) {
+						[mapInitColumn addObject:[NSNumber numberWithInteger:testMap[j][i]]];
+					}
+					[mapInit addObject:mapInitColumn];
+				}
+				
+				break;
+		}
+
 		// Testmap 2
 		/*int testMap[9][11] = {
 			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
@@ -95,8 +116,6 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		 {0, 1, 8, 2}
 		 };*/
 
-		hexesWide = MAP_WIDTH;
-		hexesHigh = MAP_HEIGHT;
 		gamePieces = [NSMutableArray arrayWithCapacity:12];
 		[gamePieces retain];
 
@@ -121,7 +140,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 		highlight.position = CGPointMake(0.0f, 0.0f);
 		[self.layer addSublayer:highlight];
-		
+
 		CABasicAnimation *theAnimation;
 		theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
 		theAnimation.duration=1.0;
@@ -150,17 +169,21 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		[hexMask release];
 
 		// Load terrain data and create tile layers and add them to map
-		tileArray = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
-		shadeArray = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
-		for (int i = 0; i < MAP_WIDTH; i++) {
-			NSMutableArray *tileColumn = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
-			NSMutableArray *shadeColumn = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
-			for (int j = 0; j < MAP_HEIGHT; j++) {
+		tileArray = [[NSMutableArray alloc] initWithCapacity:hexesWide];
+		shadeArray = [[NSMutableArray alloc] initWithCapacity:hexesHigh];
+		
+		for (int i = 0; i < hexesWide; i++) {
+			NSMutableArray *mapInitColumn = [mapInit objectAtIndex:i];
+			NSMutableArray *tileColumn = [[NSMutableArray alloc] initWithCapacity:hexesHigh];
+			NSMutableArray *shadeColumn = [[NSMutableArray alloc] initWithCapacity:hexesHigh];
+			
+			for (int j = 0; j < hexesHigh; j++) {
+				NSNumber *tileTypeObj = [mapInitColumn objectAtIndex:j];
+				int terrainType = [tileTypeObj intValue];
 				CALayer *hex = [CALayer layer];
 				hex.anchorPoint = CGPointMake(0.0f, 0.0f);
 				hex.position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
 				hex.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
-				int terrainType = testMap[j][i];
 				[hex setValue:[NSNumber numberWithInteger:terrainType] forKey:@"terrainType"];
 				[hex setValue:[NSNumber numberWithInteger:i] forKey:@"hexX"];
 				[hex setValue:[NSNumber numberWithInteger:j] forKey:@"hexY"];
@@ -168,23 +191,24 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				hex.zPosition = 10.0f;
 				[[self layer] addSublayer:hex];
 				[tileColumn addObject:hex];
-
+				
 				CALayer *shade = [[CALayer layer] retain];
 				shade.anchorPoint = CGPointMake(0.0f, 0.0f);
 				shade.position = CGPointMake(27.0f * i, 32.0f * j + ((i % 2 == 1) ? 16.0f : 0.0f));
 				shade.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 				shade.zPosition = 30.0f;
-
+				
 				CALayer *shadeMask = [[CALayer layer] retain];
 				shadeMask.anchorPoint = CGPointMake(0.0f, 0.0f);
 				shadeMask.bounds = CGRectMake(0.0f, 0.0f, 36.0f, 32.0f);
 				shadeMask.contents = hexMaskRef;
-
+				
 				shade.mask = shadeMask;
-
+				
 				[[self layer] addSublayer:shade];
 				[shadeColumn addObject:shade];
 			}
+			
 			[tileArray addObject:tileColumn];
 			[shadeArray addObject:shadeColumn];
 		}
@@ -218,8 +242,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (NSArray *)hexesInAttackRangeOfPiece:(GamePiece *)attackingPiece {
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
-	for (int i = 0; i < MAP_WIDTH; i++) {
-		for (int j = 0; j < MAP_HEIGHT; j++) {
+	for (int i = 0; i < hexesWide; i++) {
+		for (int j = 0; j < hexesHigh; j++) {
 			int distance = [self distanceBetweenHex:[self hexAtLocationX:attackingPiece.x y:attackingPiece.y] andHex:[self hexAtLocationX:i y:j]];
 			if (distance >= attackingPiece.minRange && distance <= attackingPiece.maxRange) {
 				[ret addObject:[self hexAtLocationX:i y:j]];
@@ -289,8 +313,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 }
 
 - (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece {
-	for (int i = 0; i < MAP_WIDTH; i++) {
-		for (int j = 0; j < MAP_WIDTH; j++) {
+	for (int i = 0; i < hexesWide; i++) {
+		for (int j = 0; j < hexesWide; j++) {
 			[[self hexAtLocationX:i y:j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
 		}
 	}
@@ -358,7 +382,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 0; i < 6; i ++) {
-		if (coordinates[i][0] >= 0 && coordinates[i][0] < MAP_WIDTH && coordinates[i][1] >= 0 && coordinates[i][1] < MAP_WIDTH) {
+		if (coordinates[i][0] >= 0 && coordinates[i][0] < hexesWide && coordinates[i][1] >= 0 && coordinates[i][1] < hexesWide) {
 			[ret addObject:[self hexAtLocationX:coordinates[i][0] y:coordinates[i][1]]];
 		}
 	}
@@ -438,8 +462,8 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 - (void)clearShades {
 	[highlight removeFromSuperlayer];
 	[target removeFromSuperlayer];
-	for (int i = 0; i < MAP_WIDTH; i++) {
-		for (int j = 0; j < MAP_HEIGHT; j++) {
+	for (int i = 0; i < hexesWide; i++) {
+		for (int j = 0; j < hexesHigh; j++) {
 			CALayer *shade = [self shadeAtLocationX:i y:j];
 			shade.opacity = 0.9f;
 			shade.backgroundColor = nil;
