@@ -16,8 +16,10 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-		int chosenMap = 1;
+		int chosenMap = 2;
+		
 		NSMutableArray *mapInit;
+		NSMutableArray *piecesInit;
 		
 		switch (chosenMap) {
 			case 1:
@@ -26,7 +28,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				mapInit = [NSMutableArray arrayWithCapacity:hexesWide];
 				
 				// Testmap 1
-				int testMap[10][10] = {
+				int testMap1[10][10] = {
 					{2, 2, 2, 4, 2, 2, 0, 0, 0, 0},
 					{2, 2, 2, 4, 1, 2, 0, 0, 0, 0},
 					{2, 2, 4, 2, 2, 3, 2, 0, 0, 0},
@@ -43,78 +45,95 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				for (int i = 0; i < hexesWide; i++) {
 					NSMutableArray *mapInitColumn = [NSMutableArray arrayWithCapacity:hexesHigh];
 					for (int j = 0; j < hexesHigh; j++) {
-						[mapInitColumn addObject:[NSNumber numberWithInteger:testMap[j][i]]];
+						[mapInitColumn addObject:[NSNumber numberWithInteger:testMap1[j][i]]];
+					}
+					[mapInit addObject:mapInitColumn];
+				}
+
+				// {type, player, x, y}
+				// For testmap 1
+				int testPieces1[12][4] = {
+					{2, 0, 0, 0},
+					{1, 0, 1, 0},
+					{1, 0, 0, 1},
+					{0, 0, 2, 0},
+					{0, 0, 0, 2},
+					{0, 0, 2, 2},
+					{2, 1, 9, 9},
+					{1, 1, 8, 9},
+					{1, 1, 9, 8},
+					{0, 1, 7, 9},
+					{0, 1, 9, 7},
+					{0, 1, 7, 7}
+				};
+				
+				// More code to DRY or eliminate in final version
+				piecesInit = [NSMutableArray arrayWithCapacity:12];
+				for (int i = 0; i < 12; i++) {
+					NSMutableArray *pieceInit = [NSMutableArray arrayWithCapacity:4];
+					for (int j = 0; j < 4; j++) {
+						[pieceInit addObject:[NSNumber numberWithInteger:testPieces1[i][j]]];
+					}
+					[piecesInit addObject:pieceInit];
+				}
+
+				break;
+				
+			case 2:
+				hexesWide = 11;
+				hexesHigh = 9;
+				mapInit = [NSMutableArray arrayWithCapacity:hexesWide];
+				
+				int testMap2[9][11] = {
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2}
+				};
+				
+				// This is gonna be duplicated for now but should be DRY in the final version
+				for (int i = 0; i < hexesWide; i++) {
+					NSMutableArray *mapInitColumn = [NSMutableArray arrayWithCapacity:hexesHigh];
+					for (int j = 0; j < hexesHigh; j++) {
+						[mapInitColumn addObject:[NSNumber numberWithInteger:testMap2[j][i]]];
 					}
 					[mapInit addObject:mapInitColumn];
 				}
 				
+				/* This set is close together */
+				int testPieces2[12][4] = {
+					{2, 0, 0, 4},
+					{1, 0, 1, 2},
+					{1, 0, 1, 5},
+					{0, 0, 2, 6},
+					{0, 0, 2, 4},
+					{0, 0, 2, 2},
+					{2, 1, 10, 4},
+					{1, 1, 9, 2},
+					{1, 1, 9, 5},
+					{0, 1, 8, 6},
+					{0, 1, 8, 4},
+					{0, 1, 8, 2}
+				};
+				
+				// More code to DRY or eliminate in final version
+				piecesInit = [NSMutableArray arrayWithCapacity:12];
+				for (int i = 0; i < 12; i++) {
+					NSMutableArray *pieceInit = [NSMutableArray arrayWithCapacity:4];
+					for (int j = 0; j < 4; j++) {
+						[pieceInit addObject:[NSNumber numberWithInteger:testPieces2[i][j]]];
+					}
+					[piecesInit addObject:pieceInit];
+				}
+				
 				break;
 		}
-
-		// Testmap 2
-		/*int testMap[9][11] = {
-			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2},
-			{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2}
-		};*/
-		
-		// {type, player, x, y}
-		// For testmap 1
-		/*int testPieces[12][4] = {
-			{2, 0, 0, 0},
-			{1, 0, 1, 0},
-			{1, 0, 0, 1},
-			{0, 0, 2, 0},
-			{0, 0, 0, 2},
-			{0, 0, 2, 2},
-			{2, 1, 9, 9},
-			{1, 1, 8, 9},
-			{1, 1, 9, 8},
-			{0, 1, 7, 9},
-			{0, 1, 9, 7},
-			{0, 1, 7, 7}
-		};*/
-		
-		// {type, player, x, y}
-		// For testmap 1
-		int testPieces[12][4] = {
-			{2, 0, 0, 0},
-			{1, 0, 1, 0},
-			{1, 0, 0, 1},
-			{0, 0, 2, 0},
-			{0, 0, 0, 2},
-			{0, 0, 2, 2},
-			{2, 1, 9, 9},
-			{1, 1, 8, 9},
-			{1, 1, 9, 8},
-			{0, 1, 7, 9},
-			{0, 1, 9, 7},
-			{0, 1, 7, 7}
-		};
-	
-		/* This set is close together */
-		// For test map 2
-		/*int testPieces[12][4] = {
-		 {2, 0, 0, 4},
-		 {1, 0, 1, 2},
-		 {1, 0, 1, 5},
-		 {0, 0, 2, 6},
-		 {0, 0, 2, 4},
-		 {0, 0, 2, 2},
-		 {2, 1, 10, 4},
-		 {1, 1, 9, 2},
-		 {1, 1, 9, 5},
-		 {0, 1, 8, 6},
-		 {0, 1, 8, 4},
-		 {0, 1, 8, 2}
-		 };*/
 
 		gamePieces = [NSMutableArray arrayWithCapacity:12];
 		[gamePieces retain];
@@ -214,9 +233,9 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 		}
 
 		// Add some game pieces to the map
-		for (int i = 0; i < 12; i++) {
-			GamePiece *newPiece = [[GamePiece alloc] initWithPieceType:testPieces[i][0] player:testPieces[i][1]];
-			[self addGamePiece:newPiece atX:testPieces[i][2] y:testPieces[i][3]];
+		for (NSArray *pieceInit in piecesInit) {
+			GamePiece *newPiece = [[GamePiece alloc] initWithPieceType:[[pieceInit objectAtIndex:0] intValue] player:[[pieceInit objectAtIndex:1] intValue]];
+			[self addGamePiece:newPiece atX:[[pieceInit objectAtIndex:2] intValue] y:[[pieceInit objectAtIndex:3] intValue]];
 		}
     }
     return self;
@@ -314,7 +333,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 - (NSArray *)hexesInMovementRangeOfPiece:(GamePiece *)movingPiece {
 	for (int i = 0; i < hexesWide; i++) {
-		for (int j = 0; j < hexesWide; j++) {
+		for (int j = 0; j < hexesHigh; j++) {
 			[[self hexAtLocationX:i y:j] setValue:[NSNumber numberWithInteger:-1] forKey:@"movementLeft"];
 		}
 	}
@@ -382,7 +401,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 	NSMutableArray *ret = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 0; i < 6; i ++) {
-		if (coordinates[i][0] >= 0 && coordinates[i][0] < hexesWide && coordinates[i][1] >= 0 && coordinates[i][1] < hexesWide) {
+		if (coordinates[i][0] >= 0 && coordinates[i][0] < hexesWide && coordinates[i][1] >= 0 && coordinates[i][1] < hexesHigh) {
 			[ret addObject:[self hexAtLocationX:coordinates[i][0] y:coordinates[i][1]]];
 		}
 	}
