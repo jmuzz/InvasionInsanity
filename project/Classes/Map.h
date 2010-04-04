@@ -13,7 +13,7 @@ typedef struct {
 
 @interface Map : UIView {
   @private
-	NSMutableArray *tileShade;
+	NSMutableArray *shadeArray;
 	NSMutableArray *tileArray;
 	CALayer *highlight, *target;
 	int hexesWide, hexesHigh;

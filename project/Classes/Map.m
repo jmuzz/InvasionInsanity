@@ -151,7 +151,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 
 		// Load terrain data and create tile layers and add them to map
 		tileArray = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
-		tileShade = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
+		shadeArray = [[NSMutableArray alloc] initWithCapacity:MAP_WIDTH];
 		for (int i = 0; i < MAP_WIDTH; i++) {
 			NSMutableArray *tileColumn = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
 			NSMutableArray *shadeColumn = [[NSMutableArray alloc] initWithCapacity:MAP_HEIGHT];
@@ -186,7 +186,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				[shadeColumn addObject:shade];
 			}
 			[tileArray addObject:tileColumn];
-			[tileShade addObject:shadeColumn];
+			[shadeArray addObject:shadeColumn];
 		}
 
 		// Add some game pieces to the map
@@ -553,7 +553,7 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 }
 
 - (CALayer *)shadeAtLocationX:(int)x y:(int)y {
-	return [[tileShade objectAtIndex:x] objectAtIndex:y];
+	return [[shadeArray objectAtIndex:x] objectAtIndex:y];
 }
 
 - (CALayer *)hexFromPoint:(CGPoint)point {
