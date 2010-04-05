@@ -131,6 +131,66 @@ static const TerrainType terrainTypes[NUM_TILE_TYPES] = {
 				}
 				
 				break;
+				
+			case 3:
+				hexesWide = 15;
+				hexesHigh = 15;
+				mapInit = [NSMutableArray arrayWithCapacity:hexesWide];
+				
+				int testMap3[15][15] = {
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2},
+					{2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+				};
+				
+				// This is gonna be duplicated for now but should be DRY in the final version
+				for (int i = 0; i < hexesWide; i++) {
+					NSMutableArray *mapInitColumn = [NSMutableArray arrayWithCapacity:hexesHigh];
+					for (int j = 0; j < hexesHigh; j++) {
+						[mapInitColumn addObject:[NSNumber numberWithInteger:testMap3[j][i]]];
+					}
+					[mapInit addObject:mapInitColumn];
+				}
+				
+				/* This set is close together */
+				int testPieces3[12][4] = {
+					{2, 0, 0, 4},
+					{1, 0, 1, 2},
+					{1, 0, 1, 5},
+					{0, 0, 2, 6},
+					{0, 0, 2, 4},
+					{0, 0, 2, 2},
+					{2, 1, 10, 4},
+					{1, 1, 9, 2},
+					{1, 1, 9, 5},
+					{0, 1, 8, 6},
+					{0, 1, 8, 4},
+					{0, 1, 8, 2}
+				};
+				
+				// More code to DRY or eliminate in final version
+				piecesInit = [NSMutableArray arrayWithCapacity:12];
+				for (int i = 0; i < 12; i++) {
+					NSMutableArray *pieceInit = [NSMutableArray arrayWithCapacity:4];
+					for (int j = 0; j < 4; j++) {
+						[pieceInit addObject:[NSNumber numberWithInteger:testPieces3[i][j]]];
+					}
+					[piecesInit addObject:pieceInit];
+				}
+				
+				break;
 		}
 
 		gamePieces = [NSMutableArray arrayWithCapacity:12];

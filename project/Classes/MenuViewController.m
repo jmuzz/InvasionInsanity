@@ -4,7 +4,6 @@
 
 @synthesize score, delegate;
 
-
 - (IBAction) map1: (id) sender {
 	[self.view removeFromSuperview];
 	[self.delegate startGame:1];
@@ -13,6 +12,11 @@
 - (IBAction) map2: (id) sender {
 	[self.view removeFromSuperview];
 	[self.delegate startGame:2];
+}
+
+- (IBAction) map3: (id) sender {
+	[self.view removeFromSuperview];
+	[self.delegate startGame:3];
 }
 
 - (IBAction) help: (id) sender {

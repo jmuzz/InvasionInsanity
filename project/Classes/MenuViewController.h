@@ -11,6 +11,7 @@
 
 - (IBAction) map1: (id) sender;
 - (IBAction) map2: (id) sender;
+- (IBAction) map3: (id) sender;
 - (IBAction) help: (id) sender;
 
 @end
