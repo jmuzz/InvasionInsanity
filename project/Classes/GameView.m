@@ -12,6 +12,8 @@
 		// Create map
 		CGRect mapFrame = CGRectMake(0, 0, CGRectGetWidth([self frame]), CGRectGetHeight([self frame]) - 88);
 		map = [[Map alloc] initWithFrame:mapFrame mapChoice:mapChoice];
+		map.bounds = mapFrame;
+		map.clipsToBounds = YES;
 
 		// Create terrain info bar
 		terrainInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(mapFrame) + 48, CGRectGetWidth(mapFrame) - 120, 32)];

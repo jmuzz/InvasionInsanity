@@ -143,11 +143,35 @@
 	[self refreshView];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *touch = [touches anyObject];
+	Map *map = gameView.map;
+	mapTouchLocation = [touch locationInView:map];
+	viewTouchDownLocation = [touch locationInView:gameView];
+	scrolledThisTouch = false;
+	if (viewTouchDownLocation.x > CGRectGetWidth(map.frame) || viewTouchDownLocation.y > CGRectGetHeight(map.frame)) {
+		mapTouchLocation = CGPointMake(-1, -1);
+	}
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	Map *map = gameView.map;
+	if (mapTouchLocation.x >= 0) {
+		UITouch *touch = [touches anyObject];
+		CGPoint viewTouchLocation = [touch locationInView:gameView];
+		if (abs(viewTouchLocation.x - viewTouchDownLocation.x) > 10 || abs(viewTouchLocation.y - viewTouchDownLocation.y) > 10) {
+			scrolledThisTouch = true;
+		}
+		map.bounds = CGRectMake(mapTouchLocation.x - viewTouchLocation.x, mapTouchLocation.y - viewTouchLocation.y, CGRectGetWidth(map.bounds), CGRectGetHeight(map.bounds));
+	}
+}
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	for (UITouch *touch in touches) {
 		Map *map = gameView.map;
 
 		CGPoint tloc = [touch locationInView:map];
+		CGPoint gloc = [touch locationInView:gameView];
 		CALayer *hex = [map hexFromPoint:tloc];
 		if (hex) {
 			GamePiece *piece = [map pieceFromPoint:tloc];

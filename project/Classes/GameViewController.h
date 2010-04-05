@@ -16,6 +16,8 @@ typedef enum {
 	GamePiece *selectedPiece, *defendingPiece;
 	int oldPieceX, oldPieceY, currentPlayerTurn;
 	CALayer *selectedHex;
+	CGPoint mapTouchLocation, viewTouchDownLocation;
+	bool scrolledThisTouch;
 }
 
 - (void)resetGameWithMap:(int)mapChoice;
