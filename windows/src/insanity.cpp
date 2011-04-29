@@ -2,28 +2,28 @@
 
 int main()
 {
-  sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Window");
-  sf::Image Image;
-  if (!Image.LoadFromFile("sprite.png"))
+  sf::RenderWindow app(sf::VideoMode(800, 600, 32), "SFML Window");
+  sf::Image hexImage;
+  if (!hexImage.LoadFromFile("gfx/hex.png"))
   {
-    App.Close();
+    app.Close();
   }
-  sf::Sprite Sprite;
-  Sprite.SetImage(Image);
+  sf::Sprite hexSprite;
+  hexSprite.SetImage(hexImage);
 
-  while (App.IsOpened())
+  while (app.IsOpened())
   {
     sf::Event Event;
-    while (App.GetEvent(Event))
+    while (app.GetEvent(Event))
     {
       if (Event.Type == sf::Event::Closed)
-        App.Close();
+        app.Close();
     }
 
-    App.Clear(sf::Color(200, 0, 0));
-    App.Draw(Sprite);
+    app.Clear(sf::Color(255, 255, 255));
+    app.Draw(hexSprite);
 
-    App.Display();
+    app.Display();
   }
 
   return EXIT_SUCCESS;
