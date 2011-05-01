@@ -1,17 +1,13 @@
 #include <SFML/Graphics.hpp>
 
+#include "GamePiece.hpp"
+
 int main()
 {
   sf::RenderWindow app(sf::VideoMode(800, 600, 32), "SFML Window");
 
   sf::Image hexImage;
   if (!hexImage.LoadFromFile("gfx/hex.png"))
-  {
-    app.Close();
-  }
-
-  sf::Image spriteImage;
-  if (!spriteImage.LoadFromFile("gfx/sprites.png"))
   {
     app.Close();
   }
@@ -30,22 +26,12 @@ int main()
     }
   }
 
-  sf::Sprite sprite[6];
-  int pokecoords[6][2] = {
-    {12, 1},
-    {8, 2},
-    {2, 3},
-    {23, 9},
-    {9, 12},
-    {9, 17}
-  };
+  GamePiece *piece[6];
+  piece[0] = new GamePiece(0, 0, 0);
+
   for (int i = 0; i < 6; i++)
   {
-    sprite[i].SetImage(spriteImage);
-    sprite[i].SetSubRect(sf::IntRect(pokecoords[i][0]*80, pokecoords[i][1]*80, (pokecoords[i][0]+1) * 80, (pokecoords[i][1]+1) * 80));
-    sprite[i].Resize(48, 48);
-    sprite[i].SetPosition(i * 47 * 2, 0);
-    sprite[i].Move(9, 9);
+    piece[i] = new GamePiece(i, i*2, 0);
   }
 
   while (app.IsOpened())
@@ -65,8 +51,9 @@ int main()
         app.Draw(hexSprite[i][j]);
       }
     }
+
     for (int i = 0; i < 6; i++) {
-      app.Draw(sprite[i]);
+      app.Draw(*piece[i]);
     }
 
     app.Display();
