@@ -31,7 +31,7 @@ int main()
 
   for (int i = 0; i < 6; i++)
   {
-    piece[i] = new GamePiece(i, i*2, 0);
+    piece[i] = new GamePiece(i, i, i);
   }
 
   while (app.IsOpened())

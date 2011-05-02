@@ -26,8 +26,17 @@ GamePiece::GamePiece(int type, int gameX, int gameY)
         (gamePiecePokeCoords[type][1]+1) * 80)
   );
   this->Resize(48, 48);
-  this->SetPosition(type * 47 * 2, 0);
-  this->Move(9, 9);
+  this->setPosition(gameX, gameY);
+}
+
+void GamePiece::setPosition(int gameX, int gameY)
+{
   gameX_ = gameX;
   gameY_ = gameY;
+  this->SetPosition(gameX * 47, gameY * 56);
+  if (gameY % 2 == 1)
+  {
+    this->Move(0, 29);
+  }
+  this->Move(9, 9);
 }

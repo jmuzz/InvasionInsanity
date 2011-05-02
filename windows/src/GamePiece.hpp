@@ -21,6 +21,7 @@ static int gamePiecePokeCoords[6][2] = {
 class GamePiece : public sf::Sprite {
   public:
     GamePiece(int type, int gameX, int gameY);
+    void setPosition(int gameX, int gameY);
 
   private:
     int gameX_;
